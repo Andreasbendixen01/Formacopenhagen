@@ -1,0 +1,557 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_list_Q8bn9L": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_mhbTKD": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-6d7fbbd5-e9b9-4f26-a9f4-3af9c4eb667b",
+            "collection": "",
+            "image": "shopify://shop_images/NN07.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "#Fashion",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_KgJDrN": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-6d7fbbd5-e9b9-4f26-a9f4-3af9c4eb667b",
+            "collection": "",
+            "image": "shopify://shop_images/Skall_Studios_Brand_Image_3f2de4b5-36f1-4a60-8b4e-75dc074e1c7f.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "#The Lifestyle",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_XQFiMA": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-6d7fbbd5-e9b9-4f26-a9f4-3af9c4eb667b",
+            "collection": "",
+            "image": "shopify://shop_images/Les_Deux.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "The Fashion",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_DgLaXi": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8d40d7dd-61ee-4d11-a949-784ae5ea62bb",
+            "collection": "",
+            "image": "shopify://shop_images/Ganni_Brand_Image.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "#THE FASHION",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_9Wg3Bp": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-6d7fbbd5-e9b9-4f26-a9f4-3af9c4eb667b",
+            "collection": "",
+            "image": "shopify://shop_images/Norse_Projects.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "#THE FASHION",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_w8gUAP": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8d40d7dd-61ee-4d11-a949-784ae5ea62bb",
+            "collection": "",
+            "image": "shopify://shop_images/Foret_Brand_Image_24650963-c633-42b6-add6-33eeaeb80529.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "#THE FASHION",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_mhbTKD",
+        "collection_KgJDrN",
+        "collection_XQFiMA",
+        "collection_DgLaXi",
+        "collection_9Wg3Bp",
+        "collection_w8gUAP"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": false,
+        "stack_collections": false,
+        "collections_per_row_desktop": 2,
+        "stack_collections_mobile": false,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "featured_collections_NURMmV": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_CqQri7": {
+          "type": "collection",
+          "settings": {
+            "collection": "our-edit",
+            "products_count": 10,
+            "title": "Our Edit",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_CqQri7"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "show_editorial_card": true,
+        "editorial_eyebrow": "Curated by FORMA",
+        "editorial_title": "Our Edit",
+        "editorial_text": "A considered selection of wardrobe essentials, chosen for form, function and longevity.",
+        "editorial_button": "Explore our edit →",
+        "editorial_link": "shopify://collections/our-edit",
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 0.2,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "collection_list_QiMGke": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_YfwDHL": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/Les_Deux.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_HzAttp": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/Foret_Brand_Image_24650963-c633-42b6-add6-33eeaeb80529.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_TdkzgL": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/Ganni_Brand_Image.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_W7a4RX": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/NN07.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_wyjchw": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8d40d7dd-61ee-4d11-a949-784ae5ea62bb",
+            "collection": "",
+            "image": "shopify://shop_images/Skall_Studios_Brand_Image_3f2de4b5-36f1-4a60-8b4e-75dc074e1c7f.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_yyMmKA": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/Norse_Projects.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_KfWgip": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "image": "shopify://shop_images/Foret_Brand_Image.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_YfwDHL",
+        "collection_HzAttp",
+        "collection_TdkzgL",
+        "collection_W7a4RX",
+        "collection_wyjchw",
+        "collection_yyMmKA",
+        "collection_KfWgip"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": false,
+        "stack_collections": false,
+        "collections_per_row_desktop": 4,
+        "stack_collections_mobile": false,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "Featured Brands",
+        "content": ""
+      }
+    },
+    "featured_collections_dWKJiE": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_dNUHRK": {
+          "type": "collection",
+          "settings": {
+            "collection": "latest-products",
+            "products_count": 10,
+            "title": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_dNUHRK"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "show_editorial_card": true,
+        "editorial_eyebrow": "Curated by FORMA",
+        "editorial_title": "Our Edit",
+        "editorial_text": "A considered selection of wardrobe essentials, chosen for form, function and longevity.",
+        "editorial_button": "Explore latest product →",
+        "editorial_link": "shopify://collections",
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 0.2,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "custom_liquid_b8xeqW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom_liquid.presets.custom_liquid.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div class=\"klaviyo-form-SpfxMa\"></div>",
+        "text_alignment": "center"
+      }
+    },
+    "rich_text_tVxim4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_frcaxN": {
+          "type": "heading",
+          "settings": {
+            "text": "CHOOSE YOUR CATEGORY",
+            "heading_tag": "h4"
+          }
+        }
+      },
+      "block_order": [
+        "heading_frcaxN"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": true
+      }
+    },
+    "collection_list_kLix77": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_AaXfdq": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "image": "shopify://shop_images/caef591234d4d825b80f151819d12cdce3e18525-1200x1500_webp.avif",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Clothing",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_Li4aFW": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "image": "shopify://shop_images/F2927001_8_jpg.webp",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Footwear",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_PJ3J8q": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Accessories",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 10
+          }
+        },
+        "collection_fTCGhT": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Furniture",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 10
+          }
+        },
+        "collection_69zgha": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Decoration",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 10
+          }
+        },
+        "collection_Bq4Lxn": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-8bc02a70-1e93-4c97-b92f-b1ed54398869",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "Rugs",
+            "button_link": "",
+            "button_style": "solid",
+            "overlay_color": "#000000",
+            "overlay_opacity": 10
+          }
+        }
+      },
+      "block_order": [
+        "collection_AaXfdq",
+        "collection_Li4aFW",
+        "collection_PJ3J8q",
+        "collection_fTCGhT",
+        "collection_69zgha",
+        "collection_Bq4Lxn"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image_size": "md",
+        "show_text_outside": false,
+        "space_items": false,
+        "stack_collections": true,
+        "collections_per_row_desktop": 3,
+        "stack_collections_mobile": true,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "Choose your category",
+        "content": ""
+      }
+    },
+    "blog_posts_zd4yYa": {
+      "type": "blog-posts",
+      "name": "t:sections.blog_posts.presets.blog_posts.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "blog": "news",
+        "posts_count": 9,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_date": false,
+        "show_excerpt": false,
+        "show_read_more": false,
+        "subheading": "",
+        "title": "From The Magazine",
+        "content": "",
+        "button_link": "",
+        "button_text": "Get Inspired"
+      }
+    }
+  },
+  "order": [
+    "collection_list_Q8bn9L",
+    "featured_collections_NURMmV",
+    "collection_list_QiMGke",
+    "featured_collections_dWKJiE",
+    "custom_liquid_b8xeqW",
+    "rich_text_tVxim4",
+    "collection_list_kLix77",
+    "blog_posts_zd4yYa"
+  ]
+}

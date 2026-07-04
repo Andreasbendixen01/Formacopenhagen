@@ -1,0 +1,136 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_pcgawU": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Magazine",
+            "images_position": "right",
+            "image_1_heading": "FORMA Journal",
+            "image_1_text": "Read stories →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_GYN36E": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Brands",
+            "images_position": "right",
+            "image_1_heading": "Discover brands",
+            "image_1_text": "View all →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_Urj43E": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "The Form",
+            "images_position": "right",
+            "image_1_heading": "Curated by FORMA",
+            "image_1_text": "Explore →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_UmXFin": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "The Home",
+            "images_position": "right",
+            "image_1_heading": "The modern home",
+            "image_1_text": "Discover design →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_JMbqaa": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "The Lifestyle",
+            "images_position": "right",
+            "image_1_heading": "Explore the lifestyle",
+            "image_1_text": "Discover places →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        },
+        "mega_menu_YT7Ett": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Wardrobe",
+            "images_position": "right",
+            "image_1_heading": "New season wardrobe",
+            "image_1_text": "Discover essentials →",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_pcgawU",
+        "mega_menu_GYN36E",
+        "mega_menu_Urj43E",
+        "mega_menu_UmXFin",
+        "mega_menu_JMbqaa",
+        "mega_menu_YT7Ett"
+      ],
+      "settings": {
+        "color_scheme": "schema-2",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "show_separation_border": false,
+        "reduce_padding": true,
+        "logo": "shopify://shop_images/FORMA-logo-transparent_white.png",
+        "logo_max_width": 140,
+        "logo_mobile_max_width": 120,
+        "menu": "mega-menu",
+        "sidebar_menu": "",
+        "customer_account_menu": "customer-account-main-menu",
+        "menu_open_trigger": "hover",
+        "menu_text_font": "heading",
+        "enable_search": true,
+        "sidebar_color_scheme": "schema-2",
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": false,
+        "sidebar_open_second_level_menus": false,
+        "layout": "logo_left_navigation_center",
+        "show_icons": true,
+        "show_country_selector": true,
+        "show_country_name": true,
+        "show_country_flag": true,
+        "show_locale_selector": true,
+        "transparent_header_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

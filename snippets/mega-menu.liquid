@@ -1,0 +1,60 @@
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+MEGA MENU COMPONENT
+------------------------------------------------------------------------------------------------------------------------
+
+Render the mega-menu. The mega-menu is a kind of menu optimized for showing a large number of items into several
+columns.
+
+Supported variables
+************************************
+
+* link: the link from which we need to render the mega-menu. The link must always be a second level link, but it can
+         also be empty (no links), which is the case if the merchant only want to show images, for instance.
+* block: the block containing all the information about the menu to render
+{%- endcomment -%}
+
+<div class="mega-menu mega-menu--forma {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
+  <div class="mega-menu__top">
+    {%- if link.levels > 0 -%}
+      <ul class="mega-menu__linklist unstyled-list">
+        {%- for sub_link in link.links -%}
+          <li class="mega-menu__column">
+            <a href="{{ sub_link.url }}" class="mega-menu__column-title">{{ sub_link.title }}</a>
+
+            {%- if sub_link.links.size > 0 -%}
+              <ul class="mega-menu__sublist unstyled-list">
+                {%- for sub_sub_link in sub_link.links -%}
+                  <li>
+                    <a href="{{ sub_sub_link.url }}" class="mega-menu__link">{{ sub_sub_link.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  <div class="forma-mega-menu-brands">
+    <p class="mega-menu__heading">Selected Brands</p>
+
+    <div class="forma-mega-menu-brands__track">
+      {% assign brand_logos = shop.metaobjects.mega_menu_brand_logo.values %}
+
+      {% for brand in brand_logos %}
+        {% if brand.logo.value %}
+          <a href="{{ brand.collection.value.url }}">
+            <img
+              src="{{ brand.logo.value | image_url: width: 140 }}"
+              alt="{{ brand.name.value | escape }}"
+              loading="lazy"
+            >
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
