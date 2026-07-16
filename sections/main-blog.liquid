@@ -33,25 +33,44 @@
               </div>
             {%- endif -%}
 
-            {%- if section.settings.show_tags and blog.tags.size > 0 -%}
-              <ul class="blog-tags unstyled-list" role="list">
-                <li
-                  {% if current_tags.size > 0 %}
-                    class="link-faded"
-                  {% endif %}
-                >
-                  <a href="{{ blog.url }}">{{- 'blog.general.all_posts' | t -}}</a>
-                </li>
+                {%- if section.settings.show_tags and blog.tags.size > 0 -%}
+                {%- assign forma_navigation_tags = section.settings.navigation_tags | split: ',' -%}
 
-                {%- for tag in blog.all_tags -%}
-                  {%- if current_tags contains tag -%}
-                    <li>{{- tag | link_to_remove_tag: tag -}}</li>
-                  {%- else -%}
-                    <li class="link-faded">{{- tag | link_to_tag: tag -}}</li>
-                  {%- endif -%}
+                <nav class="forma-journal-nav" aria-label="Forma Journal categories">
+                 <ul class="forma-journal-nav__list unstyled-list" role="list">
+
+                  <li class="forma-journal-nav__item">
+
+                  <a href="{{ blog.url }}"
+                  class="forma-journal-nav__link{% if current_tags == blank %} is-active{% endif %}"
+                  {% if current_tags == blank %}
+                  aria-current="page"
+                  {% endif %}>
+                  {{ section.settings.all_posts_label | default: 'Show all' }}
+                  </a>
+
+                  </li>
+
+                  {%- for navigation_tag in forma_navigation_tags -%}
+                  {%- assign clean_tag = navigation_tag | strip -%}
+
+                  {%- if clean_tag != blank and blog.all_tags contains clean_tag -%}
+                  <li class="forma-journal-nav__item">
+                  <a href="{{ blog.url }}/tagged/{{ clean_tag | handleize }}"
+                  class="forma-journal-nav__link{% if current_tags contains clean_tag %} is-active{% endif %}"
+                  {% if current_tags contains clean_tag %}
+                  aria-current="page"
+                  {% endif %}>
+
+                  {{ clean_tag }}
+
+                  </a>
+                </li>
+                {%- endif -%}
                 {%- endfor -%}
-              </ul>
-            {%- endif -%}
+                </ul>
+                </nav>
+                {%- endif -%}
           </div>
         {%- endif -%}
 
@@ -206,7 +225,20 @@
       "id": "show_read_more",
       "label": "t:global.blog.show_read_more",
       "default": true
-    }
+    },
+    {
+    "type": "text",
+    "id": "all_posts_label",
+    "label": "All posts label",
+    "default": "Show all"
+    },
+    {
+  "type": "textarea",
+  "id": "navigation_tags",
+  "label": "Journal categories",
+  "info": "Separate categories with commas. The names must match the article tags exactly.",
+  "default": "Fashion, Places, People, Design, Business, Culture"
+  }
   ]
 }
 {% endschema %}
