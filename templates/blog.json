@@ -15,14 +15,16 @@
         "color_scheme": "",
         "show_blog_title": false,
         "show_rss_feed": false,
-        "show_tags": false,
+        "show_tags": true,
         "posts_per_page": 50,
         "feature_first_blog_post": false,
         "featured_blog_post_color_scheme": "",
         "show_category": true,
         "show_date": false,
         "show_excerpt": false,
-        "show_read_more": true
+        "show_read_more": true,
+        "all_posts_label": "Show all",
+        "navigation_tags": "Fashion, Places, People, Design, Business, Culture"
       }
     }
   },
