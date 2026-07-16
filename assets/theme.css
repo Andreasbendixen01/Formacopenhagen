@@ -9875,8 +9875,8 @@ section[id*="blog_posts"] .section-stack {
 .forma-journal-nav__list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 32px;
+  justify-content: flex-start;
+  gap: 35px;
   width: 100%;
   padding-block: 18px;
   overflow-x: auto;
