@@ -7,7 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-
 {
   "sections": {
     "main": {
@@ -25,7 +24,7 @@
         "show_excerpt": false,
         "show_read_more": true,
         "all_posts_label": "Show all",
-        "navigation_tags": "Fashion, Places, People, Design, Business, Culture"
+        "navigation_tags": "Fashion, Places, People, Design, Business, Culture, Forma Originals"
       }
     }
   },
@@ -33,4 +32,3 @@
     "main"
   ]
 }
-
