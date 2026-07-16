@@ -529,7 +529,7 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
-        "blog": "news",
+        "blog": "nyheder",
         "posts_count": 9,
         "stack_on_mobile": false,
         "show_category": true,
@@ -539,7 +539,7 @@
         "subheading": "",
         "title": "From The Magazine",
         "content": "",
-        "button_link": "",
+        "button_link": "shopify://blogs/nyheder",
         "button_text": "Get Inspired"
       }
     }
