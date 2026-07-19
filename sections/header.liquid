@@ -272,10 +272,13 @@
           </li>
         {%- endif -%}
 
+        {%- render 'forma-header-save' -%}
+
         {%- if section.settings.enable_search -%}
           <li class="header__search-link">
             <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
+
 
               {%- if section.settings.show_icons -%}
                 {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
@@ -288,6 +291,8 @@
             </a>
           </li>
         {%- endif -%}
+
+
 
         <li class="relative header__cart-link">
           <a

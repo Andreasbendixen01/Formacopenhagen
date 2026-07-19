@@ -177,12 +177,12 @@ buildImagePairs() {
 
   prepareRevealElements() {
     const selectors = [
-  "h2",
-  "h3",
-  "blockquote",
-  ".forma-media",
-  ".forma-media-pair",
-];
+    "h2",
+    "h3",
+    "blockquote",
+    ".forma-media",
+    ".forma-media-pair",
+    ];
 
     this.revealElements = Array.from(
       this.article.querySelectorAll(selectors.join(","))

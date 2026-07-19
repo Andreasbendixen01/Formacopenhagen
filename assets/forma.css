@@ -1,0 +1,445 @@
+/* FORMA CORE — Saved products MVP */
+
+.forma-save-button {
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: 0.55rem;
+  justify-content: center;
+  padding: 0;
+}
+
+.forma-save-button__icon {
+  display: inline-grid;
+  place-items: center;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-save-button:hover .forma-save-button__icon {
+  transform: scale(1.06);
+}
+
+.forma-save-button[aria-pressed="true"] .forma-save-button__icon svg {
+  fill: currentColor;
+}
+
+.forma-save-button--card {
+  align-items: center;
+  background: rgb(var(--background));
+  border-radius: 999px;
+  box-shadow: 0 1px 8px rgb(0 0 0 / 0.08);
+  height: 38px;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+  position: absolute;
+  width: 38px;
+  z-index: 3;
+}
+
+.forma-save-button--product {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.forma-save-button--product .forma-save-button__label {
+  border-block-end: 1px solid currentColor;
+  line-height: 1.4;
+}
+
+.forma-header-saved {
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+}
+
+.forma-header-saved__count {
+  align-items: center;
+  background: currentColor;
+  border-radius: 999px;
+  color: rgb(var(--background));
+  display: none;
+  font-size: 9px;
+  height: 15px;
+  inset-block-start: -7px;
+  inset-inline-end: -9px;
+  justify-content: center;
+  line-height: 1;
+  min-width: 15px;
+  padding-inline: 3px;
+  position: absolute;
+}
+
+.forma-header-saved__count.is-visible {
+  display: inline-flex;
+}
+
+.forma-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 13px 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+
+  background: rgba(24, 24, 24, 0.88);
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate(-50%, 16px) scale(0.97);
+
+  transition:
+    opacity 240ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 240ms ease;
+}
+
+.forma-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+}
+
+@media screen and (max-width: 699px) {
+  .forma-toast {
+    bottom: 20px;
+    max-width: calc(100vw - 32px);
+    padding: 13px 18px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forma-toast {
+    transition: opacity 150ms ease;
+    transform: translate(-50%, 0);
+  }
+}
+
+.forma-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forma-save-button__icon,
+  .forma-toast {
+    transition: none;
+  }
+}
+
+/* ==========================================================
+   FORMA — HEADER SAVED PRODUCTS
+   ========================================================== */
+
+.forma-header-save {
+  display: flex;
+  align-items: center;
+}
+
+.forma-header-save__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: currentColor;
+}
+
+.forma-header-save__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forma-header-save__icon svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.forma-header-save__count {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding-inline: 4px;
+  border-radius: 999px;
+  background: currentColor;
+  color: rgb(var(--background));
+  font-size: 9px;
+  line-height: 1;
+}
+
+.forma-header-save__count:empty,
+.forma-header-save__count[data-count="0"] {
+  display: none;
+}
+
+.forma-toast {
+  gap: 16px;
+}
+
+.forma-toast__message {
+  display: flex;
+  align-items: center;
+}
+
+.forma-toast__link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: .72;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.forma-toast__link:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ==========================================================
+   FORMA — SAVE HEART INTERACTION
+   ========================================================== */
+
+.forma-save-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+}
+
+.forma-save-button__icon svg {
+  transition:
+    fill 180ms ease,
+    stroke 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-save-button:hover .forma-save-button__icon svg {
+  transform: scale(1.08);
+}
+
+.forma-save-button[aria-pressed="true"] .forma-save-button__icon svg {
+  fill: currentColor;
+  transform: scale(1);
+  animation: forma-heart-pop 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes forma-heart-pop {
+  0% {
+    transform: scale(0.82);
+  }
+  55% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forma-save-button__icon svg {
+    transition: none;
+    animation: none;
+  }
+}
+
+
+/* ==========================================================
+   FORMA — YOUR FORMA PAGE
+   ========================================================== */
+
+.forma-page {
+  padding-block: 72px 96px;
+}
+
+.forma-page__container {
+  width: min(100% - 40px, 1440px);
+  margin-inline: auto;
+}
+
+.forma-page__header {
+  max-width: 620px;
+  margin-bottom: 48px;
+}
+
+.forma-page__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.forma-page__title {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.forma-page__description {
+  margin: 18px 0 0;
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.forma-saved-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 16px;
+}
+
+.forma-saved-card {
+  min-width: 0;
+}
+
+.forma-saved-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #f4f4f2;
+}
+
+.forma-saved-card__media a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.forma-saved-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-saved-card:hover .forma-saved-card__media img {
+  transform: scale(1.025);
+}
+
+.forma-saved-card__media .forma-save-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+.forma-saved-card__content {
+  padding-top: 14px;
+}
+
+.forma-saved-card__vendor {
+  margin: 0 0 5px;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.58;
+}
+
+.forma-saved-card__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.forma-saved-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-saved-card__price {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
+.forma-empty-state {
+  padding: 100px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.forma-empty-state h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.forma-empty-state p {
+  margin: 14px auto 28px;
+  max-width: 420px;
+  opacity: 0.68;
+}
+
+@media screen and (max-width: 999px) {
+  .forma-saved-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .forma-page {
+    padding-block: 48px 72px;
+  }
+
+  .forma-page__container {
+    width: min(100% - 24px, 1440px);
+  }
+
+  .forma-page__header {
+    margin-bottom: 32px;
+  }
+
+  .forma-saved-grid {
+    gap: 28px 10px;
+  }
+
+  .forma-saved-card__media .forma-save-button {
+    top: 10px;
+    right: 10px;
+  }
+}

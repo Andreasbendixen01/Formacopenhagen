@@ -64,6 +64,8 @@
         {%- render 'product-badges', product: product, vertical: true, context: 'card' -%}
       {%- endif -%}
 
+      {%- render 'forma-save-button', product: product, style: 'card' -%}
+
       <a href="{{ product.url }}" class="product-card__media" draggable="false" data-instant>
         {%- capture sizes -%}
           {%- assign products_per_row_desktop = section.settings.products_per_row_desktop | default: 3 -%}

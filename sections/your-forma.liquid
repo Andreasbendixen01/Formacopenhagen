@@ -1,0 +1,49 @@
+<section class="forma-page">
+  <div class="forma-page__container">
+
+    <header class="forma-page__header">
+      <p class="forma-page__eyebrow">
+        Your Forma
+      </p>
+
+      <h1 class="forma-page__title">
+        Saved Products
+      </h1>
+
+      <p class="forma-page__description">
+        Your curated collection of products you've saved across Forma.
+      </p>
+    </header>
+
+    <div
+      id="FormaSavedProducts"
+      class="forma-saved-grid"
+    >
+    </div>
+
+    <div
+      id="FormaEmptyState"
+      class="forma-empty-state"
+      hidden
+    >
+      <h2>Nothing saved yet</h2>
+      <p>
+        Start exploring Forma and save products you love.
+      </p>
+
+      <a
+        href="/collections/all"
+        class="button">
+        Explore Forma
+      </a>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Your Forma",
+  "settings": []
+}
+{% endschema %}
