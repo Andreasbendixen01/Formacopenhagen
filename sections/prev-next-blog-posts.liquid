@@ -1,85 +1,448 @@
-{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+  | default: section.settings.color_scheme.settings.background
+  | md5
+-%}
 
-<div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-  <div class="container container--lg">
-    <div class="section-stack">
-      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title -%}
+{%- assign articles_to_show = section.settings.articles_to_show | default: 6 -%}
+{%- assign rendered_articles = 0 -%}
 
-      <div class="prev-next-blog-posts">
-        {%- capture sizes -%}(max-width: 699px) 95vw, 500px{%- endcapture -%}
-
-        {%- if blog.previous_article -%}
-          {%- render 'blog-post-card',
-            article: blog.previous_article,
-            blog: blog,
-            show_category: section.settings.show_category,
-            show_excerpt: section.settings.show_excerpt,
-            show_read_more: section.settings.show_read_more,
-            sizes: sizes
-          -%}
+<div
+  id="FormaJournalSlider-{{ section.id }}"
+  class="
+    forma-journal-slider
+    section-spacing
+    color-scheme
+    color-scheme--{{ section.settings.color_scheme.id }}
+    color-scheme--bg-{{ color_scheme_hash }}
+    {% if section.settings.separate_section_with_border %}
+      bordered-section
+    {% endif %}
+  "
+  data-forma-journal-slider
+>
+  <div class="forma-journal-slider__container">
+    <header class="forma-journal-slider__header">
+      <div class="forma-journal-slider__heading-group">
+        {%- if section.settings.subheading != blank -%}
+          <p class="forma-journal-slider__eyebrow">
+            {{ section.settings.subheading }}
+          </p>
         {%- endif -%}
 
-        {%- if blog.next_article -%}
-          {%- render 'blog-post-card',
-            article: blog.next_article,
-            blog: blog,
-            show_category: section.settings.show_category,
-            show_excerpt: section.settings.show_excerpt,
-            show_read_more: section.settings.show_read_more,
-            sizes: sizes
-          -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="forma-journal-slider__heading">
+            {{ section.settings.title }}
+          </h2>
         {%- endif -%}
+      </div>
+
+      <div
+        class="forma-journal-slider__controls"
+        aria-label="Journal navigation"
+      >
+        <button
+          type="button"
+          class="forma-journal-slider__button"
+          data-forma-slider-previous
+          aria-label="Previous articles"
+          disabled
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+
+        <button
+          type="button"
+          class="forma-journal-slider__button"
+          data-forma-slider-next
+          aria-label="Next articles"
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="forma-journal-slider__viewport">
+      <div
+        class="forma-journal-slider__track"
+        data-forma-slider-track
+        tabindex="0"
+        aria-label="More articles from Forma Journal"
+      >
+        {%- for related_article in blog.articles -%}
+          {%- unless related_article.id == article.id -%}
+            <div class="forma-journal-slider__slide">
+              {%- render 'forma-journal-card',
+                article: related_article,
+                blog: blog,
+                show_category: section.settings.show_category,
+                show_excerpt: section.settings.show_excerpt,
+                show_read_more: section.settings.show_read_more
+              -%}
+            </div>
+
+            {%- assign rendered_articles = rendered_articles | plus: 1 -%}
+
+            {%- if rendered_articles >= articles_to_show -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
       </div>
     </div>
   </div>
 </div>
 
+<style>
+  #shopify-section-{{ section.id }} {
+    --forma-slider-gap: clamp(18px, 2vw, 28px);
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider {
+    overflow: hidden;
+    padding-block:
+      clamp(56px, 6vw, 88px)
+      clamp(76px, 8vw, 120px);
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__container {
+    width: min(calc(100% - 64px), 1320px);
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: clamp(24px, 3vw, 38px);
+    padding-top: 20px;
+    border-top: 1px solid rgb(var(--text-color) / 0.22);
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__heading-group {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__eyebrow {
+    margin: 0 0 10px;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.46;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__heading {
+    max-width: 600px;
+    margin: 0;
+    font-size: clamp(27px, 2.7vw, 40px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__controls {
+    display: flex;
+    flex: none;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__button {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid rgb(var(--text-color) / 0.22);
+    border-radius: 50%;
+    color: inherit;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      color 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__button:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+
+  @media (hover: hover) {
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__button:not(:disabled):hover {
+      color: rgb(var(--background));
+      background: rgb(var(--text-color));
+      border-color: rgb(var(--text-color));
+    }
+  }
+
+ .forma-journal-slider__viewport {
+  width: calc(100vw - max(32px, calc((100vw - 1320px) / 2)));
+  overflow: visible;
+}
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, calc((100% - var(--forma-slider-gap)) / 2.22));
+    gap: var(--forma-slider-gap);
+    padding-left: 0;
+    padding-right: 32px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin: 0;
+    padding: 0 0 18px;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__slide {
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__slide
+    .forma-journal-card__media {
+    aspect-ratio: 1.75 / 1;
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__slide
+    .forma-journal-card__title {
+    font-size: clamp(21px, 1.7vw, 29px);
+  }
+
+  #shopify-section-{{ section.id }}
+    .forma-journal-slider__slide
+    .forma-journal-card__excerpt {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  @media screen and (max-width: 999px) {
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__track {
+      grid-auto-columns: minmax(0, 62%);
+    }
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider {
+      padding-block: 52px 78px;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__container {
+      width: min(calc(100% - 32px), 1320px);
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__header {
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 25px;
+      padding-top: 17px;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__heading {
+      font-size: 27px;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__controls {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__track {
+      grid-auto-columns: minmax(0, 88%);
+      gap: 14px;
+      margin-right: -16px;
+      padding-right: 16px;
+      padding-bottom: 12px;
+      scroll-padding-inline: 0 16px;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__slide
+      .forma-journal-card__media {
+      aspect-ratio: 1.55 / 1;
+    }
+
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__slide
+      .forma-journal-card__title {
+      font-size: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }}
+      .forma-journal-slider__track {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.getElementById(
+      'FormaJournalSlider-{{ section.id }}'
+    );
+
+    if (!section || section.dataset.sliderInitialized === 'true') {
+      return;
+    }
+
+    section.dataset.sliderInitialized = 'true';
+
+    const track = section.querySelector('[data-forma-slider-track]');
+    const previousButton = section.querySelector(
+      '[data-forma-slider-previous]'
+    );
+    const nextButton = section.querySelector(
+      '[data-forma-slider-next]'
+    );
+
+    if (!track || !previousButton || !nextButton) {
+      return;
+    }
+
+    const getScrollDistance = () => {
+      const firstSlide = track.querySelector(
+        '.forma-journal-slider__slide'
+      );
+
+      if (!firstSlide) {
+        return track.clientWidth * 0.8;
+      }
+
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+
+      return firstSlide.getBoundingClientRect().width + gap;
+    };
+
+    const updateButtons = () => {
+      const maximumScroll =
+        track.scrollWidth - track.clientWidth - 2;
+
+      previousButton.disabled = track.scrollLeft <= 2;
+      nextButton.disabled = track.scrollLeft >= maximumScroll;
+    };
+
+    previousButton.addEventListener('click', () => {
+      track.scrollBy({
+        left: -getScrollDistance(),
+        behavior: 'smooth'
+      });
+    });
+
+    nextButton.addEventListener('click', () => {
+      track.scrollBy({
+        left: getScrollDistance(),
+        behavior: 'smooth'
+      });
+    });
+
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateButtons);
+    }, { passive: true });
+
+    window.addEventListener('resize', updateButtons);
+
+    updateButtons();
+  })();
+</script>
+
 {% schema %}
 {
-  "name": "t:sections.prev_next_blog_posts.name",
+  "name": "Journal slider",
   "class": "shopify-section--prev-next-blog-posts",
   "tag": "section",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "t:global.colors.scheme",
+      "label": "Color scheme",
       "default": "scheme-3"
     },
     {
       "type": "checkbox",
       "id": "separate_section_with_border",
-      "label": "t:global.section.separate_section_with_border",
+      "label": "Separate section with border",
       "default": false
     },
     {
       "type": "inline_richtext",
       "id": "subheading",
-      "label": "t:global.text.subheading"
+      "label": "Subheading",
+      "default": "Forma Journal"
     },
     {
       "type": "inline_richtext",
       "id": "title",
-      "label": "t:global.text.title",
-      "default": "Read more"
+      "label": "Title",
+      "default": "Discover More"
+    },
+    {
+      "type": "range",
+      "id": "articles_to_show",
+      "label": "Number of articles",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 6
     },
     {
       "type": "checkbox",
       "id": "show_category",
-      "label": "t:global.blog.show_category",
-      "info": "t:global.blog.show_category_info",
+      "label": "Show category",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_excerpt",
-      "label": "t:global.blog.show_excerpt",
-      "default": true
+      "label": "Show excerpt",
+      "default": false
     },
     {
       "type": "checkbox",
       "id": "show_read_more",
-      "label": "t:global.blog.show_read_more",
+      "label": "Show read article link",
       "default": true
     }
   ]

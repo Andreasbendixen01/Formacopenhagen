@@ -1,3 +1,8 @@
+<script
+  src="{{ 'forma-journal.js' | asset_url }}"
+  defer>
+</script>
+
 <style>
   #shopify-section-{{ section.id }} {
     --article-image-height: {% if section.settings.image_size == 'auto' %}auto{% elsif section.settings.image_size == 'small' %}min(300px, 30vmax){% elsif section.settings.image_size == 'medium' %}min(500px, 45vmax){% else %}min(700px, 60vmax){% endif %}
@@ -46,82 +51,122 @@
     </article-toolbar>
   {%- endif -%}
 
-  {%- if section.settings.show_image and article.image -%}
-    <div class="article__image">
-      {%- if section.settings.enable_parallax -%}
-        <image-parallax class="contents">
-          {{-
-            article.image
-            | image_url: width: article.image.width
-            | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full'
-          -}}
-        </image-parallax>
-      {%- else -%}
-        {{-
-          article.image
-          | image_url: width: article.image.width
-          | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full'
-        -}}
+  {%- assign article_word_count = article.content | strip_html | split: ' ' | size -%}
+{%- assign article_reading_time = article_word_count | divided_by: 200.0 | ceil -%}
+
+
+<div class="forma-reading-progress"
+  aria-hidden="true">
+  
+  <span class="forma-reading-progress__bar"></span>
+</div>
+<div class="forma-article">
+  <header class="forma-article__header">
+    <div class="forma-article__header-inner">
+      <p class="forma-article__eyebrow">FORMA JOURNAL</p>
+
+      {%- if section.settings.show_date or section.settings.show_category and article.tags.size > 0 -%}
+        <div class="forma-article__meta">
+          {%- if section.settings.show_category and article.tags.size > 0 -%}
+            <a
+              href="{{ blog.url }}/tagged/{{ article.tags.first | handle }}"
+              class="forma-article__category"
+            >
+              {{ article.tags.first }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.show_category and article.tags.size > 0 and section.settings.show_date -%}
+            <span class="forma-article__meta-separator">•</span>
+          {%- endif -%}
+
+          {%- if section.settings.show_date -%}
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+              {{ article.published_at | date: '%d %B %Y' }}
+            </time>
+          {%- endif -%}
+
+          <span class="forma-article__meta-separator">•</span>
+
+          <span>
+            {{ article_reading_time }} min read
+          </span>
+        </div>
       {%- endif -%}
+
+      <h1 class="forma-article__title">
+        {{ article.title }}
+      </h1>
+
+      {%- if article.excerpt != blank -%}
+        <div class="forma-article__intro">
+          {{ article.excerpt }}
+        </div>
+      {%- endif -%}
+    </div>
+  </header>
+
+  {%- if section.settings.show_image and article.image -%}
+    <div class="forma-article__hero-wrap">
+      <div class="forma-article__hero">
+        {%- if section.settings.enable_parallax -%}
+          <image-parallax class="contents">
+            {{
+              article.image
+              | image_url: width: 2400
+              | image_tag:
+                widths: '600,800,1000,1200,1400,1600,1800,2000,2200,2400',
+                sizes: '(min-width: 1500px) 1380px, calc(100vw - 48px)',
+                loading: 'eager',
+                fetchpriority: 'high',
+                class: 'forma-article__hero-image'
+            }}
+          </image-parallax>
+        {%- else -%}
+          {{
+            article.image
+            | image_url: width: 2400
+            | image_tag:
+              widths: '600,800,1000,1200,1400,1600,1800,2000,2200,2400',
+              sizes: '(min-width: 1500px) 1380px, calc(100vw - 48px)',
+              loading: 'eager',
+              fetchpriority: 'high',
+              class: 'forma-article__hero-image'
+          }}
+        {%- endif -%}
+      </div>
     </div>
   {%- endif -%}
 
-  <div class="article__wrapper container--{{ section.settings.content_width }}">
-    <div class="v-stack gap-10 sm:gap-16">
-      <div class="v-stack gap-8 sm:gap-12">
-        <div class="v-stack gap-4.5">
-          {%- if section.settings.show_date or section.settings.show_category and article.tags.size > 0 -%}
-            <div class="h-stack gap-4">
-              {%- if section.settings.show_date -%}
-                <span class="h6 text-subdued"
-                  ><time>{{- article.published_at | date: format: 'abbreviated_date' -}}</time></span
-                >
-              {%- endif -%}
+  <div class="forma-article__content-layout">
 
-              {%- if section.settings.show_category and article.tags.size > 0 -%}
-                {%- if section.settings.show_date -%}
-                  <span class="separator-dot text-subdued"></span>
-                {%- endif -%}
+  <aside
+    class="forma-article__toc"
+    data-forma-toc
+    hidden>
+    <p class="forma-article__toc-label">
+      In this article
+    </p>
 
-                <a href="{{ blog.url }}/tagged/{{ article.tags.first | handle }}" class="h6 link-faded">{{ article.tags.first }}</a>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
+    <nav class="forma-article__toc-nav"
+      aria-label="Article contents">
+      
+      <ol class="forma-article__toc-list"></ol>
+    </nav>
+  </aside>
 
-          <h1 class="h1">{{ article.title }}</h1>
-        </div>
+  <div class="forma-article__body">
+    <div
+      class="prose forma-article__prose"
+      data-forma-article-content
+    >
+      {{- article.content -}}
+    </div>
+  </div>
+</div>
+</div>
 
-        <div class="prose">
-          {{- article.content -}}
-        </div>
-      </div>
-
-      {%- if section.settings.show_author or section.settings.show_share_buttons -%}
-        {%- if section.settings.show_author and article.user.bio != blank or article.user.image != blank or article.user.homepage != blank -%}
-          {%- assign has_extended_profile = true -%}
-        {%- else -%}
-          {%- assign has_extended_profile = false -%}
-        {%- endif -%}
-
-        <div class="article__footer">
-          {%- if has_extended_profile -%}
-            <div class="article__author">
-              {%- if article.user.image != blank -%}
-                {{-
-                  article.user.image
-                  | image_url: width: article.user.image.width
-                  | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120,180', class: 'article__author-image'
-                -}}
-              {%- endif -%}
-
-              <div class="v-stack gap-3 justify-items-start">
-                <p class="h6">{{ 'blog.post.written_by' | t: author: article.author }}</p>
-
-                {%- if article.user.bio != blank -%}
-                  <div class="prose">
-                    {{- article.user.bio -}}
-                  </div>
-                {%- endif -%}
+{%- if section.settings.show_author or section.settings.show_share_buttons -%}
 
                 {%- if article.user.homepage != blank -%}
                   <a href="{{ article.user.homepage }}" class="link" target="_blank">{{ 'blog.post.visit_author_website' | t }}</a>
@@ -142,7 +187,7 @@
             {%- endif -%}
           </div>
         </div>
-      {%- endif -%}
+      
     </div>
 
     {%- if article.comments_enabled? -%}
