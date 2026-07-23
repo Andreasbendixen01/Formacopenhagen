@@ -1,10 +1,16 @@
 {
   "sections": {
     "main": {
-      "type": "your-forma"
+      "type": "your-forma",
+      "settings": {}
+    },
+    "forma_onboarding": {
+      "type": "forma-onboarding",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "forma_onboarding"
   ]
 }

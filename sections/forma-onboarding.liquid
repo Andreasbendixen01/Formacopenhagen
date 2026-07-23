@@ -1,0 +1,785 @@
+{%- comment -%}
+  FORMA — YOUR FORMA ONBOARDING
+{%- endcomment -%}
+
+<section
+  id="FormaOnboarding-{{ section.id }}"
+  class="forma-onboarding"
+  data-forma-onboarding
+  hidden
+>
+  <div
+    class="forma-onboarding__backdrop"
+    data-forma-onboarding-close
+  ></div>
+
+  <div
+    class="forma-onboarding__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="FormaOnboardingTitle-{{ section.id }}"
+  >
+    <header class="forma-onboarding__header">
+      <a
+        href="{{ routes.root_url }}"
+        class="forma-onboarding__brand"
+        aria-label="Forma home"
+      >
+        FORMA
+      </a>
+
+      <button
+        type="button"
+        class="forma-onboarding__close"
+        data-forma-onboarding-close
+        aria-label="Close onboarding"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </header>
+
+    <div class="forma-onboarding__content">
+      <div class="forma-onboarding__meta">
+        <p class="forma-onboarding__eyebrow">
+          Your Forma
+        </p>
+
+        <p
+          class="forma-onboarding__progress-label"
+          data-forma-onboarding-progress-label
+        >
+          01 / 04
+        </p>
+      </div>
+
+      <div
+        class="forma-onboarding__progress"
+        aria-hidden="true"
+      >
+        <span
+          class="forma-onboarding__progress-bar"
+          data-forma-onboarding-progress
+        ></span>
+      </div>
+
+      <div class="forma-onboarding__body">
+
+        <!-- STEP 1 -->
+        <div
+          class="forma-onboarding__step is-active"
+          data-forma-onboarding-step="1"
+        >
+          <div class="forma-onboarding__intro">
+            <p class="forma-onboarding__step-number">
+              01
+            </p>
+
+            <h2
+              id="FormaOnboardingTitle-{{ section.id }}"
+              class="forma-onboarding__title"
+            >
+              Let’s make Forma yours.
+            </h2>
+
+            <p class="forma-onboarding__description">
+              Tell us a little about yourself so we can shape a more personal
+              experience around your taste, interests and favourite brands.
+            </p>
+          </div>
+
+          <div class="forma-onboarding__fields">
+            <label class="forma-onboarding__field">
+              <span class="forma-onboarding__field-label">
+                First name
+              </span>
+
+              <input
+                type="text"
+                name="firstName"
+                autocomplete="given-name"
+                placeholder="Your first name"
+                data-forma-profile-field
+              >
+            </label>
+
+            <label class="forma-onboarding__field">
+              <span class="forma-onboarding__field-label">
+                City
+              </span>
+
+              <input
+                type="text"
+                name="city"
+                autocomplete="address-level2"
+                placeholder="Copenhagen"
+                data-forma-profile-field
+              >
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div
+          class="forma-onboarding__step"
+          data-forma-onboarding-step="2"
+          hidden
+        >
+          <div class="forma-onboarding__intro">
+            <p class="forma-onboarding__step-number">
+              02
+            </p>
+
+            <h2 class="forma-onboarding__title">
+              What are you into?
+            </h2>
+
+            <p class="forma-onboarding__description">
+              Choose the worlds you want to see more of. Select as many as
+              you like.
+            </p>
+          </div>
+
+          <div
+            class="forma-onboarding__choices"
+            data-forma-preference-group="categories"
+          >
+            {% assign categories = 'Menswear,Womenswear,Interiors,Travel,Food & Drink,Culture,Wellbeing,Cities' | split: ',' %}
+
+            {% for category in categories %}
+              <button
+                type="button"
+                class="forma-onboarding__choice"
+                data-forma-preference-value="{{ category | escape }}"
+                aria-pressed="false"
+              >
+                <span>{{ category }}</span>
+                <span
+                  class="forma-onboarding__choice-mark"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div
+          class="forma-onboarding__step"
+          data-forma-onboarding-step="3"
+          hidden
+        >
+          <div class="forma-onboarding__intro">
+            <p class="forma-onboarding__step-number">
+              03
+            </p>
+
+            <h2 class="forma-onboarding__title">
+              Define your point of view.
+            </h2>
+
+            <p class="forma-onboarding__description">
+              Select the words that best describe your style and the things
+              you are naturally drawn to.
+            </p>
+          </div>
+
+          <div
+            class="forma-onboarding__choices"
+            data-forma-preference-group="styles"
+          >
+            {% assign styles = 'Minimal,Classic,Contemporary,Relaxed,Functional,Statement,Scandinavian,Timeless' | split: ',' %}
+
+            {% for style in styles %}
+              <button
+                type="button"
+                class="forma-onboarding__choice"
+                data-forma-preference-value="{{ style | escape }}"
+                aria-pressed="false"
+              >
+                <span>{{ style }}</span>
+                <span
+                  class="forma-onboarding__choice-mark"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div
+          class="forma-onboarding__step"
+          data-forma-onboarding-step="4"
+          hidden
+        >
+          <div class="forma-onboarding__intro">
+            <p class="forma-onboarding__step-number">
+              04
+            </p>
+
+            <h2 class="forma-onboarding__title">
+              Your everyday sizes.
+            </h2>
+
+            <p class="forma-onboarding__description">
+              Add the sizes you usually wear. This will help us make future
+              product recommendations more relevant.
+            </p>
+          </div>
+
+          <div class="forma-onboarding__sizes">
+            <label class="forma-onboarding__field">
+              <span class="forma-onboarding__field-label">
+                Tops
+              </span>
+
+              <select data-forma-size-field="tops">
+                <option value="">Select size</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+            </label>
+
+            <label class="forma-onboarding__field">
+              <span class="forma-onboarding__field-label">
+                Bottoms
+              </span>
+
+              <select data-forma-size-field="bottoms">
+                <option value="">Select size</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+            </label>
+
+            <label class="forma-onboarding__field">
+              <span class="forma-onboarding__field-label">
+                Shoes
+              </span>
+
+              <select data-forma-size-field="shoes">
+                <option value="">Select size</option>
+
+                {% for size in (35..48) %}
+                  <option value="{{ size }}">
+                    EU {{ size }}
+                  </option>
+                {% endfor %}
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <footer class="forma-onboarding__footer">
+        <div class="forma-onboarding__footer-secondary">
+          <button
+            type="button"
+            class="forma-onboarding__back"
+            data-forma-onboarding-back
+            hidden
+          >
+            Back
+          </button>
+
+          <button
+            type="button"
+            class="forma-onboarding__skip"
+            data-forma-onboarding-skip
+          >
+            Skip for now
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="forma-onboarding__next"
+          data-forma-onboarding-next
+        >
+          <span>Continue</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .forma-onboarding[hidden] {
+    display: none !important;
+  }
+
+  .forma-onboarding {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: grid;
+    place-items: stretch;
+    color: #171717;
+  }
+
+  .forma-onboarding__backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(20, 20, 20, 0.94),
+        rgba(47, 47, 44, 0.88)
+      );
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .forma-onboarding__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1600px);
+    min-height: 100dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: rgba(247, 247, 244, 0.97);
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.3);
+  }
+
+  .forma-onboarding__header {
+    min-height: 92px;
+    padding: 28px clamp(24px, 5vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
+  }
+
+  .forma-onboarding__brand {
+    color: inherit;
+    text-decoration: none;
+    font-family: serif;
+    font-size: clamp(24px, 2vw, 32px);
+    line-height: 1;
+    letter-spacing: 0.14em;
+  }
+
+  .forma-onboarding__close {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(23, 23, 23, 0.18);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .forma-onboarding__close:hover {
+    background: #171717;
+    color: #ffffff;
+    transform: rotate(4deg);
+  }
+
+  .forma-onboarding__content {
+    width: min(100% - 48px, 940px);
+    min-height: calc(100dvh - 92px);
+    margin: 0 auto;
+    padding: clamp(50px, 8vh, 110px) 0 44px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forma-onboarding__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .forma-onboarding__eyebrow,
+  .forma-onboarding__progress-label {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .forma-onboarding__progress-label {
+    color: rgba(23, 23, 23, 0.52);
+  }
+
+  .forma-onboarding__progress {
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    overflow: hidden;
+    background: rgba(23, 23, 23, 0.14);
+  }
+
+  .forma-onboarding__progress-bar {
+    display: block;
+    width: 25%;
+    height: 100%;
+    background: #171717;
+    transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .forma-onboarding__body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: clamp(54px, 8vh, 104px) 0;
+  }
+
+  .forma-onboarding__step {
+    width: 100%;
+    animation: formaOnboardingStepIn 500ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .forma-onboarding__step[hidden] {
+    display: none !important;
+  }
+
+  .forma-onboarding__intro {
+    max-width: 720px;
+  }
+
+  .forma-onboarding__step-number {
+    margin: 0 0 24px;
+    color: rgba(23, 23, 23, 0.42);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .forma-onboarding__title {
+    max-width: 780px;
+    margin: 0;
+    font-family: inherit;
+    font-size: clamp(42px, 6vw, 82px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .forma-onboarding__description {
+    max-width: 620px;
+    margin: 30px 0 0;
+    color: rgba(23, 23, 23, 0.64);
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.65;
+  }
+
+  .forma-onboarding__fields,
+  .forma-onboarding__sizes {
+    margin-top: clamp(48px, 7vh, 76px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .forma-onboarding__sizes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .forma-onboarding__field {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .forma-onboarding__field-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .forma-onboarding__field input,
+  .forma-onboarding__field select {
+    width: 100%;
+    min-height: 58px;
+    padding: 0 38px 0 0;
+    border: 0;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.28);
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    color: #171717;
+    font: inherit;
+    font-size: clamp(18px, 2vw, 24px);
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 180ms ease;
+  }
+
+  .forma-onboarding__field select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, #171717 50%),
+      linear-gradient(135deg, #171717 50%, transparent 50%);
+    background-position:
+      calc(100% - 10px) 52%,
+      calc(100% - 5px) 52%;
+    background-size:
+      5px 5px,
+      5px 5px;
+    background-repeat: no-repeat;
+  }
+
+  .forma-onboarding__field input:focus,
+  .forma-onboarding__field select:focus {
+    border-color: #171717;
+  }
+
+  .forma-onboarding__field input::placeholder {
+    color: rgba(23, 23, 23, 0.32);
+  }
+
+  .forma-onboarding__choices {
+    margin-top: clamp(48px, 7vh, 76px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(23, 23, 23, 0.16);
+  }
+
+  .forma-onboarding__choice {
+    min-height: 72px;
+    padding: 0 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border: 0;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: clamp(16px, 1.6vw, 20px);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      padding 220ms ease,
+      opacity 220ms ease,
+      background 220ms ease;
+  }
+
+  .forma-onboarding__choice:nth-child(odd) {
+    padding-right: 28px;
+    border-right: 1px solid rgba(23, 23, 23, 0.16);
+  }
+
+  .forma-onboarding__choice:nth-child(even) {
+    padding-left: 28px;
+  }
+
+  .forma-onboarding__choice:hover {
+    padding-left: 12px;
+  }
+
+  .forma-onboarding__choice:nth-child(even):hover {
+    padding-left: 40px;
+  }
+
+  .forma-onboarding__choice[aria-pressed="true"] {
+    background: #171717;
+    color: #ffffff;
+    padding-left: 20px;
+  }
+
+  .forma-onboarding__choice:nth-child(even)[aria-pressed="true"] {
+    padding-left: 28px;
+  }
+
+  .forma-onboarding__choice-mark {
+    flex: 0 0 auto;
+    font-size: 22px;
+    font-weight: 300;
+    transition: transform 220ms ease;
+  }
+
+  .forma-onboarding__choice[aria-pressed="true"]
+    .forma-onboarding__choice-mark {
+    transform: rotate(45deg);
+  }
+
+  .forma-onboarding__footer {
+    padding-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    border-top: 1px solid rgba(23, 23, 23, 0.14);
+  }
+
+  .forma-onboarding__footer-secondary {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .forma-onboarding__back,
+  .forma-onboarding__skip {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgba(23, 23, 23, 0.62);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 180ms ease;
+  }
+
+  .forma-onboarding__back:hover,
+  .forma-onboarding__skip:hover {
+    color: #171717;
+  }
+
+  .forma-onboarding__next {
+    min-width: 190px;
+    min-height: 56px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border: 1px solid #171717;
+    background: #171717;
+    color: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition:
+      background 200ms ease,
+      color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .forma-onboarding__next:hover {
+    background: transparent;
+    color: #171717;
+    transform: translateY(-2px);
+  }
+
+  @keyframes formaOnboardingStepIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .forma-onboarding__header {
+      min-height: 74px;
+      padding: 20px;
+    }
+
+    .forma-onboarding__content {
+      width: calc(100% - 40px);
+      min-height: calc(100dvh - 74px);
+      padding: 36px 0 24px;
+    }
+
+    .forma-onboarding__body {
+      align-items: flex-start;
+      padding: 48px 0;
+    }
+
+    .forma-onboarding__title {
+      font-size: clamp(40px, 13vw, 58px);
+    }
+
+    .forma-onboarding__description {
+      margin-top: 24px;
+    }
+
+    .forma-onboarding__fields,
+    .forma-onboarding__sizes,
+    .forma-onboarding__choices {
+      grid-template-columns: 1fr;
+    }
+
+    .forma-onboarding__fields,
+    .forma-onboarding__sizes {
+      gap: 28px;
+    }
+
+    .forma-onboarding__choice:nth-child(odd),
+    .forma-onboarding__choice:nth-child(even) {
+      padding-left: 0;
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .forma-onboarding__choice:nth-child(odd):hover,
+    .forma-onboarding__choice:nth-child(even):hover {
+      padding-left: 10px;
+    }
+
+    .forma-onboarding__choice:nth-child(odd)[aria-pressed="true"],
+    .forma-onboarding__choice:nth-child(even)[aria-pressed="true"] {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .forma-onboarding__footer {
+      align-items: stretch;
+      flex-direction: column-reverse;
+    }
+
+    .forma-onboarding__next {
+      width: 100%;
+    }
+
+    .forma-onboarding__footer-secondary {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .forma-onboarding *,
+    .forma-onboarding *::before,
+    .forma-onboarding *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Forma onboarding",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Forma onboarding"
+    }
+  ]
+}
+{% endschema %}

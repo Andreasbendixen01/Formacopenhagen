@@ -1,55 +1,114 @@
 /* ==========================================================
-   FORMA CORE
+   FORMA — SAVED PRODUCTS MODULE
    ========================================================== */
 
-window.Forma = (() => {
+(function () {
+  "use strict";
 
-  const STORAGE_KEY = "forma_saved_products";
-
-  function getSavedProducts() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  }
-
-  function saveProducts(products) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-    document.dispatchEvent(new CustomEvent("forma:saved-updated"));
-  }
-
-  function isSaved(productId) {
-    return getSavedProducts().some(
-     product => product.id === productId
+  if (!window.Forma) {
+    console.error(
+      "[Forma Saved Products] Forma Engine must load before forma.js"
     );
-    }
 
-  function toggle(productId, productHandle) {
-  let products = getSavedProducts();
-  const existingIndex = products.findIndex(
-    product => product.id === productId
-  );
+    return;
+  }
 
-  if (existingIndex > -1) {
-    products.splice(existingIndex, 1);
-  } else {
+  if (window.Forma.savedProducts) {
+    return;
+  }
 
-    products.push({
-      id: productId,
-      handle: productHandle
+  const STORAGE_KEY = window.Forma.storage.keys.savedProducts;
+
+  function normalizeProductId(productId) {
+    return String(productId);
+  }
+
+  function getAll() {
+    const products = window.Forma.storage.get(STORAGE_KEY, []);
+
+    return Array.isArray(products) ? products : [];
+  }
+
+  function save(products) {
+    window.Forma.storage.set(STORAGE_KEY, products);
+
+    window.Forma.events.emit("forma:saved-products-updated", {
+      products,
+      count: products.length
     });
   }
 
-  saveProducts(products);
-  return products.some(product => product.id === productId);
-}
+  function isSaved(productId) {
+    const normalizedProductId = normalizeProductId(productId);
 
-  function count() {
-    return getSavedProducts().length;
+    return getAll().some(
+      product => normalizeProductId(product.id) === normalizedProductId
+    );
   }
 
-  return {
-    toggle,
+  function add(productId, productHandle) {
+    const normalizedProductId = normalizeProductId(productId);
+    const products = getAll();
+
+    if (isSaved(normalizedProductId)) {
+      return false;
+    }
+
+    products.push({
+      id: normalizedProductId,
+      handle: productHandle
+    });
+
+    save(products);
+
+    return true;
+  }
+
+  function remove(productId) {
+    const normalizedProductId = normalizeProductId(productId);
+    const products = getAll();
+
+    const updatedProducts = products.filter(
+      product => normalizeProductId(product.id) !== normalizedProductId
+    );
+
+    if (updatedProducts.length === products.length) {
+      return false;
+    }
+
+    save(updatedProducts);
+
+    return true;
+  }
+
+  function toggle(productId, productHandle) {
+    const normalizedProductId = normalizeProductId(productId);
+
+    if (isSaved(normalizedProductId)) {
+      remove(normalizedProductId);
+      return false;
+    }
+
+    add(normalizedProductId, productHandle);
+    return true;
+  }
+
+  function count() {
+    return getAll().length;
+  }
+
+  function clear() {
+    save([]);
+  }
+
+  window.Forma.savedProducts = {
+    getAll,
     isSaved,
+    add,
+    remove,
+    toggle,
     count,
-    getSavedProducts
+    clear
   };
 
 })();

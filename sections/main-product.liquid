@@ -205,6 +205,63 @@
   }
 </script>
 
+<script>
+  try {
+    const formaRecentlyViewedKey = 'forma_recently_viewed_products';
+
+    let formaRecentlyViewedProducts = JSON.parse(
+      localStorage.getItem(formaRecentlyViewedKey) || '[]'
+    );
+
+    const currentProduct = {
+      id: {{ product.id | json }},
+      handle: {{ product.handle | json }},
+      title: {{ product.title | json }},
+      vendor: {{ product.vendor | json }},
+      url: {{ product.url | json }},
+      image: {{ product.featured_image | image_url: width: 900 | json }},
+      price: {{ product.price | money | json }}
+    };
+
+    formaRecentlyViewedProducts = formaRecentlyViewedProducts.filter(
+      product => String(product.id) !== String(currentProduct.id)
+    );
+
+    formaRecentlyViewedProducts.unshift(currentProduct);
+
+    formaRecentlyViewedProducts = formaRecentlyViewedProducts.slice(0, 12);
+
+    localStorage.setItem(
+      formaRecentlyViewedKey,
+      JSON.stringify(formaRecentlyViewedProducts)
+    );
+
+    document.dispatchEvent(
+      new CustomEvent('forma:recently-viewed-updated', {
+        detail: formaRecentlyViewedProducts
+      })
+    );
+  } catch (error) {
+    console.error(
+      'Forma: Could not save recently viewed products.',
+      error
+    );
+  }
+</script>
+
+<script>
+window.formaProduct = {
+  id: {{ product.id | json }},
+  handle: {{ product.handle | json }},
+  url: {{ product.url | json }},
+  title: {{ product.title | json }},
+  vendor: {{ product.vendor | json }},
+  image: {{ product.featured_image | image_url: width: 700 | json }},
+  price: {{ product.price | money | json }}
+};
+</script>
+
+
 {% schema %}
 {
   "name": "t:sections.main_product.name",
@@ -805,6 +862,10 @@
         }
       ]
     },
+      
+
+
+
     {
       "type": "buy_buttons",
       "name": "t:sections.main_product.blocks.buy_buttons.name",

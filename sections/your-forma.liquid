@@ -1,45 +1,2855 @@
-<section class="forma-page">
-  <div class="forma-page__container">
+<section
+  class="forma-dashboard"
+  data-forma-dashboard
+>
+  <div class="forma-dashboard__container">
 
-    <header class="forma-page__header">
-      <p class="forma-page__eyebrow">
-        Your Forma
-      </p>
+    <header class="forma-dashboard__hero" data-forma-dashboard-hero>
+  <div class="forma-dashboard__hero-main">
+    <p class="forma-dashboard__eyebrow" data-forma-hero-eyebrow>
+      Your Forma
+    </p>
 
-      <h1 class="forma-page__title">
-        Saved Products
-      </h1>
+    <h1 class="forma-dashboard__title">
+      <span data-forma-hero-greeting>
+        Welcome back
+      </span><span data-forma-profile-name></span>.
+    </h1>
 
-      <p class="forma-page__description">
-        Your curated collection of products you've saved across Forma.
-      </p>
-    </header>
-
-    <div
-      id="FormaSavedProducts"
-      class="forma-saved-grid"
+    <p
+      class="forma-dashboard__hero-message"
+      data-forma-hero-message
     >
-    </div>
+      Your personal world of design, fashion and places.
+    </p>
+  </div>
 
-    <div
-      id="FormaEmptyState"
-      class="forma-empty-state"
-      hidden
+  <div class="forma-dashboard__hero-footer">
+    <p
+      class="forma-dashboard__hero-context"
+      data-forma-hero-context
     >
-      <h2>Nothing saved yet</h2>
-      <p>
-        Start exploring Forma and save products you love.
+      Curated by your journey.
+    </p>
+
+    <button
+      type="button"
+      class="forma-dashboard__edit-profile"
+      data-forma-edit-profile
+    >
+      <span>Edit profile</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</header>
+
+    <section class="forma-dashboard__overview">
+      <div class="forma-dashboard__overview-item">
+        <span
+          class="forma-dashboard__overview-value"
+          data-forma-following-count
+        >
+          0
+        </span>
+
+        <span class="forma-dashboard__overview-label">
+          Following
+        </span>
+      </div>
+
+      <div class="forma-dashboard__overview-item">
+        <span
+          class="forma-dashboard__overview-value"
+          data-forma-saved-count
+        >
+          0
+        </span>
+
+        <span class="forma-dashboard__overview-label">
+          Saved
+        </span>
+      </div>
+
+      <div class="forma-dashboard__overview-item">
+        <span
+          class="forma-dashboard__overview-value"
+          data-forma-recent-count
+        >
+          0
+        </span>
+
+        <span class="forma-dashboard__overview-label">
+          Viewed
+        </span>
+      </div>
+
+      <div class="forma-dashboard__overview-item">
+        <span
+          class="forma-dashboard__overview-value"
+          data-forma-profile-status
+        >
+          100%
+        </span>
+
+        <span class="forma-dashboard__overview-label">
+          Profile
+        </span>
+      </div>
+    </section>
+
+    <section
+      class="forma-dashboard-section forma-following"
+      data-forma-following-section
+    >
+      <div class="forma-dashboard-section__header">
+        <div class="forma-dashboard-section__heading">
+          <p class="forma-dashboard-section__eyebrow">
+            Your network
+          </p>
+
+          <h2 class="forma-dashboard-section__title">
+            Following
+          </h2>
+
+          <p class="forma-dashboard-section__description">
+            Brands you want to keep close.
+          </p>
+        </div>
+
+        <a
+          href="/pages/brands"
+          class="forma-dashboard-section__link"
+        >
+          <span>Explore brands</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div
+        class="forma-brand-grid"
+        data-forma-following-grid
+      ></div>
+
+      <div
+        class="forma-following__empty"
+        data-forma-following-empty
+        hidden
+      >
+        <p class="forma-following__empty-index">
+          01
+        </p>
+
+        <h3 class="forma-following__empty-title">
+          Follow brands you love.
+        </h3>
+
+        <p class="forma-following__empty-text">
+          Keep track of new arrivals, stories and inspiration from your
+          favourite brands.
+        </p>
+
+        <a
+          href="/pages/brands"
+          class="forma-following__empty-link"
+        >
+          <span>Explore brands</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="forma-dashboard-section forma-saved-section">
+      <div class="forma-dashboard-section__header">
+        <div class="forma-dashboard-section__heading">
+          <p class="forma-dashboard-section__eyebrow">
+            Your collection
+          </p>
+
+          <h2 class="forma-dashboard-section__title">
+            Saved Products
+          </h2>
+
+          <p class="forma-dashboard-section__description">
+            A considered collection of the products you love.
+          </p>
+        </div>
+
+        <a
+          href="/collections/all"
+          class="forma-dashboard-section__link"
+        >
+          <span>Explore products</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div
+        id="FormaSavedProducts"
+        class="forma-saved-grid"
+      ></div>
+
+      <div
+        id="FormaEmptyState"
+        class="forma-empty-state"
+        hidden
+      >
+        <p class="forma-empty-state__index">
+          02
+        </p>
+
+        <h3 class="forma-empty-state__title">
+          Nothing saved yet.
+        </h3>
+
+        <p class="forma-empty-state__text">
+          Start exploring Forma and save the products you want to return to.
+        </p>
+
+        <a
+          href="/collections/all"
+          class="forma-empty-state__link"
+        >
+          <span>Explore Forma</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section
+  class="forma-dashboard-section forma-discover-again"
+  data-forma-discover-again
+  hidden
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Worth another look
       </p>
 
-      <a
-        href="/collections/all"
-        class="button">
-        Explore Forma
-      </a>
+      <h2 class="forma-dashboard-section__title">
+        Discover Again
+      </h2>
 
+      <p class="forma-dashboard-section__description">
+        Products from your journey that deserve to be rediscovered.
+      </p>
     </div>
   </div>
+
+  <div
+    class="forma-discover-again__layout"
+    data-forma-discover-again-content
+  >
+    <article
+      class="forma-discover-again__featured"
+      data-forma-discover-again-featured
+    ></article>
+
+    <div
+      class="forma-discover-again__secondary"
+      data-forma-discover-again-secondary
+    ></div>
+  </div>
 </section>
+
+<section
+  class="forma-dashboard-section forma-daily-edit"
+  data-forma-daily-edit data-forma-section="daily-edit"
+  hidden
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Curated today
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Today’s Edit
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        A daily selection shaped by your taste, activity and the brands you follow.
+      </p>
+    </div>
+
+    <p
+      class="forma-daily-edit__date"
+      data-forma-daily-edit-date
+    ></p>
+  </div>
+
+  <div
+    class="forma-daily-edit__layout"
+    data-forma-daily-edit-grid
+  ></div>
+</section>
+
+
+<section
+  class="forma-dashboard-section forma-new-arrivals"
+  data-forma-new-arrivals data-forma-section="new-arrivals"
+  hidden
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Your brand updates
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Since Your Last Visit
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        New arrivals from the brands you follow, gathered in one place.
+      </p>
+    </div>
+
+    <p
+      class="forma-new-arrivals__total"
+      data-forma-new-arrivals-total
+    ></p>
+  </div>
+
+<div
+  class="forma-new-arrivals__skeleton"
+  data-forma-new-arrivals-skeleton
+  aria-hidden="true"
+>
+  {%- for index in (1..3) -%}
+    <div class="forma-new-arrivals__skeleton-row">
+      <span class="forma-new-arrivals__skeleton-index"></span>
+      <span class="forma-new-arrivals__skeleton-name"></span>
+      <span class="forma-new-arrivals__skeleton-count"></span>
+      <span class="forma-new-arrivals__skeleton-icon"></span>
+    </div>
+  {%- endfor -%}
+</div>
+
+  <div
+    class="forma-new-arrivals__list"
+    data-forma-new-arrivals-list
+  ></div>
+
+  <div
+    class="forma-new-arrivals__empty"
+    data-forma-new-arrivals-empty
+    hidden
+  >
+    <p class="forma-new-arrivals__empty-index">
+      You’re up to date
+    </p>
+
+    <h3 class="forma-new-arrivals__empty-title">
+      Nothing new since your last visit.
+    </h3>
+
+    <p class="forma-new-arrivals__empty-text">
+      We’ll keep an eye on the brands you follow and collect their newest
+      arrivals here.
+    </p>
+
+    <a
+      href="/pages/brands"
+      class="forma-new-arrivals__empty-link"
+    >
+      <span>Discover more brands</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+
+  <section
+  class="forma-dashboard-section forma-continue"
+  data-forma-continue
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Pick up where you left off
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Continue Exploring
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        A personal selection of products worth another look.
+      </p>
+    </div>
+
+    <a
+      href="/collections/all"
+      class="forma-dashboard-section__link"
+    >
+      <span>Explore products</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div
+    class="forma-continue__content"
+    data-forma-continue-content
+    hidden
+  >
+    <article
+      class="forma-continue__featured"
+      data-forma-continue-featured
+    ></article>
+
+    <div
+      class="forma-continue__secondary"
+      data-forma-continue-secondary
+    ></div>
+  </div>
+
+  <div
+    class="forma-recently-viewed__empty"
+    data-forma-continue-empty
+    hidden
+  >
+    <p class="forma-recently-viewed__empty-index">
+      03
+    </p>
+
+    <h3 class="forma-recently-viewed__empty-title">
+      Your next discovery starts here.
+    </h3>
+
+    <p class="forma-recently-viewed__empty-text">
+      Explore Forma and the products worth returning to will appear here.
+    </p>
+
+    <a
+      href="/collections/all"
+      class="forma-recently-viewed__empty-link"
+    >
+      <span>Start exploring</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+  <section
+  class="forma-dashboard-section forma-recommended"
+  data-forma-recommended
+  hidden
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Chosen around you
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Recommended for You
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        A personal edit shaped by the brands, products and details you explore.
+      </p>
+    </div>
+
+    <button
+      class="forma-recommended__refresh"
+      type="button"
+      data-forma-recommended-refresh
+    >
+      Refresh selection
+    </button>
+  </div>
+
+  <div
+    class="forma-recommended__grid"
+    data-forma-recommended-grid
+  ></div>
+</section>
+
+    <section class="forma-dashboard-section forma-activity">
+
+  <div class="forma-dashboard-section__header">
+
+    <div class="forma-dashboard-section__heading">
+
+      <p class="forma-dashboard-section__eyebrow">
+        Your activity
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Recent Activity
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        Everything you've explored, saved and followed across Forma.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div
+    class="forma-activity-feed"
+    data-forma-activity-feed
+  ></div>
+
+  <div
+    class="forma-activity-empty"
+    data-forma-activity-empty
+    hidden
+  >
+
+    <p class="forma-activity-empty__index">
+      Activity
+    </p>
+
+    <h3 class="forma-activity-empty__title">
+      Your journey starts here.
+    </h3>
+
+    <p class="forma-activity-empty__text">
+      Save products, follow brands and explore stories to build your personal timeline.
+    </p>
+
+  </div>
+
+</section>
+
+  </div>
+</section>
+
+{% style %}
+
+/* ==========================================================
+   FORMA — DASHBOARD ENTRANCE ANIMATION
+   ========================================================== */
+
+[data-forma-dashboard].is-managed
+.forma-dashboard-section {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-forma-dashboard].is-managed
+.forma-dashboard-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-forma-dashboard].is-managed
+  .forma-dashboard-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ==========================================================
+   FORMA — NEW ARRIVALS SKELETON
+   ========================================================== */
+
+.forma-new-arrivals__skeleton[hidden] {
+  display: none !important;
+}
+
+.forma-new-arrivals__skeleton {
+  overflow: hidden;
+  border-top: 1px solid rgba(23, 23, 23, 0.16);
+  transition:
+    opacity 320ms ease,
+    visibility 320ms ease;
+}
+
+.forma-new-arrivals__skeleton.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.forma-new-arrivals__skeleton-row {
+  position: relative;
+  min-height: 126px;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 150px 34px;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+}
+
+.forma-new-arrivals__skeleton-row::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.62) 48%,
+    transparent 76%
+  );
+  content: "";
+  transform: translateX(-110%);
+  animation: forma-skeleton-shimmer 1.55s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.forma-new-arrivals__skeleton-row:nth-child(2)::after {
+  animation-delay: 120ms;
+}
+
+.forma-new-arrivals__skeleton-row:nth-child(3)::after {
+  animation-delay: 240ms;
+}
+
+.forma-new-arrivals__skeleton-index,
+.forma-new-arrivals__skeleton-name,
+.forma-new-arrivals__skeleton-count,
+.forma-new-arrivals__skeleton-icon {
+  display: block;
+  background: rgba(23, 23, 23, 0.075);
+}
+
+.forma-new-arrivals__skeleton-index {
+  width: 22px;
+  height: 8px;
+}
+
+.forma-new-arrivals__skeleton-name {
+  width: min(340px, 64%);
+  height: clamp(26px, 3vw, 45px);
+}
+
+.forma-new-arrivals__skeleton-count {
+  width: 116px;
+  height: 10px;
+  justify-self: end;
+}
+
+.forma-new-arrivals__skeleton-icon {
+  width: 20px;
+  height: 1px;
+  justify-self: center;
+}
+
+@keyframes forma-skeleton-shimmer {
+  to {
+    transform: translateX(110%);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-new-arrivals__skeleton-row {
+    min-height: 104px;
+    grid-template-columns: 34px minmax(0, 1fr) 32px 24px;
+    gap: 12px;
+  }
+
+  .forma-new-arrivals__skeleton-name {
+    width: 72%;
+    height: 29px;
+  }
+
+  .forma-new-arrivals__skeleton-count {
+    width: 22px;
+    height: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forma-new-arrivals__skeleton-row::after {
+    animation: none;
+  }
+}
+
+/* ==========================================================
+   FORMA — DASHBOARD POLISH
+   ========================================================== */
+
+.forma-dashboard-section {
+  position: relative;
+  margin-top: clamp(96px, 10vw, 176px);
+}
+
+.forma-dashboard-section:first-child {
+  margin-top: 0;
+}
+
+.forma-dashboard-section__header {
+  margin-bottom: clamp(34px, 4.5vw, 70px);
+}
+
+.forma-dashboard-section__heading {
+  max-width: 920px;
+}
+
+.forma-dashboard-section__eyebrow {
+  margin-bottom: 20px;
+}
+
+.forma-dashboard-section__title {
+  text-wrap: balance;
+}
+
+.forma-dashboard-section__description {
+  max-width: 620px;
+  margin-top: 22px;
+  text-wrap: pretty;
+}
+
+/* Reveal system */
+
+.forma-reveal-section {
+  opacity: 0;
+  transform: translateY(38px);
+  transition:
+    opacity 760ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    transform 920ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+  will-change:
+    opacity,
+    transform;
+}
+
+.forma-reveal-section.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.forma-reveal-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 620ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+
+  transition-delay:
+    calc(
+      90ms +
+      var(--forma-reveal-index, 0)
+      * 55ms
+    );
+}
+
+.forma-reveal-section.is-revealed
+.forma-reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle separator rhythm */
+
+.forma-dashboard-section
++ .forma-dashboard-section::before {
+  position: absolute;
+  top: calc(
+    clamp(96px, 10vw, 176px) / -2
+  );
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(23, 23, 23, 0),
+      rgba(23, 23, 23, 0.13) 12%,
+      rgba(23, 23, 23, 0.13) 88%,
+      rgba(23, 23, 23, 0)
+    );
+  content: "";
+}
+
+/* Premium interactive movement */
+
+.forma-dashboard-section a,
+.forma-dashboard-section button {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+.forma-dashboard-section a:focus-visible,
+.forma-dashboard-section button:focus-visible {
+  outline:
+    1px solid rgba(23, 23, 23, 0.75);
+  outline-offset: 5px;
+}
+
+.forma-new-product__media,
+.forma-continue-card__media,
+.forma-discover-card__media {
+  transition:
+    transform 520ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 520ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .forma-new-product:hover
+  .forma-new-product__media,
+  .forma-continue-card:hover
+  .forma-continue-card__media,
+  .forma-discover-card:hover
+  .forma-discover-card__media {
+    transform: translateY(-5px);
+    box-shadow:
+      0 24px 50px
+      rgba(23, 23, 23, 0.08);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-dashboard-section {
+    margin-top: 92px;
+  }
+
+  .forma-dashboard-section__header {
+    margin-bottom: 32px;
+  }
+
+  .forma-dashboard-section
+  + .forma-dashboard-section::before {
+    top: -46px;
+  }
+
+  .forma-reveal-section {
+    transform: translateY(24px);
+  }
+
+  .forma-reveal-item {
+    transform: translateY(15px);
+  }
+}
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+  .forma-reveal-section,
+  .forma-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .forma-new-product__media,
+  .forma-continue-card__media,
+  .forma-discover-card__media {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================
+   FORMA — SINCE YOUR LAST VISIT
+   ========================================================== */
+
+.forma-new-arrivals[hidden],
+.forma-new-arrivals__empty[hidden] {
+  display: none !important;
+}
+
+.forma-new-arrivals__total {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-new-arrivals__list {
+  border-top: 1px solid rgba(23, 23, 23, 0.16);
+}
+
+.forma-new-brand {
+  border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+}
+
+.forma-new-brand__trigger {
+  width: 100%;
+  min-height: 126px;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) auto 34px;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.forma-new-brand__index {
+  color: rgba(23, 23, 23, 0.38);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.forma-new-brand__name {
+  margin: 0;
+  font-size: clamp(27px, 3.2vw, 52px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  transition:
+    opacity 200ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-new-brand__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(23, 23, 23, 0.54);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-new-brand__count-number {
+  color: #171717;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.forma-new-brand__icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.forma-new-brand__icon::before,
+.forma-new-brand__icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: transform 260ms ease;
+}
+
+.forma-new-brand__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.forma-new-brand__trigger[aria-expanded="true"]
+.forma-new-brand__icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.forma-new-brand__trigger:hover
+.forma-new-brand__name {
+  opacity: 0.58;
+  transform: translateX(7px);
+}
+
+.forma-new-brand__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease,
+    visibility 0s linear 520ms;
+}
+
+.forma-new-brand.is-open
+.forma-new-brand__panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 380ms ease 100ms,
+    visibility 0s;
+}
+
+.forma-new-brand__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.forma-new-brand__content {
+  padding: 6px 0 54px 94px;
+}
+
+.forma-new-brand__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.forma-new-brand__label {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-new-brand__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 12px;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    gap 220ms ease,
+    opacity 180ms ease;
+}
+
+.forma-new-brand__view-all:hover {
+  gap: 31px;
+  opacity: 0.58;
+}
+
+.forma-new-brand__products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.forma-new-product {
+  min-width: 0;
+}
+
+.forma-new-product__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #efefeb;
+}
+
+.forma-new-product__link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-new-product__image {
+  width: auto;
+  height: auto;
+  max-width: 72%;
+  max-height: 76%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-new-product:hover
+.forma-new-product__image {
+  transform: scale(1.045);
+}
+
+.forma-new-product__save {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+}
+
+.forma-new-product__save svg {
+  width: 21px;
+  height: 21px;
+  display: block;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  transition:
+    fill 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-new-product__save:hover svg {
+  transform: scale(1.08);
+}
+
+.forma-new-product__save[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.forma-new-product__content {
+  padding-top: 15px;
+}
+
+.forma-new-product__vendor {
+  margin: 0 0 7px;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.forma-new-product__title {
+  margin: 0;
+  font-size: clamp(15px, 1.25vw, 19px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.forma-new-product__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-new-product__price {
+  margin: 10px 0 0;
+  color: rgba(23, 23, 23, 0.54);
+  font-size: 11px;
+}
+
+.forma-new-arrivals__empty {
+  min-height: 460px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 42px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(223, 223, 216, 0.4)
+    );
+}
+
+.forma-new-arrivals__empty-index {
+  margin: 0 0 auto;
+  color: rgba(23, 23, 23, 0.42);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-new-arrivals__empty-title {
+  max-width: 680px;
+  margin: 80px 0 0;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.forma-new-arrivals__empty-text {
+  max-width: 520px;
+  margin: 24px 0 36px;
+  color: rgba(23, 23, 23, 0.56);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.forma-new-arrivals__empty-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    gap 220ms ease,
+    opacity 180ms ease;
+}
+
+.forma-new-arrivals__empty-link:hover {
+  gap: 48px;
+  opacity: 0.58;
+}
+
+@media screen and (max-width: 989px) {
+  .forma-new-brand__content {
+    padding-left: 0;
+  }
+
+  .forma-new-brand__products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-new-arrivals__total {
+    margin-top: 4px;
+  }
+
+  .forma-new-brand__trigger {
+    min-height: 104px;
+    grid-template-columns: 34px minmax(0, 1fr) auto 24px;
+    gap: 12px;
+  }
+
+  .forma-new-brand__name {
+    font-size: clamp(25px, 8vw, 37px);
+  }
+
+  .forma-new-brand__count {
+    font-size: 0;
+  }
+
+  .forma-new-brand__count-number {
+    font-size: 12px;
+  }
+
+  .forma-new-brand__count-number::before {
+    content: "+";
+  }
+
+  .forma-new-brand__content {
+    padding: 2px 0 40px;
+  }
+
+  .forma-new-brand__meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .forma-new-brand__products {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(76vw, 1fr);
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .forma-new-brand__products::-webkit-scrollbar {
+    display: none;
+  }
+
+  .forma-new-product {
+    scroll-snap-align: start;
+  }
+
+  .forma-new-arrivals__empty {
+    min-height: 400px;
+    padding: 28px;
+  }
+}
+
+/* ==========================================================
+   Daily Edit
+   ========================================================== */
+
+.forma-daily-edit[hidden] {
+  display: none !important;
+}
+
+.forma-daily-edit__date {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.5);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-daily-edit__layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "featured featured secondary secondary"
+    "featured featured small-one small-two"
+    "small-three small-four small-five small-six";
+  gap: 18px;
+}
+
+.forma-daily-card {
+  min-width: 0;
+}
+
+.forma-daily-card:nth-child(1) {
+  grid-area: featured;
+}
+
+.forma-daily-card:nth-child(2) {
+  grid-area: secondary;
+}
+
+.forma-daily-card:nth-child(3) {
+  grid-area: small-one;
+}
+
+.forma-daily-card:nth-child(4) {
+  grid-area: small-two;
+}
+
+.forma-daily-card:nth-child(5) {
+  grid-area: small-three;
+}
+
+.forma-daily-card:nth-child(6) {
+  grid-area: small-four;
+}
+
+.forma-daily-card:nth-child(7) {
+  grid-area: small-five;
+}
+
+.forma-daily-card:nth-child(8) {
+  grid-area: small-six;
+}
+
+.forma-daily-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f1f1ee;
+}
+
+.forma-daily-card:nth-child(1)
+.forma-daily-card__media {
+  aspect-ratio: auto;
+  min-height: 760px;
+}
+
+.forma-daily-card:nth-child(2)
+.forma-daily-card__media {
+  aspect-ratio: 16 / 9;
+  min-height: 360px;
+}
+
+.forma-daily-card__link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-daily-card__image {
+  width: auto;
+  height: auto;
+  max-width: 70%;
+  max-height: 74%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-daily-card:hover
+.forma-daily-card__image {
+  transform: scale(1.045);
+}
+
+.forma-daily-card__number {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.45);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.forma-daily-card__reason {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.58);
+  font-size: 9px;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-daily-card__save {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+}
+
+.forma-daily-card__save svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  transition:
+    fill 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-daily-card__save:hover svg {
+  transform: scale(1.08);
+}
+
+.forma-daily-card__save[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.forma-daily-card__content {
+  padding-top: 16px;
+}
+
+.forma-daily-card__brand {
+  margin: 0 0 7px;
+  color: rgba(23, 23, 23, 0.5);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.forma-daily-card__title {
+  margin: 0;
+  font-size: clamp(17px, 1.35vw, 23px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.forma-daily-card:nth-child(1)
+.forma-daily-card__title {
+  font-size: clamp(27px, 2.3vw, 42px);
+}
+
+.forma-daily-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-daily-card__price {
+  margin: 12px 0 0;
+  color: rgba(23, 23, 23, 0.55);
+  font-size: 12px;
+}
+
+@media screen and (max-width: 989px) {
+  .forma-daily-edit__layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "featured featured"
+      "secondary secondary"
+      "small-one small-two"
+      "small-three small-four"
+      "small-five small-six";
+  }
+
+  .forma-daily-card:nth-child(1)
+  .forma-daily-card__media {
+    min-height: 620px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-daily-edit__layout {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(78vw, 1fr);
+    grid-template-columns: none;
+    grid-template-areas: none;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+  }
+
+  .forma-daily-edit__layout::-webkit-scrollbar {
+    display: none;
+  }
+
+  .forma-daily-card,
+  .forma-daily-card:nth-child(n) {
+    grid-area: auto;
+    scroll-snap-align: start;
+  }
+
+  .forma-daily-card:nth-child(1)
+  .forma-daily-card__media,
+  .forma-daily-card:nth-child(2)
+  .forma-daily-card__media,
+  .forma-daily-card__media {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .forma-daily-card:nth-child(1)
+  .forma-daily-card__title {
+    font-size: 22px;
+  }
+}
+
+/* ==========================================================
+   Recommended for You
+   ========================================================== */
+
+.forma-recommended[hidden] {
+  display: none !important;
+}
+
+.forma-recommended__refresh {
+  flex: 0 0 auto;
+  padding: 0 0 9px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-recommended__refresh:hover {
+  opacity: 0.55;
+  transform: translateY(-1px);
+}
+
+.forma-recommended__refresh:disabled {
+  opacity: 0.35;
+  cursor: wait;
+}
+
+.forma-recommended__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.forma-recommended-card {
+  min-width: 0;
+}
+
+.forma-recommended-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f1f1ee;
+}
+
+.forma-recommended-card__media-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-recommended-card__image {
+  width: auto;
+  height: auto;
+  max-width: 72%;
+  max-height: 76%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-recommended-card:hover
+.forma-recommended-card__image {
+  transform: scale(1.045);
+}
+
+.forma-recommended-card__number {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+}
+
+.forma-recommended-card__reason {
+  position: absolute;
+  right: 17px;
+  bottom: 17px;
+  left: 17px;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.62);
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-recommended-card__content {
+  padding-top: 18px;
+}
+
+.forma-recommended-card__brand {
+  margin: 0 0 8px;
+  color: rgba(23, 23, 23, 0.52);
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.forma-recommended-card__title {
+  margin: 0;
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.forma-recommended-card__title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-recommended-card__title-link:hover {
+  opacity: 0.58;
+}
+
+.forma-recommended-card__footer {
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.forma-recommended-card__price {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.58);
+  font-size: 12px;
+}
+
+.forma-recommended-card__save {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  z-index: 4;
+
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-recommended-card__number {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+}
+
+.forma-recommended-card__save svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  transition:
+    fill 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-recommended-card__save:hover {
+  opacity: 0.6;
+}
+
+.forma-recommended-card__save:hover svg {
+  transform: scale(1.08);
+}
+
+.forma-recommended-card__save[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.forma-recommended-card__save svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  transition:
+    fill 180ms ease,
+    transform 180ms ease;
+}
+
+.forma-recommended-card__save:hover svg {
+  transform: scale(1.08);
+}
+
+.forma-recommended-card__save[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+@media screen and (max-width: 989px) {
+  .forma-recommended__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 18px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-recommended .forma-dashboard-section__header {
+    align-items: flex-start;
+  }
+
+  .forma-recommended__refresh {
+    margin-top: 18px;
+  }
+
+  .forma-recommended__grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(76vw, 1fr);
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+  }
+
+  .forma-recommended__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .forma-recommended-card {
+    scroll-snap-align: start;
+  }
+
+  .forma-recommended-card__media {
+    padding: 24px;
+  }
+}
+
+/* ==========================================================
+   Discover Again
+   ========================================================== */
+
+.forma-discover-again[hidden] {
+  display: none !important;
+}
+
+.forma-discover-again__layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(280px, 0.75fr);
+  gap: clamp(28px, 4vw, 64px);
+}
+
+.forma-discover-again__featured {
+  min-height: 520px;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(260px, 0.48fr);
+  border: 1px solid rgba(23, 23, 23, 0.14);
+  background: #f2f2ef;
+}
+
+.forma-discover-again__featured-media {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 32px;
+  background: #f2f2ef;
+}
+
+.forma-discover-again__featured-image {
+  width: auto;
+  height: auto;
+  max-width: 62%;
+  max-height: 76%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 650ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-discover-again__featured:hover
+.forma-discover-again__featured-image {
+  transform: scale(1.035);
+}
+
+.forma-discover-again__featured-info {
+  padding: clamp(30px, 4vw, 54px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+  border-left: 1px solid rgba(23, 23, 23, 0.12);
+  background: #f7f7f4;
+}
+
+.forma-discover-again__meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.forma-discover-again__index,
+.forma-discover-again__reason,
+.forma-discover-again-card__index,
+.forma-discover-again-card__reason {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.64);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-discover-again__reason {
+  max-width: 180px;
+  text-align: right;
+}
+
+.forma-discover-again__brand,
+.forma-discover-again-card__brand {
+  margin: 0 0 12px;
+  color: rgba(23, 23, 23, 0.5);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-discover-again__title {
+  margin: 0;
+  font-size: clamp(36px, 4vw, 64px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.forma-discover-again__price,
+.forma-discover-again-card__price {
+  margin: 18px 0 0;
+  color: rgba(23, 23, 23, 0.56);
+  font-size: 13px;
+}
+
+.forma-discover-again__link {
+  width: 100%;
+  margin-top: 42px;
+  padding-bottom: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  transition:
+    opacity 180ms ease,
+    gap 220ms ease;
+}
+
+.forma-discover-again__link:hover {
+  gap: 44px;
+  opacity: 0.58;
+}
+
+.forma-discover-again__secondary {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.forma-discover-again-card {
+  min-height: 248px;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(160px, 1.1fr);
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(23, 23, 23, 0.14);
+  background: #f2f2ef;
+}
+
+.forma-discover-again-card__media {
+  position: relative;
+  min-height: 248px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px;
+  background: #f2f2ef;
+}
+
+.forma-discover-again-card__image {
+  width: auto;
+  height: auto;
+  max-width: 68%;
+  max-height: 70%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 550ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-discover-again-card:hover
+.forma-discover-again-card__image {
+  transform: scale(1.045);
+}
+
+.forma-discover-again-card__index {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.forma-discover-again-card__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid rgba(23, 23, 23, 0.12);
+  background: #f7f7f4;
+}
+
+.forma-discover-again-card__title {
+  margin: 0;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.forma-discover-again-card__reason {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-discover-again__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-discover-again__featured {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .forma-discover-again__featured-media {
+    min-height: 360px;
+    padding: 28px;
+  }
+
+  .forma-discover-again__featured-image {
+    max-width: 68%;
+    max-height: 72%;
+  }
+
+  .forma-discover-again__featured-info {
+    padding: 28px;
+    border-left: 0;
+    border-top: 1px solid rgba(23, 23, 23, 0.12);
+  }
+
+  .forma-discover-again__secondary {
+    grid-template-rows: none;
+    gap: 20px;
+  }
+
+  .forma-discover-again-card {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-discover-again-card__media {
+    min-height: 320px;
+  }
+
+  .forma-discover-again-card__content {
+    border-left: 0;
+    border-top: 1px solid rgba(23, 23, 23, 0.12);
+  }
+}
+
+
+  .forma-dashboard {
+    background: #f7f7f4;
+    color: #171717;
+  }
+
+  .forma-dashboard__container {
+    width: min(100% - 48px, 1440px);
+    margin: 0 auto;
+    padding: clamp(64px, 9vw, 140px) 0;
+  }
+
+  .forma-dashboard__hero {
+  min-height: clamp(520px, 68vw, 860px);
+  padding: clamp(36px, 5vw, 72px) 0 clamp(48px, 7vw, 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(80px, 12vw, 180px);
+}
+
+  .forma-dashboard__hero-main {
+  max-width: 1120px;
+}
+
+.forma-dashboard__hero-message {
+  max-width: 820px;
+  margin: clamp(32px, 5vw, 68px) 0 0;
+  color: rgba(23, 23, 23, 0.72);
+  font-size: clamp(28px, 4.4vw, 68px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.forma-dashboard__hero-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.forma-dashboard__hero-context {
+  max-width: 320px;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+  .forma-dashboard__eyebrow,
+  .forma-dashboard-section__eyebrow {
+    margin: 0 0 22px;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  .forma-dashboard__title {
+    max-width: 980px;
+    margin: 0;
+    font-size: clamp(52px, 8vw, 118px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.055em;
+  }
+
+  .forma-dashboard__edit-profile,
+  .forma-dashboard-section__link,
+  .forma-following__empty-link,
+  .forma-empty-state__link,
+  .forma-recently-viewed__empty-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 0 10px;
+    transition:
+      opacity 180ms ease,
+      gap 220ms ease;
+  }
+
+  .forma-dashboard__edit-profile:hover,
+  .forma-dashboard-section__link:hover,
+  .forma-following__empty-link:hover,
+  .forma-empty-state__link:hover,
+  .forma-recently-viewed__empty-link:hover {
+    gap: 48px;
+    opacity: 0.58;
+  }
+
+  .forma-dashboard__overview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  }
+
+  .forma-dashboard__overview-item {
+    min-height: 190px;
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(23, 23, 23, 0.16);
+  }
+
+  .forma-dashboard__overview-item:first-child {
+    padding-left: 0;
+  }
+
+  .forma-dashboard__overview-item:last-child {
+    border-right: 0;
+  }
+
+  .forma-dashboard__overview-value {
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+
+  .forma-dashboard__overview-label {
+    color: rgba(23, 23, 23, 0.5);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .forma-dashboard-section {
+    padding: clamp(76px, 10vw, 150px) 0;
+
+  }
+
+  .forma-dashboard-section__header {
+    margin-bottom: clamp(42px, 6vw, 78px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .forma-dashboard-section__title {
+    margin: 0;
+    font-size: clamp(38px, 5vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .forma-dashboard-section__description {
+    max-width: 480px;
+    margin: 22px 0 0;
+    color: rgba(23, 23, 23, 0.56);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .forma-following__empty,
+  .forma-empty-state,
+  .forma-recently-viewed__empty,
+  .forma-recommendations__placeholder {
+    min-height: 420px;
+    padding: clamp(36px, 5vw, 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    border: 1px solid rgba(23, 23, 23, 0.16);
+    background: rgba(255, 255, 255, 0.38);
+  }
+
+  .forma-following__empty[hidden],
+  .forma-empty-state[hidden],
+  .forma-recently-viewed__empty[hidden] {
+    display: none !important;
+  }
+
+  .forma-following__empty-index,
+  .forma-empty-state__index,
+  .forma-recently-viewed__empty-index,
+  .forma-recommendations__placeholder-index {
+    margin: 0 0 auto;
+    color: rgba(23, 23, 23, 0.42);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .forma-following__empty-title,
+  .forma-empty-state__title,
+  .forma-recently-viewed__empty-title,
+  .forma-recommendations__placeholder-title {
+    max-width: 680px;
+    margin: 80px 0 0;
+    font-size: clamp(32px, 4vw, 60px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .forma-following__empty-text,
+  .forma-empty-state__text,
+  .forma-recently-viewed__empty-text,
+  .forma-recommendations__placeholder-text {
+    max-width: 520px;
+    margin: 24px 0 36px;
+    color: rgba(23, 23, 23, 0.56);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .forma-recommendations__placeholder {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.62),
+        rgba(223, 223, 216, 0.4)
+      );
+  }
+
+/* ==========================================================
+   Continue Exploring
+   ========================================================== */
+
+.forma-continue__content[hidden] {
+  display: none !important;
+}
+
+.forma-continue__featured {
+  display: grid;
+  grid-template-columns:
+  minmax(0, 1fr)
+  minmax(300px, 0.38fr);
+  min-height: 440px;
+  border: 1px solid rgba(23, 23, 23, 0.14);
+  background: #f2f2ef;
+}
+
+
+.forma-continue__featured-media {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 44px;
+  background: #f2f2ef;
+}
+
+.forma-continue__featured-image {
+  width: auto;
+  height: auto;
+  max-width: 38%;
+  max-height: 62%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition:
+    transform 700ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-continue__featured:hover
+.forma-continue__featured-image {
+  transform: scale(1.03);
+}
+
+.forma-continue__featured-info {
+  min-height: 440px;
+  padding: 44px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  background: #f7f7f4;
+  border-left: 1px solid rgba(23, 23, 23, 0.12);
+}
+
+.forma-continue__featured-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.forma-continue__number,
+.forma-continue__reason,
+.forma-continue-card__reason {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.72);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+.forma-continue__reason {
+  max-width: 220px;
+  text-align: right;
+}
+
+.forma-continue__featured-brand,
+.forma-continue-card__brand {
+  margin: 0 0 14px;
+  color: rgba(23, 23, 23, 0.5);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-continue__featured-title {
+  max-width: 520px;
+  margin: 0;
+  font-size: clamp(42px, 5vw, 78px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.forma-continue__featured-price,
+.forma-continue-card__price {
+  margin: 20px 0 0;
+  color: rgba(23, 23, 23, 0.58);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.forma-continue__featured-link {
+  margin-top: clamp(42px, 6vw, 76px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    gap 220ms ease,
+    opacity 180ms ease;
+}
+
+.forma-continue__featured-link:hover {
+  gap: 54px;
+  opacity: 0.58;
+}
+
+.forma-continue__secondary {
+  margin-top: clamp(52px, 7vw, 94px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.2vw, 34px);
+}
+
+.forma-continue-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-continue-card__media {
+  position: relative;
+  aspect-ratio: 4 / 4.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 34px;
+  background: #f2f2ef;
+  border: 1px solid rgba(23, 23, 23, 0.12);
+}
+
+
+.forma-continue-card__image {
+  width: auto;
+  height: auto;
+
+  max-width: 48%;
+  max-height: 62%;
+
+  display: block;
+  object-fit: contain;
+
+  mix-blend-mode: multiply;
+}
+
+.forma-continue-card:hover
+.forma-continue-card__image {
+  transform: scale(1.04);
+}
+
+.forma-continue-card__index {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  margin: 0;
+  color: rgba(23, 23, 23, 0.72);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.forma-continue-card__content {
+  padding-top: 22px;
+}
+
+.forma-continue-card__title {
+  margin: 0;
+  font-size: clamp(21px, 2.2vw, 32px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.forma-continue-card__reason {
+  margin-top: 18px;
+}
+
+.forma-continue__image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(23, 23, 23, 0.34);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   Activity Feed
+   ========================================================== */
+
+.forma-activity-feed {
+  display: grid;
+  gap: clamp(58px, 7vw, 96px);
+}
+
+.forma-activity-group {
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 0.3fr)
+    minmax(0, 1fr);
+  gap: clamp(30px, 5vw, 90px);
+}
+
+.forma-activity-group__header {
+  padding-top: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(23, 23, 23, 0.18);
+}
+
+.forma-activity-group__title,
+.forma-activity-group__count {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-activity-group__list {
+  border-top: 1px solid rgba(23, 23, 23, 0.18);
+}
+
+.forma-activity-card {
+  min-height: 118px;
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.forma-dashboard-section {
+  border-bottom: 0 !important;
+}
+
+.forma-activity-card__left {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.forma-activity-card__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(23, 23, 23, 0.16);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.forma-activity-card__content {
+  min-width: 0;
+}
+
+.forma-activity-card__label {
+  margin: 0 0 8px;
+  color: rgba(23, 23, 23, 0.46);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-activity-card__title {
+  margin: 0;
+  overflow: hidden;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.forma-activity-card__time {
+  flex: 0 0 auto;
+  color: rgba(23, 23, 23, 0.42);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.forma-activity-card--link {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    opacity 180ms ease,
+    padding 220ms ease;
+}
+
+.forma-activity-card--link:hover {
+  padding-left: 12px;
+  opacity: 0.58;
+}
+
+.forma-activity-empty {
+  min-height: 360px;
+  padding: clamp(36px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  border: 1px solid rgba(23, 23, 23, 0.16);
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.forma-activity-empty[hidden] {
+  display: none !important;
+}
+
+.forma-activity-empty__index {
+  margin: 0 0 auto;
+  color: rgba(23, 23, 23, 0.42);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-activity-empty__title {
+  max-width: 680px;
+  margin: 80px 0 0;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.forma-activity-empty__text {
+  max-width: 520px;
+  margin: 24px 0 0;
+  color: rgba(23, 23, 23, 0.56);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+  @media screen and (max-width: 749px) {
+    .forma-dashboard__container {
+      width: calc(100% - 40px);
+      padding: 68px 0;
+    }
+
+  .forma-continue__featured-media {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  padding: 36px 24px;
+}
+
+.forma-continue__featured-image {
+  width: 82%;
+  height: 82%;
+  max-width: none;
+  max-height: none;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.forma-continue__featured {
+  grid-template-columns: 1fr;
+  min-height: 0;
+}
+
+.forma-continue__featured-media {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+}
+
+.forma-continue__featured-image {
+  min-height: 0;
+}
+
+.forma-continue__featured-info {
+  padding: 28px;
+  gap: 64px;
+}
+
+.forma-continue__featured-top {
+  gap: 16px;
+}
+
+.forma-continue__reason {
+  max-width: 150px;
+}
+
+.forma-continue__featured-title {
+  font-size: clamp(42px, 12vw, 62px);
+}
+
+.forma-continue__featured-link {
+  width: 100%;
+}
+
+.forma-continue__secondary {
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.forma-continue-card__media {
+  aspect-ratio: 4 / 5;
+}
+
+  .forma-activity-feed {
+  gap: 58px;
+}
+
+.forma-activity-group {
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.forma-activity-group__header {
+  padding-top: 20px;
+}
+
+.forma-activity-card {
+  min-height: 104px;
+  padding: 22px 0;
+  align-items: center;
+  gap: 18px;
+}
+
+.forma-activity-card__left {
+  gap: 16px;
+}
+
+.forma-activity-card__icon {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+  font-size: 16px;
+}
+
+.forma-activity-card__title {
+  font-size: 20px;
+}
+
+.forma-activity-card__time {
+  max-width: 60px;
+  font-size: 9px;
+  text-align: right;
+}
+
+.forma-activity-card--link:hover {
+  padding-left: 0;
+}
+
+.forma-activity-empty {
+  min-height: 360px;
+  padding: 28px;
+}
+
+
+
+    .forma-dashboard__hero {
+    min-height: min(780px, calc(100svh - 40px));
+    padding: 32px 0 44px;
+    justify-content: space-between;
+    gap: 72px;
+  }
+
+  .forma-dashboard__hero-message {
+  margin-top: 32px;
+  font-size: clamp(30px, 10vw, 48px);
+  line-height: 1.04;
+}
+
+.forma-dashboard__hero-footer {
+  width: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.forma-dashboard__hero-context {
+  max-width: 240px;
+}
+
+    .forma-dashboard__title {
+      font-size: clamp(50px, 16vw, 78px);
+    }
+
+    .forma-dashboard__hero-actions {
+      width: 100%;
+    }
+
+    .forma-dashboard__edit-profile {
+      width: 100%;
+    }
+
+    .forma-dashboard__overview {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .forma-dashboard__overview-item {
+      min-height: 145px;
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+    }
+
+    .forma-dashboard__overview-item:first-child,
+    .forma-dashboard__overview-item:nth-child(3) {
+      padding-left: 0;
+    }
+
+    .forma-dashboard__overview-item:nth-child(even) {
+      border-right: 0;
+    }
+
+    .forma-dashboard__overview-item:nth-child(3),
+    .forma-dashboard__overview-item:nth-child(4) {
+      border-bottom: 0;
+    }
+
+    .forma-dashboard-section__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .forma-dashboard-section__link {
+      width: 100%;
+    }
+
+    .forma-following__empty,
+    .forma-empty-state,
+    .forma-recently-viewed__empty,
+    .forma-recommendations__placeholder {
+      min-height: 400px;
+      padding: 28px;
+    }
+  }
+{% endstyle %}
 
 {% schema %}
 {

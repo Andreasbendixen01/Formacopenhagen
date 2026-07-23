@@ -1,9 +1,11 @@
 <button
   class="forma-save-button {% if style == 'card' %}forma-save-button--card{% else %}forma-save-button--product{% endif %}"
-  type="button"
+    type="button"
   data-forma-save
   data-product-id="{{ product.id }}"
   data-product-handle="{{ product.handle }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-brand="{{ product.vendor | escape }}"
   aria-pressed="false"
 >
 

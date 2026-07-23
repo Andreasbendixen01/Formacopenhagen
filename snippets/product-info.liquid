@@ -118,10 +118,28 @@
           {%- when 'vendor' -%}
             {%- if product != blank -%}
               {%- render 'vendor' with product.vendor, class: 'h6 link-faded' -%}
+
+              <button
+                type="button"
+                class="forma-follow-brand"
+                data-forma-follow-brand
+                data-brand-name="{{ product.vendor | escape }}"
+                data-brand-handle="{{ product.vendor | handleize }}"
+                aria-pressed="false"
+              >
+                <span data-forma-follow-label>
+                  + Follow brand
+                </span>
+              </button>
+            
             {%- else -%}
               {%- assign placeholder_vendor = 'general.on_boarding.product_vendor' | t -%}
               {%- render 'vendor' with placeholder_vendor, class: 'h6 link-faded' -%}
+
+              
+
             {%- endif -%}
+
 
           {%- when 'title' -%}
             {%- if product != blank -%}
@@ -373,7 +391,98 @@
                 low_threshold: block.settings.low_inventory_threshold
             -%}
 
+            
+            
+
           {%- when 'buy_buttons' -%}
+
+          <div
+          class="forma-score-card"
+          data-forma-score-card
+          data-product-id="{{ product.id }}"
+          data-product-handle="{{ product.handle | escape }}"
+          data-product-vendor="{{ product.vendor | escape }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-url="{{ product.url }}"
+          data-forma-score-state="loading"
+          hidden
+        >
+          <div class="forma-score-card__top">
+            <div class="forma-score-card__heading">
+              <p class="forma-score-card__eyebrow">
+                Forma Match
+              </p>
+
+              <button
+                type="button"
+                class="forma-score-card__toggle"
+                data-forma-score-toggle
+                aria-expanded="false"
+              >
+                Why?
+              </button>
+            </div>
+
+            <div class="forma-score-card__main">
+              <div class="forma-score-card__score">
+                <span
+                  class="forma-score-card__value"
+                  data-forma-score-value
+                >
+                  —
+                </span>
+
+                <span class="forma-score-card__percentage">
+                  %
+                </span>
+              </div>
+
+              <div class="forma-score-card__result">
+                <p
+                  class="forma-score-card__label"
+                  data-forma-score-label
+                ></p>
+
+                <p class="forma-score-card__description">
+                  Built from your Forma profile
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="forma-score-card__progress"
+              aria-hidden="true"
+            >
+              <span
+                class="forma-score-card__progress-bar"
+                data-forma-score-progress
+              ></span>
+            </div>
+          </div>
+
+          <div
+            class="forma-score-card__details"
+            data-forma-score-details
+            hidden
+          >
+            <div class="forma-score-card__details-header">
+              <p class="forma-score-card__details-title">
+                Why it matches you
+              </p>
+
+              <p class="forma-score-card__details-description">
+                Your match is based on the brands, products and styles you interact with.
+              </p>
+            </div>
+
+            <ul
+              class="forma-score-card__reasons"
+              data-forma-score-reasons
+            ></ul>
+          </div>
+        </div>
+
+
             {%- render 'buy-buttons',
                 product: product,
                 form_id: product_form_id,

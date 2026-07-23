@@ -255,22 +255,28 @@
         {%- endfor -%}
 
         {%- if shop.customer_accounts_enabled -%}
-          <li class="header__account-link sm-max:hidden">
-            <shopify-account menu="{{ section.settings.customer_account_menu }}">
-              <div slot="signed-out-avatar">
-                {%- if section.settings.show_icons -%}
-                  {%- render 'icon' with 'account', class: 'header__nav-icon' -%}
-                {%- else -%}
-                  <span class="md:hidden">{%- render 'icon' with 'account', class: 'header__nav-icon' -%}</span>
+  <li class="header__account-link sm-max:hidden">
+    <shopify-account menu="{{ section.settings.customer_account_menu }}">
+      <div slot="signed-out-avatar">
+        {%- if section.settings.show_icons -%}
+          {%- render 'icon' with 'account', class: 'header__nav-icon' -%}
+        {%- else -%}
+          <span class="md:hidden">
+            {%- render 'icon' with 'account', class: 'header__nav-icon' -%}
+          </span>
 
-                  <span class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden" aria-hidden="true">
-                    {{- 'header.general.login' | t -}}
-                  </span>
-                {%- endif -%}
-              </div>
-            </shopify-account>
-          </li>
+          <span
+            class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden"
+            aria-hidden="true"
+          >
+            {{- 'header.general.login' | t -}}
+          </span>
         {%- endif -%}
+      </div>
+    </shopify-account>
+  </li>
+{%- endif -%}
+
 
         {%- render 'forma-header-save' -%}
 

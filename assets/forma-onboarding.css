@@ -1,0 +1,362 @@
+/* ==========================================================
+   FORMA — ONBOARDING
+   ========================================================== */
+
+.forma-onboarding[hidden] {
+  display: none;
+}
+
+.forma-onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.forma-onboarding.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.forma-onboarding__backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(13, 13, 13, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.forma-onboarding__dialog {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(100%, 760px);
+  max-height: calc(100vh - 48px);
+
+  overflow: hidden;
+
+  background: #f7f7f4;
+  border: 1px solid rgba(18, 18, 18, 0.12);
+
+  transform: translateY(24px);
+
+  transition:
+    transform 0.45s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-onboarding.is-visible
+.forma-onboarding__dialog {
+  transform: translateY(0);
+}
+
+.forma-onboarding__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 28px 32px 20px;
+}
+
+.forma-onboarding__eyebrow,
+.forma-onboarding__progress-label,
+.forma-onboarding__step-number {
+  margin: 0;
+
+  font-size: 10px;
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.forma-onboarding__progress-label {
+  margin-top: 8px;
+  opacity: 0.55;
+}
+
+.forma-onboarding__close {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  color: inherit;
+  background: transparent;
+  border: 0;
+
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.forma-onboarding__progress {
+  height: 1px;
+  margin: 0 32px;
+
+  overflow: hidden;
+
+  background: rgba(18, 18, 18, 0.12);
+}
+
+.forma-onboarding__progress-bar {
+  display: block;
+  width: 25%;
+  height: 100%;
+
+  background: currentColor;
+
+  transition: width 0.4s ease;
+}
+
+.forma-onboarding__body {
+  overflow-y: auto;
+  padding: 54px 32px;
+}
+
+.forma-onboarding__step {
+  animation:
+    forma-onboarding-step 0.35s ease;
+}
+
+.forma-onboarding__intro {
+  max-width: 590px;
+  margin-bottom: 44px;
+}
+
+.forma-onboarding__step-number {
+  margin-bottom: 20px;
+  opacity: 0.45;
+}
+
+.forma-onboarding__title {
+  max-width: 620px;
+  margin: 0;
+
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.forma-onboarding__description {
+  max-width: 540px;
+  margin: 24px 0 0;
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  opacity: 0.7;
+}
+
+.forma-onboarding__fields,
+.forma-onboarding__sizes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.forma-onboarding__sizes {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+.forma-onboarding__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.forma-onboarding__field > span {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  opacity: 0.65;
+}
+
+.forma-onboarding__field input,
+.forma-onboarding__field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px;
+
+  color: inherit;
+  background: transparent;
+
+  border: 0;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.3);
+  border-radius: 0;
+
+  font: inherit;
+  font-size: 16px;
+}
+
+.forma-onboarding__field input:focus,
+.forma-onboarding__field select:focus {
+  outline: none;
+  border-bottom-color: currentColor;
+}
+
+.forma-onboarding__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.forma-onboarding__choice {
+  min-height: 46px;
+  padding: 0 20px;
+
+  color: inherit;
+  background: transparent;
+
+  border: 1px solid rgba(18, 18, 18, 0.24);
+  border-radius: 999px;
+
+  font: inherit;
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.forma-onboarding__choice:hover {
+  border-color: currentColor;
+}
+
+.forma-onboarding__choice.is-selected {
+  color: #fff;
+  background: #111;
+  border-color: #111;
+}
+
+.forma-onboarding__footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+
+  padding: 22px 32px;
+
+  border-top: 1px solid rgba(18, 18, 18, 0.12);
+}
+
+.forma-onboarding__back,
+.forma-onboarding__skip,
+.forma-onboarding__next {
+  min-height: 46px;
+
+  font: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.forma-onboarding__back,
+.forma-onboarding__skip {
+  padding: 0;
+
+  color: inherit;
+  background: transparent;
+  border: 0;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  opacity: 0.65;
+}
+
+.forma-onboarding__skip {
+  justify-self: center;
+}
+
+.forma-onboarding__next {
+  min-width: 148px;
+  padding: 0 24px;
+
+  color: #fff;
+  background: #111;
+  border: 1px solid #111;
+}
+
+.forma-onboarding-is-open {
+  overflow: hidden;
+}
+
+@keyframes forma-onboarding-step {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .forma-onboarding {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .forma-onboarding__dialog {
+    width: 100%;
+    max-height: 94vh;
+  }
+
+  .forma-onboarding__header {
+    padding: 22px 20px 16px;
+  }
+
+  .forma-onboarding__progress {
+    margin-inline: 20px;
+  }
+
+  .forma-onboarding__body {
+    padding: 40px 20px;
+  }
+
+  .forma-onboarding__title {
+    font-size: 42px;
+  }
+
+  .forma-onboarding__fields,
+  .forma-onboarding__sizes {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-onboarding__footer {
+    grid-template-columns:
+      auto 1fr;
+    padding: 18px 20px;
+  }
+
+  .forma-onboarding__skip {
+    display: none;
+  }
+
+  .forma-onboarding__next {
+    justify-self: end;
+  }
+}

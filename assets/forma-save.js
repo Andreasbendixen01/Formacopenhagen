@@ -88,13 +88,38 @@
 
     if (!productId) return;
 
-    const productHandle = button.dataset.productHandle;
-    const saved = window.Forma.toggle(
-    productId,
-    productHandle
+    const productHandle =
+  button.dataset.productHandle || "";
+
+const productTitle =
+  button.dataset.productTitle || "";
+
+const productBrand =
+  button.dataset.productBrand || "";
+
+const saved = window.Forma.toggle(
+  productId,
+  productHandle
 );
 
-    updateAll();
+window.Forma.activity?.add(
+  saved
+    ? "product_saved"
+    : "product_unsaved",
+  {
+    entityType: "product",
+    entityId: productId,
+    handle: productHandle,
+    source: "save-button",
+
+    metadata: {
+      title: productTitle,
+      brand: productBrand
+    }
+  }
+);
+
+updateAll();
 
     showToast(
       saved

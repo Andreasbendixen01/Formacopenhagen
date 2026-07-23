@@ -119,12 +119,53 @@
       {%- endif -%}
     </main>
 
+    {{ 'forma-engine.js' | asset_url | script_tag }}
+    {{ 'forma-cache.js' | asset_url | script_tag }}
+    {{ 'forma-toast.js' | asset_url | script_tag }}
+    {{ 'forma-api.js' | asset_url | script_tag }}
+    {{ 'forma-profile.js' | asset_url | script_tag }}
+    {{ 'forma-score.js' | asset_url | script_tag }}
+    {{ 'forma-activity.js' | asset_url | script_tag }}
+
     {{ 'forma.js' | asset_url | script_tag }}
-    {{ 'forma-save.js' | asset_url | script_tag }}
-    
+    {{ 'forma-saved-products-ui.js' | asset_url | script_tag }}
+    {{ 'forma-recently-viewed.js' | asset_url | script_tag }}
+
+    {{ 'forma-followed-brands.js' | asset_url | script_tag }}
+    {{ 'forma-followed-brands-ui.js' | asset_url | script_tag }}
+
+    {{ 'forma-products.js' | asset_url | script_tag }}
+    {{ 'forma-signals.js' | asset_url | script_tag }}
+    {{ 'forma-entities.js' | asset_url | script_tag }}
+    {{ 'forma-persona.js' | asset_url | script_tag }}   
+    {{ 'forma-recommendations.js' | asset_url | script_tag }} 
+
+    {%- if request.page_type == 'product' -%}
+      {{ 'forma-product-tracker.js' | asset_url | script_tag }}
+      {{ 'forma-score-ui.js' | asset_url | script_tag }}
+    {%- endif -%}
+
     {%- if template.suffix == 'your-forma' -%}
-  {{ 'forma-saved-products.js' | asset_url | script_tag }}
-  {%- endif -%}
+      {{ 'forma-saved-products.js' | asset_url | script_tag }}
+      {{ 'forma-followed-brands-page.js' | asset_url | script_tag }}
+      {{ 'forma-recently-viewed-page.js' | asset_url | script_tag }}
+      {{ 'forma-onboarding.js' | asset_url | script_tag }}
+
+      {{ 'forma-ranking.js' | asset_url | script_tag }}
+      {{ 'forma-recommended-products.js' | asset_url | script_tag }}
+      {{ 'forma-recommendation-engine.js' | asset_url | script_tag }}
+      {{ 'forma-daily-edit.js' | asset_url | script_tag }}
+      {{ 'forma-new-arrivals.js' | asset_url | script_tag }}
+      {{ 'forma-new-arrivals-engine.js' | asset_url | script_tag }}
+      {{ 'forma-daily-edit-engine.js' | asset_url | script_tag }}
+      {{ 'forma-continue-exploring.js' | asset_url | script_tag }}
+      {{ 'forma-discover-again.js' | asset_url | script_tag }}
+      {{ 'forma-dashboard.js' | asset_url | script_tag }}
+      {{ 'forma-dashboard-hero.js' | asset_url | script_tag }}
+      {{ 'forma-activity-feed.js' | asset_url | script_tag }}
+      {{ 'forma-dashboard-polish.js' | asset_url | script_tag }}
+      {{ 'forma-dashboard-manager.js' | asset_url | script_tag }}
+{%- endif -%}
 
   </body>
 </html>
