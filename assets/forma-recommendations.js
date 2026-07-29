@@ -101,6 +101,77 @@
   };
 
   /* ----------------------------------------------------------
+     HOOKS
+     ---------------------------------------------------------- */
+
+  const hooks = {
+    beforeScore: new Set(),
+    afterScore: new Set(),
+    beforeRank: new Set(),
+    afterRank: new Set()
+  };
+
+  function on(
+    hookName,
+    callback
+  ) {
+    if (
+      !hooks[hookName] ||
+      typeof callback !== "function"
+    ) {
+      return () => {};
+    }
+
+    hooks[hookName].add(
+      callback
+    );
+
+    return () =>
+      off(
+        hookName,
+        callback
+      );
+  }
+
+  function off(
+    hookName,
+    callback
+  ) {
+    if (!hooks[hookName]) {
+      return false;
+    }
+
+    return hooks[hookName].delete(
+      callback
+    );
+  }
+
+  async function runHooks(
+    hookName,
+    payload
+  ) {
+    if (!hooks[hookName]) {
+      return;
+    }
+
+    for (
+      const callback
+      of hooks[hookName]
+    ) {
+      try {
+        await callback(
+          payload
+        );
+      } catch (error) {
+        console.error(
+          `[Forma Recommendations] Hook failed: ${hookName}`,
+          error
+        );
+      }
+    }
+  }
+
+  /* ----------------------------------------------------------
      HELPERS
      ---------------------------------------------------------- */
 
@@ -1072,7 +1143,7 @@
      PUBLIC METHODS
      ---------------------------------------------------------- */
 
-      async function score(
+        async function score(
     candidate,
     customOptions = {}
   ) {
@@ -1118,10 +1189,33 @@
         options
       );
 
-    return scoreResolvedProduct(
-      product,
-      context
+    await runHooks(
+      "beforeScore",
+      {
+        product:
+          clone(product),
+
+        context
+      }
     );
+
+    const result =
+      scoreResolvedProduct(
+        product,
+        context
+      );
+
+    await runHooks(
+      "afterScore",
+      {
+        result:
+          clone(result),
+
+        context
+      }
+    );
+
+    return result;
   }
 
   async function rank(
@@ -1165,6 +1259,16 @@
         strategyName,
         options
       );
+
+    await runHooks(
+      "beforeRank",
+      {
+        products:
+          clone(products),
+
+        context
+      }
+    );
 
     const {
       userState
@@ -1222,11 +1326,24 @@
         limit
       );
 
+        await runHooks(
+      "afterRank",
+      {
+        results:
+          clone(finalResults),
+
+        context
+      }
+    );
+
     Forma.events?.emit?.(
       "forma:recommendations-generated",
       {
         generatedAt:
-          Date.now(),
+          context.generatedAt,
+
+        strategy:
+          context.strategy,
 
         count:
           finalResults.length,
@@ -1277,8 +1394,8 @@
      PUBLIC API
      ---------------------------------------------------------- */
 
-  Forma.recommendations = {
-    version: "1.0.0",
+    Forma.recommendations = {
+    version: "1.1.0",
 
     score,
     rank,
@@ -1288,7 +1405,10 @@
     resolveProduct,
     resolveProducts,
 
-    getDefaults
+    getDefaults,
+
+    on,
+    off
   };
 
   Forma.events?.emit?.(
