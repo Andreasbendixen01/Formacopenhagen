@@ -1,0 +1,83 @@
+<section
+  id="FormaRecommendedProducts-{{ section.id }}"
+  class="forma-section forma-recommended-products"
+  data-forma-recommended-products
+  data-limit="{{ section.settings.products_to_show }}"
+  data-collections="{{ section.settings.collections | escape }}"
+>
+  <div class="page-width">
+
+    <header class="forma-section__header">
+
+      <div class="forma-section__heading-group">
+
+        <p
+          class="forma-section__eyebrow"
+          data-forma-recommendation-eyebrow
+        >
+          PERSONALISED FOR YOU
+        </p>
+
+        <h2
+          class="forma-section__heading"
+          data-forma-recommendation-heading
+        >
+          Recommended For You
+        </h2>
+
+        <p
+          class="forma-section__subheading"
+          data-forma-recommendation-description
+        >
+          Curated from your activity.
+        </p>
+
+      </div>
+
+    </header>
+
+    <div
+      class="forma-product-grid"
+      data-forma-recommendation-grid
+    >
+
+      {%- for i in (1..4) -%}
+
+        <div
+          class="forma-product-card forma-product-card--placeholder"
+        ></div>
+
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Forma Recommended",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collections",
+      "label": "Collections",
+      "default": "new-arrivals,men-shoes"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forma Recommended"
+    }
+  ]
+}
+{% endschema %}

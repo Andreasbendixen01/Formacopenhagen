@@ -29,7 +29,7 @@
      CONFIGURATION
      ---------------------------------------------------------- */
 
-  const DEFAULT_OPTIONS = {
+   const DEFAULT_OPTIONS = {
     limit: 12,
 
     refreshEntities: false,
@@ -54,6 +54,50 @@
       freshness: 1,
       popularity: 0
     }
+  };
+
+  /* ----------------------------------------------------------
+     STRATEGIES
+     ---------------------------------------------------------- */
+
+  const STRATEGIES = {
+    default: {},
+
+    "continue-exploring": {},
+
+    "daily-edit": {
+      excludeViewed: true,
+
+      maxPerBrand: 2,
+
+      weights: {
+        followedBrand: 15,
+        freshness: 5,
+        popularity: 2
+      }
+    },
+
+    recommended: {
+      weights: {
+        brand: 5,
+        type: 4,
+        tag: 2
+      }
+    },
+
+    "since-last-visit": {
+      excludeViewed: true,
+
+      weights: {
+        freshness: 8
+      }
+    },
+
+    wishlist: {},
+
+    wallet: {},
+
+    passport: {}
   };
 
   /* ----------------------------------------------------------
@@ -374,6 +418,26 @@
         createHandleSet(
           viewedProducts
         )
+    };
+  }
+
+    function createContext(
+    strategy,
+    options
+  ) {
+    return {
+      strategy,
+
+      entityState:
+        getEntityState(),
+
+      userState:
+        getUserState(),
+
+      options,
+
+      generatedAt:
+        Date.now()
     };
   }
 
@@ -891,29 +955,42 @@
     );
 
     return {
-      product: clone(product),
+  product: clone(product),
 
-      score:
+  score:
+    Number(
+      score.toFixed(2)
+    ),
+
+  confidence:
+    calculateConfidence(score),
+
+  reasons:
+    reasons.map(reason => ({
+      ...reason,
+      points:
         Number(
-          score.toFixed(2)
-        ),
+          reason.points.toFixed(2)
+        )
+    })),
 
-      confidence:
-        calculateConfidence(score),
+  primaryReason:
+    reasons[0]?.label ||
+    "Selected for you",
 
-      reasons:
-        reasons.map(reason => ({
-          ...reason,
-          points:
-            Number(
-              reason.points.toFixed(2)
-            )
-        })),
+  strategy:
+    context.strategy,
 
-      primaryReason:
-        reasons[0]?.label ||
-        "Selected for you"
-    };
+  generatedAt:
+    context.generatedAt,
+
+  recommendationId:
+    crypto.randomUUID
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2)}`
+};
   }
 
   /* ----------------------------------------------------------
@@ -995,13 +1072,27 @@
      PUBLIC METHODS
      ---------------------------------------------------------- */
 
-  async function score(
+      async function score(
     candidate,
     customOptions = {}
   ) {
-    const options =
+    const strategyName =
+      customOptions.strategy ||
+      "default";
+
+    const strategyOptions =
+      STRATEGIES[strategyName] ||
+      STRATEGIES.default;
+
+    let options =
       mergeDeep(
         DEFAULT_OPTIONS,
+        strategyOptions
+      );
+
+    options =
+      mergeDeep(
+        options,
         customOptions
       );
 
@@ -1021,17 +1112,15 @@
       return null;
     }
 
+    const context =
+      createContext(
+        strategyName,
+        options
+      );
+
     return scoreResolvedProduct(
       product,
-      {
-        entityState:
-          getEntityState(),
-
-        userState:
-          getUserState(),
-
-        options
-      }
+      context
     );
   }
 
@@ -1039,9 +1128,23 @@
     candidates,
     customOptions = {}
   ) {
-    const options =
+        const strategyName =
+      customOptions.strategy ||
+      "default";
+
+    const strategyOptions =
+      STRATEGIES[strategyName] ||
+      STRATEGIES.default;
+
+    let options =
       mergeDeep(
         DEFAULT_OPTIONS,
+        strategyOptions
+      );
+
+    options =
+      mergeDeep(
+        options,
         customOptions
       );
 
@@ -1057,21 +1160,21 @@
         candidates
       );
 
-    const entityState =
-      getEntityState();
+      const context =
+      createContext(
+        strategyName,
+        options
+      );
 
-    const userState =
-      getUserState();
+    const {
+      userState
+    } = context;
 
     let results =
       products.map(product =>
         scoreResolvedProduct(
           product,
-          {
-            entityState,
-            userState,
-            options
-          }
+          context
         )
       );
 

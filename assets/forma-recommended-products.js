@@ -1,20 +1,353 @@
 /* ==========================================================
    FORMA — RECOMMENDED PRODUCTS UI
+   Version 3.0.0
+
+   Recommendation Service
+          ↓
+   Recommended product handles
+          ↓
+   Shopify product-card endpoint
+          ↓
+   Existing product-card.liquid
    ========================================================== */
 
 (function () {
   "use strict";
 
-  function initRecommendedProducts() {
-    const section = document.querySelector(
-      "[data-forma-recommended]"
+  const VERSION = "3.0.0";
+  const DEFAULT_LIMIT = 8;
+  const CARD_VIEW = "forma-card";
+
+  /*
+   * Cache færdigrenderede produktkort i den aktuelle session.
+   *
+   * Det betyder, at vi ikke henter det samme kort igen,
+   * hver gang brugerens anbefalinger opdateres.
+   */
+  const productCardCache = new Map();
+
+  /*
+   * Holder styr på alle initialiserede sektioner.
+   *
+   * Det gør filen kompatibel med Shopify Theme Editor,
+   * hvor sektioner kan blive indlæst dynamisk.
+   */
+  const initializedSections = new WeakSet();
+
+  function normalizeHandle(value) {
+    if (!value) {
+      return "";
+    }
+
+    let handle = String(value).trim();
+
+    try {
+      if (
+        handle.startsWith("http://") ||
+        handle.startsWith("https://")
+      ) {
+        handle = new URL(handle).pathname;
+      }
+    } catch (error) {
+      // Fortsæt med den oprindelige værdi.
+    }
+
+    return handle
+      .replace(/^\/+/, "")
+      .replace(/^products\//, "")
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/\/+$/, "")
+      .trim();
+  }
+
+  function getProductHandle(product) {
+    return normalizeHandle(
+      product?.handle ||
+      product?.product_handle ||
+      product?.productHandle ||
+      product?.url ||
+      product?.product_url ||
+      ""
+    );
+  }
+
+  function getShopRoot() {
+    const root =
+      window.Shopify?.routes?.root ||
+      "/";
+
+    return root.endsWith("/")
+      ? root
+      : `${root}/`;
+  }
+
+  function createProductCardUrl(handle) {
+    const root = getShopRoot();
+
+    return (
+      `${root}products/` +
+      `${encodeURIComponent(handle)}` +
+      `?view=${CARD_VIEW}`
+    );
+  }
+
+  function normalizeRecommendationResult(result) {
+    if (Array.isArray(result)) {
+      return result;
+    }
+
+    if (Array.isArray(result?.products)) {
+      return result.products;
+    }
+
+    if (Array.isArray(result?.recommendations)) {
+      return result.recommendations;
+    }
+
+    if (Array.isArray(result?.items)) {
+      return result.items;
+    }
+
+    if (Array.isArray(result?.results)) {
+      return result.results;
+    }
+
+    return [];
+  }
+
+  function removeDuplicateProducts(products) {
+    const seenHandles = new Set();
+
+    return products.filter(product => {
+      const handle = getProductHandle(product);
+
+      if (!handle || seenHandles.has(handle)) {
+        return false;
+      }
+
+      seenHandles.add(handle);
+      return true;
+    });
+  }
+
+  async function getRecommendedProducts({
+    limit = DEFAULT_LIMIT,
+    force = false
+  } = {}) {
+    const forma =
+      window.Forma;
+
+    /*
+     * Den nye Recommendation Service er førstevalg.
+     */
+    if (
+      typeof forma
+        ?.recommendationService
+        ?.getForYou === "function"
+    ) {
+      const result =
+        await forma.recommendationService.getForYou({
+          limit,
+          force
+        });
+
+      const products =
+        normalizeRecommendationResult(result);
+
+      return removeDuplicateProducts(products)
+        .slice(0, limit);
+    }
+
+    /*
+     * Fallback til den eksisterende Recommendation Engine.
+     *
+     * Dermed fungerer sektionen stadig, hvis den nye service
+     * ikke er indlæst på en bestemt side.
+     */
+    if (
+      typeof forma
+        ?.recommendations
+        ?.getProducts === "function"
+    ) {
+      const result =
+        await forma.recommendations.getProducts(
+          limit,
+          { force }
+        );
+
+      const products =
+        normalizeRecommendationResult(result);
+
+      return removeDuplicateProducts(products)
+        .slice(0, limit);
+    }
+
+    throw new Error(
+      "Neither Forma.recommendationService nor " +
+      "Forma.recommendations is available."
+    );
+  }
+
+  async function fetchProductCard(
+    handle,
+    {
+      force = false,
+      signal
+    } = {}
+  ) {
+    const normalizedHandle =
+      normalizeHandle(handle);
+
+    if (!normalizedHandle) {
+      throw new Error(
+        "A valid product handle is required."
+      );
+    }
+
+    if (
+      !force &&
+      productCardCache.has(normalizedHandle)
+    ) {
+      return productCardCache.get(
+        normalizedHandle
+      );
+    }
+
+    const response = await fetch(
+      createProductCardUrl(normalizedHandle),
+      {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          Accept: "text/html"
+        },
+        signal
+      }
     );
 
-    if (!section) {
-      console.warn(
-        "[Forma Recommended] Section was not found."
+    if (!response.ok) {
+      throw new Error(
+        `Could not load product card for ` +
+        `"${normalizedHandle}". ` +
+        `Status: ${response.status}`
       );
+    }
 
+    const html =
+      (await response.text()).trim();
+
+    if (!html) {
+      throw new Error(
+        `The product card endpoint returned ` +
+        `empty HTML for "${normalizedHandle}".`
+      );
+    }
+
+    productCardCache.set(
+      normalizedHandle,
+      html
+    );
+
+    return html;
+  }
+
+  async function fetchProductCards(
+    products,
+    {
+      force = false,
+      signal
+    } = {}
+  ) {
+    const requests =
+      products.map(async product => {
+        const handle =
+          getProductHandle(product);
+
+        if (!handle) {
+          console.warn(
+            "[Forma Recommended] Product has no valid handle:",
+            product
+          );
+
+          return null;
+        }
+
+        try {
+          const html =
+            await fetchProductCard(
+              handle,
+              {
+                force,
+                signal
+              }
+            );
+
+          return {
+            handle,
+            product,
+            html
+          };
+        } catch (error) {
+          if (error?.name === "AbortError") {
+            throw error;
+          }
+
+          console.warn(
+            `[Forma Recommended] Could not load card for "${handle}".`,
+            error
+          );
+
+          return null;
+        }
+      });
+
+    const cards =
+      await Promise.all(requests);
+
+    return cards.filter(Boolean);
+  }
+
+  function announceRenderedProducts(
+    section,
+    products,
+    cards
+  ) {
+    const detail = {
+      section,
+      products,
+      cards,
+      count: cards.length
+    };
+
+    /*
+     * Egen event til kommende Forma-moduler.
+     */
+    window.dispatchEvent(
+      new CustomEvent(
+        "forma:recommended-products-rendered",
+        { detail }
+      )
+    );
+
+    /*
+     * Opdater eksisterende Forma save-knapper,
+     * hvis modulet udstiller en update-funktion.
+     */
+    window.Forma
+      ?.saveButtons
+      ?.updateAll?.();
+
+    window.Forma
+      ?.savedProductsUI
+      ?.updateAll?.();
+  }
+
+  function initRecommendedProducts(section) {
+    if (
+      !section ||
+      initializedSections.has(section)
+    ) {
       return;
     }
 
@@ -22,9 +355,10 @@
       "[data-forma-recommended-grid]"
     );
 
-    const refreshButton = section.querySelector(
-      "[data-forma-recommended-refresh]"
-    );
+    const refreshButton =
+      section.querySelector(
+        "[data-forma-recommended-refresh]"
+      );
 
     if (!grid) {
       console.warn(
@@ -34,366 +368,132 @@
       return;
     }
 
-    function escapeHtml(value) {
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
+    initializedSections.add(section);
 
-    function getHandle(product) {
-      return String(
-        product?.handle ||
-        product?.productHandle ||
-        product?.url ||
-        ""
-      )
-        .trim()
-        .replace(/^\/products\//, "")
-        .split("?")[0]
-        .split("#")[0]
-        .replace(/\/$/, "");
-    }
-
-    function getUrl(product) {
-      const handle = getHandle(product);
-
-      return handle
-        ? `/products/${handle}`
-        : "#";
-    }
-
-    function getTitle(product) {
-      return String(
-        product?.title ||
-        product?.name ||
-        "Untitled product"
+    const configuredLimit =
+      Number(
+        section.dataset.formaRecommendedLimit ||
+        section.dataset.productLimit ||
+        DEFAULT_LIMIT
       );
-    }
 
-    function getVendor(product) {
-      return String(
-        product?.vendor ||
-        product?.brand ||
-        "Forma"
-      );
-    }
+    const productLimit =
+      Number.isFinite(configuredLimit) &&
+      configuredLimit > 0
+        ? Math.floor(configuredLimit)
+        : DEFAULT_LIMIT;
 
-    function getImage(product) {
-      const image =
-        product?.images?.[0]?.src ||
-        product?.images?.[0] ||
-        product?.featured_image ||
-        product?.featuredImage ||
-        product?.image;
+    const originalRefreshLabel =
+      refreshButton?.textContent?.trim() ||
+      "Refresh selection";
 
-      if (typeof image === "string") {
-        return image;
-      }
+    let activeRequestController = null;
+    let renderSequence = 0;
+    let refreshTimeout = null;
 
-      return (
-        image?.src ||
-        image?.url ||
-        ""
-      );
-    }
-
-    function getProductId(product) {
-      return String(
-        product?.id ||
-        product?.productId ||
-        ""
-      );
-    }
-
-    function getPriceValue(product) {
-  const rawPrice =
-    product?.variants?.[0]?.price ??
-    product?.price ??
-    product?.price_min;
-
-  if (
-    rawPrice === null ||
-    rawPrice === undefined ||
-    rawPrice === ""
-  ) {
-    return null;
-  }
-
-  /*
-   * products.json returnerer typisk priser
-   * som tekst i hovedvalutaen:
-   *
-   * "1299.00"
-   */
-  if (typeof rawPrice === "string") {
-    const normalizedPrice = rawPrice
-      .replace(/\s/g, "")
-      .replace(",", ".")
-      .replace(/[^\d.-]/g, "");
-
-    const numericPrice =
-      Number(normalizedPrice);
-
-    return Number.isFinite(numericPrice)
-      ? numericPrice
-      : null;
-  }
-
-  /*
-   * Andre Shopify-endpoints kan returnere
-   * beløbet som et heltal i øre.
-   */
-  const numericPrice =
-    Number(rawPrice);
-
-  if (!Number.isFinite(numericPrice)) {
-    return null;
-  }
-
-  return Number.isInteger(numericPrice) &&
-    numericPrice >= 10000
-      ? numericPrice / 100
-      : numericPrice;
-}
-
-function formatMoney(amount) {
-  if (amount === null) {
-    return "";
-  }
-
-  return new Intl.NumberFormat(
-    "da-DK",
-    {
-      style: "currency",
-      currency: "DKK",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }
-  ).format(amount);
-}
-
-    function getReason(product) {
-      return (
-        window.Forma?.recommendations
-          ?.getExplanation?.(product) ||
-        product
-          ?.formaRecommendation
-          ?.primaryReason ||
-        "Selected for your Forma"
-      );
-    }
-
-    function isSaved(product) {
-      const productId =
-        getProductId(product);
-
-      const handle =
-        getHandle(product);
-
-      try {
-        const savedProducts =
-          window.Forma?.savedProducts
-            ?.getAll?.() || [];
-
-        return savedProducts.some(saved => {
-          const savedId =
-            String(
-              saved?.id ||
-              saved?.productId ||
-              ""
-            );
-
-          const savedHandle =
-            getHandle(saved);
-
-          return (
-            (productId &&
-              savedId === productId) ||
-            (handle &&
-              savedHandle === handle)
-          );
-        });
-      } catch (error) {
-        return false;
-      }
-    }
-
-    function renderImage(
-      image,
-      title
-    ) {
-      if (!image) {
-        return "";
-      }
-
-      return `
-        <img
-          class="forma-recommended-card__image"
-          src="${escapeHtml(image)}"
-          alt="${escapeHtml(title)}"
-          loading="lazy"
-        >
-      `;
-    }
-
-    function createCard(
-      product,
-      index
-    ) {
-      const title =
-        getTitle(product);
-
-      const vendor =
-        getVendor(product);
-
-      const image =
-        getImage(product);
-
-      const url =
-        getUrl(product);
-
-      const price =
-        formatMoney(
-          getPriceValue(product)
-        );
-
-      const reason =
-        getReason(product);
-
-      const productId =
-        getProductId(product);
-
-      const handle =
-        getHandle(product);
-
-      const saved =
-        isSaved(product);
-
-      return `
-        <article
-          class="forma-recommended-card"
-          data-recommended-product
-          data-product-id="${escapeHtml(productId)}"
-          data-product-handle="${escapeHtml(handle)}"
-        >
-          <div class="forma-recommended-card__media">
-  <a
-    href="${escapeHtml(url)}"
-    class="forma-recommended-card__media-link"
-    aria-label="View ${escapeHtml(title)}"
-  >
-    <p class="forma-recommended-card__number">
-      ${String(index + 1).padStart(2, "0")}
-    </p>
-
-    ${renderImage(image, title)}
-
-    <p class="forma-recommended-card__reason">
-      ${escapeHtml(reason)}
-    </p>
-  </a>
-
-  <button
-    class="forma-recommended-card__save"
-    type="button"
-    aria-label="${
-      saved
-        ? "Remove from Your Forma"
-        : "Save to Your Forma"
-    }"
-    aria-pressed="${saved}"
-    data-recommended-save
-  >
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
-      ></path>
-    </svg>
-  </button>
-</div>
-
-          <div class="forma-recommended-card__content">
-            <p class="forma-recommended-card__brand">
-              ${escapeHtml(vendor)}
-            </p>
-
-            <h3 class="forma-recommended-card__title">
-              <a
-                href="${escapeHtml(url)}"
-                class="forma-recommended-card__title-link"
-              >
-                ${escapeHtml(title)}
-              </a>
-            </h3>
-
-            ${
-  price
-    ? `
-      <p class="forma-recommended-card__price">
-        ${escapeHtml(price)}
-      </p>
-    `
-    : ""
-}
-          </div>
-        </article>
-      `;
+    function showSection() {
+      section.hidden = false;
+      section.removeAttribute("aria-hidden");
     }
 
     function hideSection() {
       section.hidden = true;
+      section.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
       grid.innerHTML = "";
     }
 
-    function showSection() {
-      section.hidden = false;
+    function setLoading(isLoading) {
+      section.classList.toggle(
+        "is-loading",
+        isLoading
+      );
+
+      section.setAttribute(
+        "aria-busy",
+        String(isLoading)
+      );
+
+      if (!refreshButton) {
+        return;
+      }
+
+      refreshButton.disabled =
+        isLoading;
+
+      refreshButton.textContent =
+        isLoading
+          ? "Updating..."
+          : originalRefreshLabel;
     }
 
     async function render({
       force = false
     } = {}) {
-      if (
-        !window.Forma
-          ?.recommendations
-          ?.getProducts
-      ) {
-        console.error(
-          "[Forma Recommended] Recommendation Engine is unavailable."
-        );
+      renderSequence += 1;
 
-        hideSection();
-        return;
-      }
+      const currentSequence =
+        renderSequence;
 
-      if (refreshButton) {
-        refreshButton.disabled = true;
-        refreshButton.textContent =
-          "Updating...";
-      }
+      /*
+       * Stop en tidligere request, hvis en ny opdatering
+       * bliver startet, før den gamle er færdig.
+       */
+      activeRequestController?.abort();
+
+      activeRequestController =
+        new AbortController();
+
+      const { signal } =
+        activeRequestController;
+
+      setLoading(true);
 
       try {
         const products =
-          await window.Forma
-            .recommendations
-            .getProducts(
-              8,
-              { force }
-            );
+          await getRecommendedProducts({
+            limit: productLimit,
+            force
+          });
 
-        console.log(
-          "[Forma Recommended] Products:",
-          products
-        );
+        if (
+          signal.aborted ||
+          currentSequence !== renderSequence
+        ) {
+          return;
+        }
 
         if (!products.length) {
           console.warn(
-            "[Forma Recommended] No recommended products were returned."
+            "[Forma Recommended] No recommendations were returned."
+          );
+
+          hideSection();
+          return;
+        }
+
+        const cards =
+          await fetchProductCards(
+            products,
+            {
+              force,
+              signal
+            }
+          );
+
+        if (
+          signal.aborted ||
+          currentSequence !== renderSequence
+        ) {
+          return;
+        }
+
+        if (!cards.length) {
+          console.warn(
+            "[Forma Recommended] No product cards could be rendered."
           );
 
           hideSection();
@@ -401,13 +501,26 @@ function formatMoney(amount) {
         }
 
         grid.innerHTML =
-          products
-            .slice(0, 8)
-            .map(createCard)
+          cards
+            .map(card => card.html)
             .join("");
 
         showSection();
+
+        announceRenderedProducts(
+          section,
+          products,
+          cards
+        );
+
+        console.log(
+          `[Forma Recommended] Rendered ${cards.length} product cards.`
+        );
       } catch (error) {
+        if (error?.name === "AbortError") {
+          return;
+        }
+
         console.error(
           "[Forma Recommended] Could not render recommendations.",
           error
@@ -415,91 +528,51 @@ function formatMoney(amount) {
 
         hideSection();
       } finally {
-        if (refreshButton) {
-          refreshButton.disabled = false;
-          refreshButton.textContent =
-            "Refresh selection";
+        if (
+          currentSequence === renderSequence
+        ) {
+          setLoading(false);
         }
       }
     }
 
-    function handleSaveClick(button) {
-      const card = button.closest(
-        "[data-recommended-product]"
+    function scheduleRender({
+      force = false,
+      delay = 150
+    } = {}) {
+      window.clearTimeout(
+        refreshTimeout
       );
 
-      if (!card) {
-        return;
-      }
-
-      const productId =
-        card.dataset.productId;
-
-      if (
-        !window.Forma
-          ?.savedProducts
-          ?.toggle
-      ) {
-        console.warn(
-          "[Forma Recommended] Saved Products API is unavailable."
+      refreshTimeout =
+        window.setTimeout(
+          () => {
+            render({ force });
+          },
+          delay
         );
-
-        return;
-      }
-
-      const saved =
-        window.Forma.savedProducts.toggle(
-          productId
-        );
-
-      button.setAttribute(
-        "aria-pressed",
-        String(Boolean(saved))
-      );
-
-      button.setAttribute(
-        "aria-label",
-        saved
-          ? "Remove from Your Forma"
-          : "Save to Your Forma"
-      );
-
-      if (saved) {
-        window.Forma.toast?.success(
-          "Saved to Your Forma"
-        );
-      } else {
-        window.Forma.toast?.info(
-          "Removed from saved products"
-        );
-      }
     }
 
-    grid.addEventListener(
-      "click",
-      event => {
-        const saveButton =
-          event.target.closest(
-            "[data-recommended-save]"
-          );
+    function clearRecommendationCaches() {
+      productCardCache.clear();
 
-        if (!saveButton) {
-          return;
-        }
+      window.Forma
+        ?.recommendations
+        ?.clearCatalogCache?.();
 
-        event.preventDefault();
-        event.stopPropagation();
+      window.Forma
+        ?.recommendationService
+        ?.clear?.();
 
-        handleSaveClick(saveButton);
-      }
-    );
+      window.Forma
+        ?.recommendationService
+        ?.clearCache?.();
+    }
 
     refreshButton?.addEventListener(
       "click",
       () => {
-        window.Forma
-          ?.recommendations
-          ?.clearCatalogCache?.();
+        clearRecommendationCaches();
 
         render({
           force: true
@@ -507,38 +580,123 @@ function formatMoney(amount) {
       }
     );
 
-    window.addEventListener(
+    /*
+     * Brugerens Forma ændrer sig.
+     * Derfor beregner vi anbefalingerne igen.
+     */
+    const recommendationEvents = [
       "forma:saved-updated",
-      () => render()
-    );
-
-    window.addEventListener(
       "forma:followed-brands-updated",
-      () => render()
-    );
-
-    window.addEventListener(
+      "forma:recently-viewed-updated",
       "forma:profile-updated",
-      () => render()
+      "forma:onboarding-completed"
+    ];
+
+    recommendationEvents.forEach(
+      eventName => {
+        window.addEventListener(
+          eventName,
+          () => {
+            scheduleRender();
+          }
+        );
+      }
     );
 
-    window.addEventListener(
-      "forma:onboarding-completed",
-      () => render()
+    /*
+     * Shopify Theme Editor cleanup.
+     */
+    section.addEventListener(
+      "forma:recommended-destroy",
+      () => {
+        activeRequestController?.abort();
+
+        window.clearTimeout(
+          refreshTimeout
+        );
+      },
+      { once: true }
     );
 
     render();
   }
+
+  function initAllRecommendedProducts(
+    root = document
+  ) {
+    const sections = [];
+
+    if (
+      root instanceof Element &&
+      root.matches(
+        "[data-forma-recommended]"
+      )
+    ) {
+      sections.push(root);
+    }
+
+    root
+      .querySelectorAll?.(
+        "[data-forma-recommended]"
+      )
+      .forEach(section => {
+        sections.push(section);
+      });
+
+    sections.forEach(
+      initRecommendedProducts
+    );
+  }
+
+  function boot() {
+    initAllRecommendedProducts();
+
+    console.log(
+      `[Forma Recommended] Ready — v${VERSION}`
+    );
+  }
+
+  /*
+   * Understøtter dynamisk indlæsning i Shopify Theme Editor.
+   */
+  document.addEventListener(
+    "shopify:section:load",
+    event => {
+      initAllRecommendedProducts(
+        event.target
+      );
+    }
+  );
+
+  document.addEventListener(
+    "shopify:section:unload",
+    event => {
+      const section =
+        event.target.matches?.(
+          "[data-forma-recommended]"
+        )
+          ? event.target
+          : event.target.querySelector?.(
+              "[data-forma-recommended]"
+            );
+
+      section?.dispatchEvent(
+        new CustomEvent(
+          "forma:recommended-destroy"
+        )
+      );
+    }
+  );
 
   if (
     document.readyState === "loading"
   ) {
     document.addEventListener(
       "DOMContentLoaded",
-      initRecommendedProducts,
+      boot,
       { once: true }
     );
   } else {
-    initRecommendedProducts();
+    boot();
   }
 })();

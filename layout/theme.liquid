@@ -135,10 +135,12 @@
     {{ 'forma-followed-brands-ui.js' | asset_url | script_tag }}
 
     {{ 'forma-products.js' | asset_url | script_tag }}
+    {{ 'forma-collections.js' | asset_url | script_tag }}
     {{ 'forma-signals.js' | asset_url | script_tag }}
     {{ 'forma-entities.js' | asset_url | script_tag }}
     {{ 'forma-persona.js' | asset_url | script_tag }}   
     {{ 'forma-recommendations.js' | asset_url | script_tag }} 
+    {{ 'forma-recommendation-service.js' | asset_url | script_tag }}
 
     {%- if request.page_type == 'product' -%}
       {{ 'forma-product-tracker.js' | asset_url | script_tag }}

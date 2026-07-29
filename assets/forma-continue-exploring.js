@@ -1,5 +1,12 @@
 /* ==========================================================
-   FORMA — CONTINUE EXPLORING
+   FORMA — CONTINUE EXPLORING 2.0
+   Version: 2.0.0
+
+   Candidate source:
+   - Forma Ranking Engine
+
+   Final ranking:
+   - Forma Recommendation Engine
    ========================================================== */
 
 (function () {
@@ -37,6 +44,20 @@
     return;
   }
 
+  if (!window.Forma?.recommendations) {
+    console.error(
+      "[Forma Continue Exploring] Recommendation Engine must load first."
+    );
+
+    return;
+  }
+
+  let isRendering = false;
+
+  /* ----------------------------------------------------------
+     HELPERS
+     ---------------------------------------------------------- */
+
   function escapeHtml(value) {
     return String(value || "")
       .replace(/&/g, "&amp;")
@@ -55,10 +76,12 @@
       ""
     )
       .trim()
-      .replace(/^\/products\//, "")
-      .split("?")[0]
-      .split("#")[0]
-      .replace(/\/$/, "");
+      .replace(/^https?:\/\/[^/]+/i, "")
+      .replace(/^\/?products\//i, "")
+      .replace(/\.js(?:\?.*)?$/i, "")
+      .replace(/[?#].*$/, "")
+      .replace(/^\/+|\/+$/g, "")
+      .toLowerCase();
   }
 
   function getProductUrl(product) {
@@ -130,8 +153,67 @@
     );
   }
 
+  function getRecommendationMeta(product) {
+    return (
+      product?._formaRecommendation ||
+      {}
+    );
+  }
+
+  function getReason(product, fallback) {
+    const recommendation =
+      getRecommendationMeta(product);
+
+    return (
+      recommendation.primaryReason ||
+      recommendation.reasons?.[0]?.label ||
+      fallback
+    );
+  }
+
+  function getConfidence(product) {
+    const recommendation =
+      getRecommendationMeta(product);
+
+    const confidence =
+      Number(
+        recommendation.confidence
+      );
+
+    if (!Number.isFinite(confidence)) {
+      return 0;
+    }
+
+    return Math.max(
+      0,
+      Math.min(100, confidence)
+    );
+  }
+
+  function createReasonText(
+    product,
+    fallback
+  ) {
+    const reason =
+      getReason(product, fallback);
+
+    const confidence =
+      getConfidence(product);
+
+    if (confidence <= 0) {
+      return reason;
+    }
+
+    return `${reason} · ${confidence}% match`;
+  }
+
+  /* ----------------------------------------------------------
+     PRODUCT FETCHING
+     ---------------------------------------------------------- */
+
   async function fetchProduct(product) {
-    const handle = normalizeHandle(product);
+    const handle =
+      normalizeHandle(product);
 
     if (!handle) {
       return product;
@@ -150,9 +232,12 @@
         await response.json();
 
       return {
-        ...product,
         ...fetchedProduct,
-        handle
+        ...product,
+        handle,
+
+        _formaRecommendation:
+          product._formaRecommendation
       };
     } catch (error) {
       console.warn(
@@ -163,6 +248,10 @@
       return product;
     }
   }
+
+  /* ----------------------------------------------------------
+     IMAGE RENDERING
+     ---------------------------------------------------------- */
 
   function renderImage(
     image,
@@ -187,6 +276,10 @@
     `;
   }
 
+  /* ----------------------------------------------------------
+     FEATURED PRODUCT
+     ---------------------------------------------------------- */
+
   function renderFeatured(product) {
     const title = getTitle(product);
     const brand = getBrand(product);
@@ -195,9 +288,10 @@
     const url = getProductUrl(product);
 
     const reason =
-      window.Forma.ranking
-        .getExplanation(product) ||
-      "Selected from your journey";
+      createReasonText(
+        product,
+        "Selected from your journey"
+      );
 
     featuredContainer.innerHTML = `
       <a
@@ -254,6 +348,10 @@
     `;
   }
 
+  /* ----------------------------------------------------------
+     SECONDARY PRODUCTS
+     ---------------------------------------------------------- */
+
   function createSecondaryCard(
     product,
     index
@@ -265,9 +363,16 @@
     const url = getProductUrl(product);
 
     const reason =
-      window.Forma.ranking
-        .getExplanation(product) ||
-      "Worth another look";
+      createReasonText(
+        product,
+        "Worth another look"
+      );
+
+    const number =
+      String(index + 2).padStart(
+        2,
+        "0"
+      );
 
     return `
       <a
@@ -276,7 +381,7 @@
       >
         <div class="forma-continue-card__media">
           <p class="forma-continue-card__index">
-            0${index + 2}
+            ${number}
           </p>
 
           ${renderImage(
@@ -313,48 +418,199 @@
     `;
   }
 
+  /* ----------------------------------------------------------
+     SECTION STATES
+     ---------------------------------------------------------- */
+
   function showEmptyState() {
-    content.hidden = true;
-    emptyState.hidden = false;
+    if (content) {
+      content.hidden = true;
+    }
+
+    if (emptyState) {
+      emptyState.hidden = false;
+    }
 
     featuredContainer.innerHTML = "";
     secondaryContainer.innerHTML = "";
   }
 
   function showContent() {
-    content.hidden = false;
-    emptyState.hidden = true;
+    if (content) {
+      content.hidden = false;
+    }
+
+    if (emptyState) {
+      emptyState.hidden = true;
+    }
   }
 
-  async function render() {
-    const rankedProducts =
-      window.Forma.ranking
-        .getContinueExploring(4);
+  /* ----------------------------------------------------------
+     RECOMMENDATION PIPELINE
+     ---------------------------------------------------------- */
 
-    if (!rankedProducts.length) {
-      showEmptyState();
+  function getCandidates() {
+    /*
+     * Ranking Engine provides a broader candidate pool.
+     * Recommendation Engine performs the final scoring,
+     * filtering and diversification.
+     */
+
+    return (
+      window.Forma.ranking
+        .getContinueExploring(16) ||
+      []
+    );
+  }
+
+  async function getRecommendations() {
+    const candidates =
+      getCandidates();
+
+    if (!candidates.length) {
+      return [];
+    }
+
+    const results =
+      await window.Forma
+        .recommendations
+        .rank(
+          candidates,
+          {
+            limit: 4,
+
+            excludeSaved: true,
+            excludeViewed: false,
+
+            maxPerBrand: 2,
+
+            minimumScore: 0
+          }
+        );
+
+    return results.map(result => ({
+      ...result.product,
+
+      _formaRecommendation: {
+        score:
+          result.score,
+
+        confidence:
+          result.confidence,
+
+        reasons:
+          result.reasons || [],
+
+        primaryReason:
+          result.primaryReason
+      }
+    }));
+  }
+
+  /* ----------------------------------------------------------
+     RENDER
+     ---------------------------------------------------------- */
+
+  async function render() {
+    if (isRendering) {
       return;
     }
 
-    const products = await Promise.all(
-      rankedProducts.map(fetchProduct)
-    );
+    isRendering = true;
 
-    renderFeatured(products[0]);
+    try {
+      const recommendedProducts =
+        await getRecommendations();
 
-    secondaryContainer.innerHTML =
-      products
-        .slice(1)
-        .map(createSecondaryCard)
-        .join("");
+      if (!recommendedProducts.length) {
+        showEmptyState();
+        return;
+      }
 
-    showContent();
+      const products =
+        await Promise.all(
+          recommendedProducts.map(
+            fetchProduct
+          )
+        );
+
+      const validProducts =
+        products.filter(Boolean);
+
+      if (!validProducts.length) {
+        showEmptyState();
+        return;
+      }
+
+      renderFeatured(
+        validProducts[0]
+      );
+
+      secondaryContainer.innerHTML =
+        validProducts
+          .slice(1)
+          .map(createSecondaryCard)
+          .join("");
+
+      showContent();
+    } catch (error) {
+      console.error(
+        "[Forma Continue Exploring] Could not render recommendations.",
+        error
+      );
+
+      showEmptyState();
+    } finally {
+      isRendering = false;
+    }
   }
+
+  /* ----------------------------------------------------------
+     PUBLIC API
+     ---------------------------------------------------------- */
+
+  window.Forma.continueExploring = {
+    version: "2.0.0",
+
+    render,
+
+    refresh() {
+      return render();
+    }
+  };
+
+  /* ----------------------------------------------------------
+     EVENTS
+     ---------------------------------------------------------- */
 
   window.addEventListener(
     "forma:ranking-updated",
     render
   );
 
+  document.addEventListener(
+    "forma:persona-updated",
+    render
+  );
+
+  window.Forma.events?.on?.(
+    "forma:saved-updated",
+    render
+  );
+
+  window.Forma.events?.on?.(
+    "forma:followed-brands-updated",
+    render
+  );
+
+  window.Forma.events?.on?.(
+    "forma:recently-viewed-updated",
+    render
+  );
+
   render();
+
+  console.info(
+    "[Forma Continue Exploring] Continue Exploring 2.0 ready"
+  );
 })();
