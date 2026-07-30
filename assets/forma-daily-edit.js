@@ -175,7 +175,11 @@
       });
     }
 
-    function createCard(product, index) {
+    function createCard(
+    product,
+    index,
+    layout = "standard"
+    ) {
       const title = getTitle(product);
       const vendor = getVendor(product);
       const image = getImage(product);
@@ -196,10 +200,12 @@
         "Chosen for today's Forma";
 
       const saved = isSaved(product);
+      const layoutClass =
+      `forma-daily-card--${layout}`;
 
       return `
         <article
-          class="forma-daily-card"
+        class="forma-daily-card ${layoutClass}"
           data-daily-product
           data-product-id="${escapeHtml(productId)}"
           data-product-handle="${escapeHtml(handle)}"
@@ -303,8 +309,26 @@
           return;
         }
 
+        const layouts = [
+        "featured",
+        "secondary",
+        "standard",
+        "standard",
+        "standard",
+        "standard",
+        "standard",
+        "standard"
+      ];
+
         grid.innerHTML = products
-          .map(createCard)
+          .map((product, index) =>
+            createCard(
+              product,
+              index,
+              layouts[index] ||
+                "standard"
+            )
+          )
           .join("");
 
         if (dateElement) {

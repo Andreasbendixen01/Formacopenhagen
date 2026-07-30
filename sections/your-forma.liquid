@@ -1,5 +1,6 @@
 {{ 'forma-dashboard.css' | asset_url | stylesheet_tag }}
 
+{% if customer %}
 <section
   class="forma-dashboard"
   data-forma-dashboard
@@ -316,6 +317,71 @@
 
   </div>
 </section>
+
+{% else %}
+
+<section class="forma-membership">
+  <div class="forma-membership__container">
+
+    <div class="forma-membership__content">
+
+      <p class="forma-membership__eyebrow">
+        Your Forma
+      </p>
+
+      <h1 class="forma-membership__title">
+        Your personal membership to a curated world of brands, places and experiences.
+      </h1>
+
+      <p class="forma-membership__description">
+        Discover your world through the brands you follow, the places you explore and the inspiration you choose to keep.
+      </p>
+
+      <div class="forma-membership__benefits">
+
+        <p class="forma-membership__benefit">
+          Save the things you love
+        </p>
+
+        <p class="forma-membership__benefit">
+          Follow brands that define your taste
+        </p>
+
+        <p class="forma-membership__benefit">
+          Discover extraordinary places
+        </p>
+
+        <p class="forma-membership__benefit">
+          Unlock your Forma Passport
+        </p>
+
+      </div>
+
+      <div class="forma-membership__actions">
+
+        <a
+          href="/customer_authentication/login?return_to={{ '/pages/your-forma' | url_encode }}"
+          class="forma-membership__primary-button"
+        >
+          Create Your Forma
+        </a>
+
+        <p class="forma-membership__signin">
+          Already a member?
+
+          <a href="/customer_authentication/login?return_to={{ '/pages/your-forma' | url_encode }}">
+            Sign in
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endif %}
 
 {% style %}
 

@@ -131,6 +131,100 @@
     };
   }
 
+  function buildEditorialSelection(
+  results,
+  limit
+) {
+  const selection = [];
+  const brandCounts = new Map();
+  const usedHandles = new Set();
+
+  for (const result of results) {
+    if (
+      selection.length >= limit
+    ) {
+      break;
+    }
+
+    const product =
+      result.product;
+
+    if (!product) {
+      continue;
+    }
+
+    const handle =
+      String(
+        product.handle || ""
+      );
+
+    if (
+      handle &&
+      usedHandles.has(handle)
+    ) {
+      continue;
+    }
+
+    const brand =
+      String(
+        product.vendor ||
+        ""
+      ).trim();
+
+    const currentBrandCount =
+      brandCounts.get(brand) || 0;
+
+    if (
+      currentBrandCount >= 2
+    ) {
+      continue;
+    }
+
+    selection.push(result);
+
+    if (handle) {
+      usedHandles.add(handle);
+    }
+
+    brandCounts.set(
+      brand,
+      currentBrandCount + 1
+    );
+  }
+
+  if (
+    selection.length < limit
+  ) {
+    for (const result of results) {
+      if (
+        selection.length >= limit
+      ) {
+        break;
+      }
+
+      const handle =
+        result.product?.handle;
+
+      if (
+        handle &&
+        usedHandles.has(handle)
+      ) {
+        continue;
+      }
+
+      selection.push(result);
+
+      if (handle) {
+        usedHandles.add(
+          handle
+        );
+      }
+    }
+  }
+
+  return selection;
+}
+
   async function generate(
     limit = DEFAULT_LIMIT,
     options = {}
@@ -188,10 +282,16 @@ const results =
     }
   );
 
+    const editorialResults =
+    buildEditorialSelection(
+    results,
+    normalizedLimit
+  );
+
     const products =
-      results.map(
-        attachRecommendation
-      );
+    editorialResults.map(
+    attachRecommendation
+  );
 
     saveCache({
       date:
