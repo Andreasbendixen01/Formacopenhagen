@@ -1,0 +1,172 @@
+{%- comment -%}
+  FORMA — PASSPORT
+{%- endcomment -%}
+
+<section
+  class="forma-dashboard-section forma-passport"
+  data-forma-passport
+>
+  <div class="forma-dashboard-section__header">
+    <div class="forma-dashboard-section__heading">
+      <p class="forma-dashboard-section__eyebrow">
+        Your identity
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Forma Passport
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        Your membership identity inside Forma, shaped by the brands,
+        places and experiences you discover.
+      </p>
+    </div>
+  </div>
+
+  <div class="forma-passport__layout">
+
+    <article class="forma-passport__card">
+
+      <div class="forma-passport__card-top">
+        <p class="forma-passport__mark">
+          FORMA
+        </p>
+
+        <p class="forma-passport__type">
+          Passport
+        </p>
+      </div>
+
+      <div class="forma-passport__identity">
+
+        <p class="forma-passport__label">
+          Member
+        </p>
+
+        <h3
+          class="forma-passport__name"
+          data-forma-passport-name
+        >
+          {{ customer.first_name | default: customer.name | default: 'Forma Member' }}
+        </h3>
+
+        <p
+          class="forma-passport__city"
+          data-forma-passport-city
+        >
+          Copenhagen
+        </p>
+
+      </div>
+
+      <div class="forma-passport__card-bottom">
+
+        <div class="forma-passport__meta">
+          <span class="forma-passport__meta-label">
+            Member since
+          </span>
+
+          <span class="forma-passport__meta-value">
+            {{ 'now' | date: '%Y' }}
+          </span>
+        </div>
+
+        <div class="forma-passport__meta">
+          <span class="forma-passport__meta-label">
+            Status
+          </span>
+
+          <span class="forma-passport__meta-value"
+            data-forma-passport-status>
+            Explorer
+            </span>
+
+        <div class="forma-passport__serial">
+          <span>
+            FORMA —
+          </span>
+
+          <span data-forma-passport-id>
+        {{ customer.id | default: '000000' }}
+        </span>
+        </div>
+
+      </div>
+
+    </article>
+
+    <div class="forma-passport__details">
+
+      <p class="forma-passport__details-eyebrow">
+        Your membership, wherever you go
+      </p>
+
+      <h3 class="forma-passport__details-title">
+        A living record of your world inside Forma.
+      </h3>
+
+      <p class="forma-passport__details-text">
+        Your Passport will evolve as you follow brands, save products,
+        discover cities and visit Forma partners.
+      </p>
+
+      <div class="forma-passport__stats">
+
+        <div class="forma-passport__stat">
+          <span
+            class="forma-passport__stat-value"
+            data-forma-passport-brands
+          >
+            0
+          </span>
+
+          <span class="forma-passport__stat-label">
+            Your brands
+          </span>
+        </div>
+
+        <div class="forma-passport__stat">
+          <span
+            class="forma-passport__stat-value"
+            data-forma-passport-saved
+          >
+            0
+          </span>
+
+          <span class="forma-passport__stat-label">
+            Saved
+          </span>
+        </div>
+
+        <div class="forma-passport__stat">
+          <span
+            class="forma-passport__stat-value"
+            data-forma-passport-cities
+          >
+            1
+          </span>
+
+          <span class="forma-passport__stat-label">
+            Cities
+          </span>
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="forma-passport__wallet-button"
+        disabled
+      >
+        <span>Add to Wallet</span>
+        <span aria-hidden="true">→</span>
+      </button>
+
+      <p class="forma-passport__wallet-note">
+        Wallet access will be available soon.
+      </p>
+
+    </div>
+
+  </div>
+</section>

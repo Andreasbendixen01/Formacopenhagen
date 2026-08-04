@@ -1,6 +1,6 @@
 {{ 'forma-dashboard.css' | asset_url | stylesheet_tag }}
 
-{% if customer %}
+{% if true %}
 <section
   class="forma-dashboard"
   data-forma-dashboard
@@ -10,6 +10,8 @@
   {% render 'forma-dashboard-hero' %}
 
     {% render 'forma-dashboard-overview' %}
+
+    {% render 'forma-passport' %}
 
     {% render 'forma-dashboard-following' %}
 
