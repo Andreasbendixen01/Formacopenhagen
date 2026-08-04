@@ -213,36 +213,56 @@
         city
       });
 
-    updateText(
-      nameElement,
-      displayName
-    );
+  updateText(
+  nameElement,
+  displayName
+);
 
-    updateText(
-      cityElement,
-      city || "Your city"
-    );
+updateText(
+  cityElement,
+  city || "Your city"
+);
 
-    updateText(
-      brandsElement,
-      followedBrandCount
-    );
+updateText(
+  brandsElement,
+  followedBrandCount
+);
 
-    updateText(
-      savedElement,
-      savedCount
-    );
+updateText(
+  savedElement,
+  savedCount
+);
 
-    updateText(
-      citiesElement,
-      cityCount
-    );
+updateText(
+  citiesElement,
+  cityCount
+);
 
-    updateText(
-      statusElement,
-      status
-    );
-  }
+updateText(
+  statusElement,
+  status
+);
+
+/* Passport Carry */
+
+updateText(
+  carryName,
+  displayName
+);
+
+updateText(
+  carryId,
+  `FORMA — ${
+    passport
+      .querySelector(
+        "[data-forma-passport-id]"
+      )
+      ?.textContent
+      ?.trim() ||
+    "000000"
+  }`
+);
+}
 
   function subscribeToFormaEvent(
     eventName
@@ -289,6 +309,114 @@
 
   subscribeToFormaEvent(
     "forma:onboarding-completed"
+  );
+
+    const carryPanel = passport.querySelector(
+    "[data-forma-passport-carry]"
+  );
+
+  const carryToggle = passport.querySelector(
+    "[data-forma-passport-carry-toggle]"
+  );
+
+  const carryCloseButtons =
+    passport.querySelectorAll(
+      "[data-forma-passport-carry-close]"
+    );
+
+  const carryName = passport.querySelector(
+    "[data-forma-passport-carry-name]"
+  );
+
+  const carryId = passport.querySelector(
+    "[data-forma-passport-carry-id]"
+  );
+
+  if (carryPanel) {
+  document.body.appendChild(
+    carryPanel
+  );
+}
+
+  function openCarryPanel() {
+  if (!carryPanel) {
+    return;
+  }
+
+  carryPanel.hidden = false;
+
+  carryPanel.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.documentElement.classList.add(
+    "forma-passport-carry-is-open"
+  );
+
+  carryToggle?.setAttribute(
+    "aria-expanded",
+    "true"
+  );
+
+  requestAnimationFrame(() => {
+    carryPanel.classList.add(
+      "is-visible"
+    );
+  });
+}
+
+  function closeCarryPanel() {
+  if (!carryPanel) {
+    return;
+  }
+
+  carryPanel.classList.remove(
+    "is-visible"
+  );
+
+  document.documentElement.classList.remove(
+    "forma-passport-carry-is-open"
+  );
+
+  carryToggle?.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+  carryPanel.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  window.setTimeout(() => {
+    carryPanel.hidden = true;
+  }, 400);
+}
+
+  carryToggle?.addEventListener(
+    "click",
+    openCarryPanel
+  );
+
+  carryCloseButtons.forEach(button => {
+    button.addEventListener(
+      "click",
+      closeCarryPanel
+    );
+  });
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (
+        event.key === "Escape" &&
+        carryPanel &&
+        !carryPanel.hidden
+      ) {
+        closeCarryPanel();
+      }
+    }
   );
 
   render();

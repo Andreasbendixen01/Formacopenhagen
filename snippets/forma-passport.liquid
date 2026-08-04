@@ -76,10 +76,13 @@
             Status
           </span>
 
-          <span class="forma-passport__meta-value"
-            data-forma-passport-status>
+          <span
+            class="forma-passport__meta-value"
+            data-forma-passport-status
+          >
             Explorer
-            </span>
+          </span>
+        </div>
 
         <div class="forma-passport__serial">
           <span>
@@ -87,8 +90,8 @@
           </span>
 
           <span data-forma-passport-id>
-        {{ customer.id | default: '000000' }}
-        </span>
+            {{ customer.id | default: '000000' }}
+          </span>
         </div>
 
       </div>
@@ -97,76 +100,224 @@
 
     <div class="forma-passport__details">
 
-      <p class="forma-passport__details-eyebrow">
-        Your membership, wherever you go
-      </p>
+      <div class="forma-passport__details-header">
 
-      <h3 class="forma-passport__details-title">
-        A living record of your world inside Forma.
-      </h3>
+        <p class="forma-passport__details-eyebrow">
+          Your Forma Passport
+        </p>
 
-      <p class="forma-passport__details-text">
-        Your Passport will evolve as you follow brands, save products,
-        discover cities and visit Forma partners.
-      </p>
+        <div class="forma-passport__status-group">
 
-      <div class="forma-passport__stats">
-
-        <div class="forma-passport__stat">
-          <span
-            class="forma-passport__stat-value"
-            data-forma-passport-brands
+          <p
+            class="forma-passport__status"
+            data-forma-passport-status
           >
-            0
-          </span>
+            Explorer
+          </p>
 
-          <span class="forma-passport__stat-label">
-            Your brands
-          </span>
-        </div>
+          <p class="forma-passport__member-since">
+            Member since {{ 'now' | date: '%Y' }}
+          </p>
 
-        <div class="forma-passport__stat">
-          <span
-            class="forma-passport__stat-value"
-            data-forma-passport-saved
-          >
-            0
-          </span>
-
-          <span class="forma-passport__stat-label">
-            Saved
-          </span>
-        </div>
-
-        <div class="forma-passport__stat">
-          <span
-            class="forma-passport__stat-value"
-            data-forma-passport-cities
-          >
-            1
-          </span>
-
-          <span class="forma-passport__stat-label">
-            Cities
-          </span>
         </div>
 
       </div>
 
-      <button
-        type="button"
-        class="forma-passport__wallet-button"
-        disabled
-      >
-        <span>Add to Wallet</span>
-        <span aria-hidden="true">→</span>
-      </button>
+      <div class="forma-passport__metrics">
 
-      <p class="forma-passport__wallet-note">
-        Wallet access will be available soon.
-      </p>
+        <article class="forma-passport__metric">
+          <p class="forma-passport__metric-label">
+            Saved products
+          </p>
+
+          <p
+            class="forma-passport__metric-value"
+            data-forma-passport-saved
+          >
+            0
+          </p>
+        </article>
+
+        <article class="forma-passport__metric">
+          <p class="forma-passport__metric-label">
+            Following brands
+          </p>
+
+          <p
+            class="forma-passport__metric-value"
+            data-forma-passport-brands
+          >
+            0
+          </p>
+        </article>
+
+        <article class="forma-passport__metric">
+          <p class="forma-passport__metric-label">
+            Cities
+          </p>
+
+          <p
+            class="forma-passport__metric-value"
+            data-forma-passport-cities
+          >
+            0
+          </p>
+        </article>
+
+        <article
+          class="
+            forma-passport__metric
+            forma-passport__metric--benefits
+          "
+        >
+          <p class="forma-passport__metric-label">
+            Member benefits
+          </p>
+
+          <p class="forma-passport__metric-text">
+            Coming soon
+          </p>
+        </article>
+
+      </div>
+
+      <div class="forma-passport__carry">
+
+        <button
+          class="forma-passport__wallet-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="FormaPassportCarry"
+          data-forma-passport-carry-toggle
+        >
+          <span>
+            Carry your Passport
+          </span>
+
+          <span aria-hidden="true">
+            →
+          </span>
+        </button>
+
+        <p class="forma-passport__wallet-note">
+          Keep your membership with you wherever you go.
+        </p>
+
+      </div>
 
     </div>
 
   </div>
+
+  <div
+    id="FormaPassportCarry"
+    class="forma-passport-carry"
+    data-forma-passport-carry
+    hidden
+  >
+    <button
+      class="forma-passport-carry__backdrop"
+      type="button"
+      aria-label="Close Passport options"
+      data-forma-passport-carry-close
+    ></button>
+
+    <div
+      class="forma-passport-carry__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="FormaPassportCarryTitle"
+    >
+      <div class="forma-passport-carry__header">
+
+        <div>
+          <p class="forma-passport-carry__eyebrow">
+            Your membership, wherever you go
+          </p>
+
+          <h3
+            id="FormaPassportCarryTitle"
+            class="forma-passport-carry__title"
+          >
+            Carry your Passport
+          </h3>
+        </div>
+
+        <button
+          class="forma-passport-carry__close"
+          type="button"
+          aria-label="Close"
+          data-forma-passport-carry-close
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div class="forma-passport-carry__options">
+
+        <button
+          class="forma-passport-carry__option"
+          type="button"
+          disabled
+          aria-disabled="true"
+        >
+          <span>
+            Apple Wallet
+          </span>
+
+          <span>
+            Coming soon
+          </span>
+        </button>
+
+        <button
+          class="forma-passport-carry__option"
+          type="button"
+          disabled
+          aria-disabled="true"
+        >
+          <span>
+            Google Wallet
+          </span>
+
+          <span>
+            Coming soon
+          </span>
+        </button>
+
+      </div>
+
+      <div class="forma-passport-carry__identity">
+
+        <div>
+          <span class="forma-passport-carry__identity-label">
+            Passport holder
+          </span>
+
+          <strong data-forma-passport-carry-name>
+            Forma Member
+          </strong>
+        </div>
+
+        <div>
+          <span class="forma-passport-carry__identity-label">
+            Passport ID
+          </span>
+
+          <strong data-forma-passport-carry-id>
+            FORMA — 000000
+          </strong>
+        </div>
+
+      </div>
+
+      <p class="forma-passport-carry__note">
+        Your Forma Passport will soon be available directly in Apple Wallet
+        and Google Wallet.
+      </p>
+
+    </div>
+  </div>
+
 </section>

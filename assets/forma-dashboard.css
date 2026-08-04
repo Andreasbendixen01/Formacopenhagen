@@ -2330,192 +2330,6 @@
   }
 
   /* ==========================================================
-   FORMA — MEMBERSHIP LANDING
-   ========================================================== */
-
-.forma-membership {
-  display: flex;
-  min-height: calc(100vh - 90px);
-  padding: 120px 24px;
-  background: rgb(var(--color-background));
-  color: rgb(var(--color-foreground));
-}
-
-.forma-membership__container {
-  display: flex;
-  width: min(100%, 1440px);
-  margin: auto;
-}
-
-.forma-membership__content {
-  width: min(100%, 780px);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.forma-membership__eyebrow {
-  margin: 0 0 28px;
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.forma-membership__title {
-  max-width: 780px;
-  margin: 0 auto;
-  font-size: clamp(42px, 6vw, 82px);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-  text-wrap: balance;
-}
-
-.forma-membership__description {
-  max-width: 590px;
-  margin: 32px auto 0;
-  font-size: 16px;
-  line-height: 1.65;
-  opacity: 0.72;
-  text-wrap: balance;
-}
-
-.forma-membership__benefits {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 620px;
-  margin: 56px auto 0;
-  border-top: 1px solid rgba(var(--color-foreground), 0.16);
-  border-bottom: 1px solid rgba(var(--color-foreground), 0.16);
-}
-
-.forma-membership__benefit {
-  position: relative;
-  margin: 0;
-  padding: 24px 24px 24px 42px;
-  font-size: 13px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-.forma-membership__benefit::before {
-  content: "";
-  position: absolute;
-  top: 29px;
-  left: 20px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-}
-
-.forma-membership__benefit:nth-child(odd) {
-  border-right: 1px solid rgba(var(--color-foreground), 0.16);
-}
-
-.forma-membership__benefit:nth-child(-n + 2) {
-  border-bottom: 1px solid rgba(var(--color-foreground), 0.16);
-}
-
-.forma-membership__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 48px;
-}
-
-.forma-membership__primary-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 220px;
-  min-height: 54px;
-  padding: 14px 28px;
-  border: 1px solid rgb(var(--color-foreground));
-  background: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-.forma-membership__primary-button:hover {
-  background: transparent;
-  color: rgb(var(--color-foreground));
-}
-
-.forma-membership__signin {
-  margin: 20px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
-  opacity: 0.7;
-}
-
-.forma-membership__signin a {
-  margin-left: 4px;
-  color: inherit;
-  text-underline-offset: 4px;
-}
-
-@media screen and (max-width: 749px) {
-  .forma-membership {
-    min-height: auto;
-    padding: 88px 20px 72px;
-  }
-
-  .forma-membership__eyebrow {
-    margin-bottom: 22px;
-  }
-
-  .forma-membership__title {
-    font-size: clamp(40px, 13vw, 58px);
-    line-height: 1;
-  }
-
-  .forma-membership__description {
-    margin-top: 26px;
-    font-size: 15px;
-  }
-
-  .forma-membership__benefits {
-    grid-template-columns: 1fr;
-    margin-top: 42px;
-  }
-
-  .forma-membership__benefit {
-    padding: 19px 20px 19px 40px;
-  }
-
-  .forma-membership__benefit::before {
-    top: 24px;
-    left: 19px;
-  }
-
-  .forma-membership__benefit:nth-child(odd) {
-    border-right: 0;
-  }
-
-  .forma-membership__benefit:not(:last-child) {
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.16);
-  }
-
-  .forma-membership__actions {
-    margin-top: 38px;
-  }
-
-  .forma-membership__primary-button {
-    width: 100%;
-  }
-}
-
-/* ==========================================================
    FORMA — PASSPORT
    ========================================================== */
 
@@ -2529,7 +2343,7 @@
 }
 
 .forma-passport__card {
-  min-height: 620px;
+  min-height:540px;
   padding: clamp(34px, 5vw, 64px);
   display: flex;
   flex-direction: column;
@@ -2729,5 +2543,429 @@
 
   .forma-passport__stat {
     padding: 0 14px;
+  }
+}
+
+/* ==========================================================
+   FORMA — PASSPORT MEMBER PANEL
+   ========================================================== */
+
+.forma-passport__details {
+  padding: clamp(36px, 5vw, 64px);
+}
+
+.forma-passport__details-header {
+  padding-bottom: 42px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport__details-eyebrow {
+  margin: 0 0 38px;
+}
+
+.forma-passport__status-group {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.forma-passport__status {
+  margin: 0;
+  font-size: clamp(46px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.forma-passport__member-since {
+  margin: 0 0 6px;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.forma-passport__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.forma-passport__metric {
+  min-height: 168px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(23, 23, 23, 0.14);
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport__metric:nth-child(3) {
+  border-right: 0;
+}
+
+.forma-passport__metric--benefits {
+  grid-column: 1 / -1;
+  min-height: 112px;
+  border-right: 0;
+}
+
+.forma-passport__metric-label {
+  margin: 0;
+  color: rgba(23, 23, 23, 0.46);
+  font-size: 9px;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.forma-passport__metric-value {
+  margin: 0;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.forma-passport__metric-text {
+  margin: 22px 0 0;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.forma-passport__carry {
+  margin-top: auto;
+  padding-top: 42px;
+}
+
+.forma-passport__wallet-button {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-passport__details-header {
+    padding-bottom: 30px;
+  }
+
+  .forma-passport__details-eyebrow {
+    margin-bottom: 26px;
+  }
+
+  .forma-passport__status-group {
+    display: block;
+  }
+
+  .forma-passport__member-since {
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .forma-passport__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forma-passport__metric {
+    min-height: 140px;
+    padding: 24px 18px;
+  }
+
+  .forma-passport__metric:nth-child(2) {
+    border-right: 0;
+  }
+
+  .forma-passport__metric:nth-child(3) {
+    border-right: 1px solid rgba(23, 23, 23, 0.14);
+  }
+
+  .forma-passport__metric--benefits {
+    grid-column: auto;
+    border-right: 0;
+  }
+
+  .forma-passport__carry {
+    padding-top: 34px;
+  }
+}
+
+/* ==========================================================
+   FORMA — PASSPORT CARD SHAPE OVERRIDE
+   ========================================================== */
+
+.forma-passport__layout {
+  align-items: start;
+}
+
+.forma-passport__card {
+  position: relative;
+  align-self: start;
+  width: 100%;
+  min-height: 0 !important;
+  aspect-ratio: 1.42 / 1;
+  border-radius: 24px !important;
+  overflow: hidden;
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.13),
+    0 7px 18px rgba(0, 0, 0, 0.08);
+}
+
+.forma-passport__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 14% 8%,
+      rgba(255, 255, 255, 0.055),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 94%,
+      rgba(255, 255, 255, 0.025),
+      transparent 38%
+    );
+}
+
+.forma-passport__card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-passport__card {
+    aspect-ratio: auto;
+    min-height: 500px !important;
+    border-radius: 18px !important;
+  }
+}
+
+/* ==========================================================
+   FORMA — PASSPORT CARRY PANEL
+   ========================================================== */
+
+.forma-passport-carry[hidden] {
+  display: none;
+}
+
+.forma-passport-carry {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forma-passport-carry__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.forma-passport-carry__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 560px);
+  min-height: 100%;
+  padding: clamp(32px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  background: #f5f4f0;
+  color: #171717;
+  box-shadow: -24px 0 80px rgba(0, 0, 0, 0.16);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-passport-carry.is-visible
+.forma-passport-carry__panel {
+  transform: translateX(0);
+}
+
+.forma-passport-carry__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 42px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport-carry__eyebrow {
+  margin: 0 0 20px;
+  color: rgba(23, 23, 23, 0.46);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-passport-carry__title {
+  max-width: 380px;
+  margin: 0;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.forma-passport-carry__close {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(23, 23, 23, 0.18);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.forma-passport-carry__options {
+  margin-top: 46px;
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport-carry__option {
+  width: 100%;
+  min-height: 86px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.forma-passport-carry__option span:first-child {
+  font-size: 17px;
+}
+
+.forma-passport-carry__option span:last-child {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-passport-carry__identity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: auto;
+  padding-top: 56px;
+}
+
+.forma-passport-carry__identity > div {
+  min-height: 100px;
+  padding: 22px;
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport-carry__identity > div:first-child {
+  padding-left: 0;
+  border-right: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-passport-carry__identity-label {
+  display: block;
+  margin-bottom: 14px;
+  color: rgba(23, 23, 23, 0.44);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.forma-passport-carry__identity strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.forma-passport-carry__note {
+  margin: 24px 0 0;
+  color: rgba(23, 23, 23, 0.46);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+html.forma-passport-carry-is-open {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-passport-carry__panel {
+    width: 100%;
+    padding: 28px 22px;
+  }
+
+  .forma-passport-carry__header {
+    padding-bottom: 30px;
+  }
+
+  .forma-passport-carry__identity {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-passport-carry__identity > div {
+    padding: 20px 0;
+  }
+
+  .forma-passport-carry__identity > div:first-child {
+    border-right: 0;
+  }
+}
+
+/* ==========================================================
+   FORMA — PASSPORT CARRY VIEWPORT FIX
+   ========================================================== */
+
+.forma-passport-carry {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100%;
+  height: 100dvh;
+  z-index: 2147483647 !important;
+}
+
+.forma-passport-carry__panel {
+  width: min(100%, 560px);
+  height: 100dvh;
+  min-height: 0;
+  max-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.forma-passport-carry__backdrop {
+  position: fixed;
+  inset: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-passport-carry__panel {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
   }
 }
