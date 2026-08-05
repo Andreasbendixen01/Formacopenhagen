@@ -1,0 +1,215 @@
+/* ==========================================================
+   FORMA — MEMBERSHIP CENTER
+   ========================================================== */
+
+.forma-membership-center {
+  min-height: 100vh;
+  background: #f5f4f0;
+  color: #171717;
+}
+
+.forma-membership-center__container {
+  width: min(100% - 48px, 1440px);
+  margin: 0 auto;
+  padding: 96px 0 140px;
+}
+
+.forma-membership-center__hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-center__hero-copy {
+  max-width: 860px;
+}
+
+.forma-membership-center__eyebrow,
+.forma-membership-panel__eyebrow {
+  margin: 0 0 24px;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-membership-center__title {
+  margin: 0;
+  font-size: clamp(58px, 8vw, 124px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.forma-membership-center__description {
+  max-width: 620px;
+  margin: 32px 0 0;
+  color: rgba(23, 23, 23, 0.58);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.forma-membership-center__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.forma-membership-center__layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.32fr) minmax(0, 1fr);
+  gap: clamp(56px, 8vw, 140px);
+  padding-top: 72px;
+}
+
+.forma-membership-center__navigation {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-center__nav-item {
+  width: 100%;
+  min-height: 72px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+  background: transparent;
+  color: rgba(23, 23, 23, 0.48);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.forma-membership-center__nav-item span:first-child {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.forma-membership-center__nav-item:hover,
+.forma-membership-center__nav-item.is-active {
+  color: #171717;
+  padding-left: 8px;
+}
+
+.forma-membership-center__content {
+  min-width: 0;
+}
+
+.forma-membership-panel[hidden] {
+  display: none;
+}
+
+.forma-membership-panel__header {
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-panel__title {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 92px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.forma-membership-panel__description {
+  max-width: 580px;
+  margin: 26px 0 0;
+  color: rgba(23, 23, 23, 0.56);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.forma-membership-panel__placeholder {
+  min-height: 300px;
+  padding: 32px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  color: rgba(23, 23, 23, 0.44);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 989px) {
+  .forma-membership-center__hero {
+    display: block;
+  }
+
+  .forma-membership-center__back {
+    margin-top: 42px;
+  }
+
+  .forma-membership-center__layout {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .forma-membership-center__navigation {
+    position: static;
+    display: flex;
+    overflow-x: auto;
+    border-top: 0;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+  }
+
+  .forma-membership-center__nav-item {
+    min-width: max-content;
+    min-height: 58px;
+    padding-right: 32px;
+    grid-template-columns: 30px auto;
+    border-bottom: 0;
+  }
+
+  .forma-membership-center__nav-item:hover,
+  .forma-membership-center__nav-item.is-active {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-membership-center__container {
+    width: min(100% - 40px, 1440px);
+    padding: 72px 0 96px;
+  }
+
+  .forma-membership-center__hero {
+    padding-bottom: 48px;
+  }
+
+  .forma-membership-center__title {
+    font-size: clamp(52px, 16vw, 76px);
+  }
+
+  .forma-membership-center__layout {
+    padding-top: 42px;
+  }
+
+  .forma-membership-panel__header {
+    padding-bottom: 38px;
+  }
+
+  .forma-membership-panel__title {
+    font-size: clamp(44px, 14vw, 68px);
+  }
+}

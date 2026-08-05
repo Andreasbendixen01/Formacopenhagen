@@ -1,0 +1,249 @@
+{{ 'forma-membership-center.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="forma-membership-center"
+  data-forma-membership-center
+>
+  <div class="forma-membership-center__container">
+
+    <header class="forma-membership-center__hero">
+
+      <div class="forma-membership-center__hero-copy">
+
+        <p class="forma-membership-center__eyebrow">
+          Your Forma
+        </p>
+
+        <h1 class="forma-membership-center__title">
+          Your Membership
+        </h1>
+
+        <p class="forma-membership-center__description">
+          Everything connected to your identity, preferences and Forma Passport.
+        </p>
+
+      </div>
+
+      <a
+        href="/pages/your-forma"
+        class="forma-membership-center__back"
+      >
+        <span aria-hidden="true">←</span>
+        <span>Back to Your Forma</span>
+      </a>
+
+    </header>
+
+    <div class="forma-membership-center__layout">
+
+      <nav
+        class="forma-membership-center__navigation"
+        aria-label="Membership settings"
+      >
+
+        <button
+          class="forma-membership-center__nav-item is-active"
+          type="button"
+          data-membership-tab="profile"
+          aria-selected="true"
+        >
+          <span>01</span>
+          <span>Profile</span>
+        </button>
+
+        <button
+          class="forma-membership-center__nav-item"
+          type="button"
+          data-membership-tab="preferences"
+          aria-selected="false"
+        >
+          <span>02</span>
+          <span>Preferences</span>
+        </button>
+
+        <button
+          class="forma-membership-center__nav-item"
+          type="button"
+          data-membership-tab="sizes"
+          aria-selected="false"
+        >
+          <span>03</span>
+          <span>Sizes</span>
+        </button>
+
+        <button
+          class="forma-membership-center__nav-item"
+          type="button"
+          data-membership-tab="passport"
+          aria-selected="false"
+        >
+          <span>04</span>
+          <span>Passport</span>
+        </button>
+
+        <button
+          class="forma-membership-center__nav-item"
+          type="button"
+          data-membership-tab="notifications"
+          aria-selected="false"
+        >
+          <span>05</span>
+          <span>Notifications</span>
+        </button>
+
+        <button
+          class="forma-membership-center__nav-item"
+          type="button"
+          data-membership-tab="privacy"
+          aria-selected="false"
+        >
+          <span>06</span>
+          <span>Privacy</span>
+        </button>
+
+      </nav>
+
+      <main class="forma-membership-center__content">
+
+        <section
+          class="forma-membership-panel is-active"
+          data-membership-panel="profile"
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Personal information
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Profile
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              The personal details connected to your Forma membership.
+            </p>
+          </div>
+
+          <div class="forma-membership-panel__placeholder">
+            <span>Profile settings</span>
+            <span>Coming in the next step</span>
+          </div>
+        </section>
+
+        <section
+          class="forma-membership-panel"
+          data-membership-panel="preferences"
+          hidden
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Shape your experience
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Preferences
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              Manage the interests that shape your recommendations and edits.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="forma-membership-panel"
+          data-membership-panel="sizes"
+          hidden
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Made to fit
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Sizes
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              Keep your preferred sizes available throughout Forma.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="forma-membership-panel"
+          data-membership-panel="passport"
+          hidden
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Your identity
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Passport
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              View the identity and status connected to your Forma Passport.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="forma-membership-panel"
+          data-membership-panel="notifications"
+          hidden
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Stay connected
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Notifications
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              Choose what you would like to hear from Forma about.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="forma-membership-panel"
+          data-membership-panel="privacy"
+          hidden
+        >
+          <div class="forma-membership-panel__header">
+            <p class="forma-membership-panel__eyebrow">
+              Your information
+            </p>
+
+            <h2 class="forma-membership-panel__title">
+              Privacy
+            </h2>
+
+            <p class="forma-membership-panel__description">
+              Manage your data, privacy and membership access.
+            </p>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Forma Membership Center",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Forma Membership Center"
+    }
+  ]
+}
+{% endschema %}

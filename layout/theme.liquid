@@ -128,6 +128,11 @@
     {{ 'forma-activity.js' | asset_url | script_tag }}
 
     {{ 'forma.js' | asset_url | script_tag }}
+
+    {%- if template.suffix == 'your-membership' -%}
+      {{ 'forma-membership-center.js' | asset_url | script_tag }}
+    {%- endif -%}
+
     {{ 'forma-saved-products-ui.js' | asset_url | script_tag }}
     {{ 'forma-recently-viewed.js' | asset_url | script_tag }}
 
