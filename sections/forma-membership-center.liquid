@@ -887,23 +887,292 @@
 </section>
 
         <section
-          class="forma-membership-panel"
-          data-membership-panel="notifications"
-          hidden
+        class="forma-membership-panel"
+        data-membership-panel="notifications"
+        hidden
         >
-          <div class="forma-membership-panel__header">
+        <div class="forma-membership-panel__header">
             <p class="forma-membership-panel__eyebrow">
-              Stay connected
+            Stay connected
             </p>
 
             <h2 class="forma-membership-panel__title">
-              Notifications
+            Notifications
             </h2>
 
             <p class="forma-membership-panel__description">
-              Choose what you would like to hear from Forma about.
+            Choose the updates, invitations and discoveries you would like
+            Forma to share with you.
             </p>
-          </div>
+        </div>
+
+        <form
+            class="forma-membership-notifications"
+            data-membership-notifications-form
+        >
+            <div class="forma-membership-notifications__list">
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                01
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    Early access
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Be among the first to discover selected launches,
+                    collaborations and new Forma experiences.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="earlyAccess"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                02
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    Partner benefits
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Receive updates when new Passport benefits,
+                    rewards and partner privileges become available.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="partnerBenefits"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                03
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    Events and invitations
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Hear about member gatherings, city experiences,
+                    openings and selected invitations.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="events"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                04
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    New brands
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Discover newly added brands and relevant updates
+                    from the names you already follow.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="newBrands"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                05
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    Forma Journal
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Receive selected stories, city guides,
+                    interviews and editorial recommendations.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="journal"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-notification">
+
+                <span class="forma-membership-notification__number">
+                06
+                </span>
+
+                <span class="forma-membership-notification__content">
+
+                <strong class="forma-membership-notification__title">
+                    Personal recommendations
+                </strong>
+
+                <span class="forma-membership-notification__description">
+                    Receive occasional recommendations shaped by your
+                    interests, activity and followed brands.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-notification__control">
+
+                <input
+                    class="forma-membership-notification__input"
+                    type="checkbox"
+                    name="recommendations"
+                    data-membership-notification-field
+                >
+
+                <span
+                    class="forma-membership-notification__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            </div>
+
+            <div class="forma-membership-notifications__footer">
+
+            <div>
+                <p
+                class="forma-membership-notifications__status"
+                data-membership-notifications-status
+                aria-live="polite"
+                ></p>
+
+                <p class="forma-membership-notifications__note">
+                Essential membership and security messages cannot be disabled here.
+                </p>
+            </div>
+
+            <button
+                class="forma-membership-notifications__save"
+                type="submit"
+                data-membership-notifications-save
+            >
+                <span>Save notifications</span>
+                <span aria-hidden="true">→</span>
+            </button>
+
+            </div>
+        </form>
         </section>
 
         <section

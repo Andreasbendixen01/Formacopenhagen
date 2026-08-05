@@ -132,6 +132,32 @@
       "[data-membership-passport-brands]"
     );
 
+      /* ========================================================
+     NOTIFICATIONS
+     ======================================================== */
+
+  const NOTIFICATIONS_STORAGE_KEY =
+    "forma_notification_preferences";
+
+  const notificationsForm = center.querySelector(
+    "[data-membership-notifications-form]"
+  );
+
+  const notificationFields = [
+    ...center.querySelectorAll(
+      "[data-membership-notification-field]"
+    )
+  ];
+
+  const notificationsStatus = center.querySelector(
+    "[data-membership-notifications-status]"
+  );
+
+  const notificationsSaveButton =
+    center.querySelector(
+      "[data-membership-notifications-save]"
+    );
+
 
   function activateTab(tabName) {
     tabs.forEach(tab => {
@@ -897,6 +923,165 @@
     );
   }
 
+    /* ========================================================
+     NOTIFICATIONS
+     ======================================================== */
+
+  function getDefaultNotifications() {
+    return {
+      earlyAccess: true,
+      partnerBenefits: true,
+      events: true,
+      newBrands: true,
+      journal: false,
+      recommendations: true
+    };
+  }
+
+  function getNotificationPreferences() {
+    try {
+      const storedValue =
+        window.localStorage.getItem(
+          NOTIFICATIONS_STORAGE_KEY
+        );
+
+      if (!storedValue) {
+        return getDefaultNotifications();
+      }
+
+      const parsedValue =
+        JSON.parse(storedValue);
+
+      return {
+        ...getDefaultNotifications(),
+        ...parsedValue
+      };
+    } catch (error) {
+      console.warn(
+        "[Forma Membership] Could not read notification preferences.",
+        error
+      );
+
+      return getDefaultNotifications();
+    }
+  }
+
+  function hydrateNotifications() {
+    const preferences =
+      getNotificationPreferences();
+
+    notificationFields.forEach(field => {
+      field.checked =
+        Boolean(
+          preferences[field.name]
+        );
+    });
+  }
+
+  function setNotificationsStatus(
+    message,
+    type = ""
+  ) {
+    if (!notificationsStatus) {
+      return;
+    }
+
+    notificationsStatus.textContent =
+      message;
+
+    notificationsStatus.classList.toggle(
+      "is-success",
+      type === "success"
+    );
+
+    notificationsStatus.classList.toggle(
+      "is-error",
+      type === "error"
+    );
+  }
+
+  function handleNotificationChange() {
+    setNotificationsStatus(
+      "You have unsaved changes."
+    );
+  }
+
+  function saveNotifications(event) {
+    event.preventDefault();
+
+    const preferences = {};
+
+    notificationFields.forEach(field => {
+      preferences[field.name] =
+        Boolean(field.checked);
+    });
+
+    try {
+      notificationsSaveButton
+        ?.setAttribute(
+          "disabled",
+          ""
+        );
+
+      setNotificationsStatus(
+        "Saving your notification preferences..."
+      );
+
+      window.localStorage.setItem(
+        NOTIFICATIONS_STORAGE_KEY,
+        JSON.stringify(preferences)
+      );
+
+      setNotificationsStatus(
+        "Your notification preferences have been updated.",
+        "success"
+      );
+
+      window.Forma
+        ?.events
+        ?.emit?.(
+          "forma:notifications-updated",
+          {
+            preferences,
+            source: "membership-center"
+          }
+        );
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "forma:notifications-updated",
+          {
+            detail: {
+              preferences,
+              source: "membership-center"
+            }
+          }
+        )
+      );
+
+      window.Forma
+        ?.toast
+        ?.success?.(
+          "Notifications updated"
+        );
+    } catch (error) {
+      console.error(
+        "[Forma Membership] Could not save notifications.",
+        error
+      );
+
+      setNotificationsStatus(
+        "Something went wrong. Please try again.",
+        "error"
+      );
+    } finally {
+      notificationsSaveButton
+        ?.removeAttribute(
+          "disabled"
+        );
+    }
+  }
+
   /* ========================================================
      EVENTS
      ======================================================== */
@@ -927,6 +1112,12 @@
         ) {
         hydrateMembershipPassport();
         }
+
+        if (
+        tabName === "notifications"
+        ) {
+        hydrateNotifications();
+}
       }
     );
   });
@@ -956,6 +1147,18 @@
     sizesForm?.addEventListener(
     "submit",
     saveSizes
+    );
+
+    notificationFields.forEach(field => {
+    field.addEventListener(
+     "change",
+     handleNotificationChange
+    );
+    });
+
+    notificationsForm?.addEventListener(
+    "submit",
+    saveNotifications
     );
 
       window.addEventListener(
@@ -998,6 +1201,7 @@
     hydratePreferences();
     hydrateSizes();
     hydrateMembershipPassport();
+    hydrateNotifications();
 
   console.info(
     "[Forma Membership Center] Ready"

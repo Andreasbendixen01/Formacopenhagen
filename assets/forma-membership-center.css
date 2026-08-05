@@ -1008,3 +1008,225 @@
     padding: 20px 0;
   }
 }
+
+/* ==========================================================
+   FORMA — MEMBERSHIP NOTIFICATIONS
+   ========================================================== */
+
+.forma-membership-notifications {
+  padding-top: 54px;
+}
+
+.forma-membership-notifications__list {
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-notification {
+  min-height: 126px;
+  padding: 26px 0;
+  display: grid;
+  grid-template-columns:
+    46px
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+  cursor: pointer;
+}
+
+.forma-membership-notification__number {
+  align-self: flex-start;
+  padding-top: 5px;
+  color: rgba(23, 23, 23, 0.4);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.forma-membership-notification__content {
+  display: block;
+}
+
+.forma-membership-notification__title {
+  display: block;
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.forma-membership-notification__description {
+  display: block;
+  max-width: 610px;
+  margin-top: 13px;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.forma-membership-notification__control {
+  position: relative;
+  display: block;
+}
+
+.forma-membership-notification__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.forma-membership-notification__toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  display: block;
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  border-radius: 100px;
+  background: transparent;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.forma-membership-notification__toggle > span {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(23, 23, 23, 0.54);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.22s ease;
+}
+
+.forma-membership-notification__input:checked +
+.forma-membership-notification__toggle {
+  border-color: #171717;
+  background: #171717;
+}
+
+.forma-membership-notification__input:checked +
+.forma-membership-notification__toggle > span {
+  background: #ffffff;
+  transform: translateX(24px);
+}
+
+.forma-membership-notification__input:focus-visible +
+.forma-membership-notification__toggle {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
+
+.forma-membership-notifications__footer {
+  min-height: 110px;
+  padding-top: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.forma-membership-notifications__status {
+  min-height: 18px;
+  margin: 3px 0 0;
+  color: rgba(23, 23, 23, 0.54);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.forma-membership-notifications__status.is-success {
+  color: #315f43;
+}
+
+.forma-membership-notifications__status.is-error {
+  color: #8a3030;
+}
+
+.forma-membership-notifications__note {
+  max-width: 440px;
+  margin: 9px 0 0;
+  color: rgba(23, 23, 23, 0.4);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.forma-membership-notifications__save {
+  width: min(100%, 250px);
+  min-height: 54px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex: 0 0 auto;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #ffffff;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.forma-membership-notifications__save:hover {
+  background: transparent;
+  color: #171717;
+}
+
+.forma-membership-notifications__save:disabled {
+  cursor: wait;
+  opacity: 0.52;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-membership-notifications {
+    padding-top: 42px;
+  }
+
+  .forma-membership-notification {
+    min-height: 0;
+    grid-template-columns:
+      32px
+      minmax(0, 1fr)
+      auto;
+    gap: 14px;
+    padding: 24px 0;
+  }
+
+  .forma-membership-notification__toggle {
+    width: 46px;
+    height: 26px;
+  }
+
+  .forma-membership-notification__toggle > span {
+    width: 16px;
+    height: 16px;
+  }
+
+  .forma-membership-notification__input:checked +
+  .forma-membership-notification__toggle > span {
+    transform: translateX(20px);
+  }
+
+  .forma-membership-notifications__footer {
+    flex-direction: column-reverse;
+    padding-top: 26px;
+  }
+
+  .forma-membership-notifications__save {
+    width: 100%;
+    max-width: none;
+  }
+}
