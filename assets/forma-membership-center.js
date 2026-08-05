@@ -96,6 +96,42 @@
     "[data-membership-sizes-save]"
   );
 
+    /* ========================================================
+     PASSPORT
+     ======================================================== */
+
+  const membershipPassport = center.querySelector(
+    "[data-membership-passport]"
+  );
+
+  const membershipPassportName = center.querySelector(
+    "[data-membership-passport-name]"
+  );
+
+  const membershipPassportCity = center.querySelector(
+    "[data-membership-passport-city]"
+  );
+
+  const membershipPassportCityDetail =
+    center.querySelector(
+      "[data-membership-passport-city-detail]"
+    );
+
+  const membershipPassportStatus =
+    center.querySelector(
+      "[data-membership-passport-status]"
+    );
+
+  const membershipPassportSaved =
+    center.querySelector(
+      "[data-membership-passport-saved]"
+    );
+
+  const membershipPassportBrands =
+    center.querySelector(
+      "[data-membership-passport-brands]"
+    );
+
 
   function activateTab(tabName) {
     tabs.forEach(tab => {
@@ -689,6 +725,178 @@
     }
   }
 
+    /* ========================================================
+     PASSPORT
+     ======================================================== */
+
+  function getSavedProductCount() {
+    try {
+      if (
+        typeof window.Forma
+          ?.savedProducts
+          ?.count === "function"
+      ) {
+        return Number(
+          window.Forma.savedProducts.count()
+        ) || 0;
+      }
+
+      const products =
+        window.Forma
+          ?.savedProducts
+          ?.getAll?.() || [];
+
+      return Array.isArray(products)
+        ? products.length
+        : 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
+  function getFollowedBrandCount() {
+    try {
+      if (
+        typeof window.Forma
+          ?.followedBrands
+          ?.count === "function"
+      ) {
+        return Number(
+          window.Forma.followedBrands.count()
+        ) || 0;
+      }
+
+      const brands =
+        window.Forma
+          ?.followedBrands
+          ?.getAll?.() || [];
+
+      return Array.isArray(brands)
+        ? brands.length
+        : 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
+  function calculatePassportStatus(
+    savedCount,
+    followedBrandCount,
+    city
+  ) {
+    const activityTotal =
+      savedCount +
+      followedBrandCount;
+
+    if (activityTotal >= 50) {
+      return "Tastemaker";
+    }
+
+    if (activityTotal >= 25) {
+      return "Curator";
+    }
+
+    if (activityTotal >= 10) {
+      return "Collector";
+    }
+
+    if (
+      activityTotal > 0 ||
+      city
+    ) {
+      return "Explorer";
+    }
+
+    return "New Member";
+  }
+
+  function updateMembershipText(
+    element,
+    value
+  ) {
+    if (!element) {
+      return;
+    }
+
+    element.textContent =
+      String(value);
+  }
+
+  function hydrateMembershipPassport() {
+    if (!membershipPassport) {
+      return;
+    }
+
+    const profile = getProfile();
+
+    const firstName =
+      String(
+        profile?.identity?.firstName ||
+        ""
+      ).trim();
+
+    const lastName =
+      String(
+        profile?.identity?.lastName ||
+        ""
+      ).trim();
+
+    const displayName =
+      [firstName, lastName]
+        .filter(Boolean)
+        .join(" ") ||
+      "Forma Member";
+
+    const city =
+      String(
+        profile?.identity?.city ||
+        ""
+      ).trim();
+
+    const savedCount =
+      getSavedProductCount();
+
+    const followedBrandCount =
+      getFollowedBrandCount();
+
+    const status =
+      calculatePassportStatus(
+        savedCount,
+        followedBrandCount,
+        city
+      );
+
+    updateMembershipText(
+      membershipPassportName,
+      displayName
+    );
+
+    updateMembershipText(
+      membershipPassportCity,
+      city || "Your city"
+    );
+
+    updateMembershipText(
+      membershipPassportCityDetail,
+      city || "Not selected"
+    );
+
+    updateMembershipText(
+      membershipPassportStatus,
+      status
+    );
+
+    updateMembershipText(
+      membershipPassportSaved,
+      savedCount
+    );
+
+    updateMembershipText(
+      membershipPassportBrands,
+      followedBrandCount
+    );
+  }
+
   /* ========================================================
      EVENTS
      ======================================================== */
@@ -712,6 +920,12 @@
         tabName === "sizes"
         ) {
         hydrateSizes();
+        }
+
+        if (
+        tabName === "passport"
+        ) {
+        hydrateMembershipPassport();
         }
       }
     );
@@ -744,9 +958,46 @@
     saveSizes
     );
 
-  hydrateProfile();
+      window.addEventListener(
+    "forma:profile-updated",
+    hydrateMembershipPassport
+  );
+
+  window.addEventListener(
+    "forma:saved-updated",
+    hydrateMembershipPassport
+  );
+
+  window.addEventListener(
+    "forma:followed-brands-updated",
+    hydrateMembershipPassport
+  );
+
+  window.Forma
+    ?.events
+    ?.on?.(
+      "forma:profile-updated",
+      hydrateMembershipPassport
+    );
+
+  window.Forma
+    ?.events
+    ?.on?.(
+      "forma:saved-updated",
+      hydrateMembershipPassport
+    );
+
+  window.Forma
+    ?.events
+    ?.on?.(
+      "forma:followed-brands-updated",
+      hydrateMembershipPassport
+    );
+
+    hydrateProfile();
     hydratePreferences();
     hydrateSizes();
+    hydrateMembershipPassport();
 
   console.info(
     "[Forma Membership Center] Ready"

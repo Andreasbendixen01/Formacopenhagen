@@ -759,3 +759,252 @@
     max-width: none;
   }
 }
+
+/* ==========================================================
+   FORMA — MEMBERSHIP PASSPORT
+   ========================================================== */
+
+.forma-membership-passport {
+  padding-top: 54px;
+  display: grid;
+  grid-template-columns:
+    minmax(320px, 0.9fr)
+    minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.forma-membership-passport__identity {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.42 / 1;
+  padding: clamp(28px, 4vw, 46px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 14% 8%,
+      rgba(255, 255, 255, 0.055),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 94%,
+      rgba(255, 255, 255, 0.025),
+      transparent 38%
+    ),
+    #171717;
+  color: #ffffff;
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.13),
+    0 7px 18px rgba(0, 0, 0, 0.08);
+}
+
+.forma-membership-passport__identity-top,
+.forma-membership-passport__identity-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.forma-membership-passport__mark,
+.forma-membership-passport__type,
+.forma-membership-passport__member-label,
+.forma-membership-passport__meta-label {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-membership-passport__type,
+.forma-membership-passport__member-label,
+.forma-membership-passport__meta-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.forma-membership-passport__identity-main {
+  margin: auto 0;
+}
+
+.forma-membership-passport__member-label {
+  margin-bottom: 18px;
+}
+
+.forma-membership-passport__name {
+  max-width: 520px;
+  margin: 0;
+  font-size: clamp(38px, 4.5vw, 66px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  overflow-wrap: anywhere;
+}
+
+.forma-membership-passport__city {
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 13px;
+}
+
+.forma-membership-passport__identity-bottom {
+  align-items: flex-end;
+}
+
+.forma-membership-passport__identity-bottom > div {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.forma-membership-passport__meta-value {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.forma-membership-passport__information {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.forma-membership-passport__information-header {
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-passport__information-eyebrow {
+  margin: 0 0 20px;
+  color: rgba(23, 23, 23, 0.44);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-membership-passport__information-title {
+  max-width: 540px;
+  margin: 0;
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.forma-membership-passport__rows {
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-passport__row {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-passport__row:last-child {
+  border-bottom: 0;
+}
+
+.forma-membership-passport__row span {
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 10px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.forma-membership-passport__row strong {
+  max-width: 60%;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.forma-membership-passport__actions {
+  margin-top: auto;
+  padding-top: 38px;
+}
+
+.forma-membership-passport__primary-action {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.forma-membership-passport__primary-action:hover {
+  background: transparent;
+  color: #171717;
+}
+
+.forma-membership-passport__secondary-action {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: rgba(23, 23, 23, 0.58);
+  font-size: 11px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 989px) {
+  .forma-membership-passport {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .forma-membership-passport__identity {
+    max-width: 720px;
+  }
+
+  .forma-membership-passport__actions {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .forma-membership-passport {
+    padding-top: 42px;
+  }
+
+  .forma-membership-passport__identity {
+    min-height: 430px;
+    aspect-ratio: auto;
+    padding: 28px;
+    border-radius: 18px;
+  }
+
+  .forma-membership-passport__identity-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forma-membership-passport__row {
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+}

@@ -394,6 +394,37 @@ updateText(
   }, 400);
 }
 
+  const passportUrlParams =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const shouldOpenCarryPanel =
+    passportUrlParams.get("open") ===
+    "passport-carry";
+
+  if (shouldOpenCarryPanel) {
+    openCarryPanel();
+
+    passportUrlParams.delete("open");
+
+    const cleanQuery =
+      passportUrlParams.toString();
+
+    const cleanUrl =
+      `${window.location.pathname}${
+        cleanQuery
+          ? `?${cleanQuery}`
+          : ""
+      }${window.location.hash}`;
+
+    window.history.replaceState(
+      {},
+      "",
+      cleanUrl
+    );
+  }
+
   carryToggle?.addEventListener(
     "click",
     openCarryPanel

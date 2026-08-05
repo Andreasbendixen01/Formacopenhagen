@@ -726,24 +726,165 @@
 </section>
 
         <section
-          class="forma-membership-panel"
-          data-membership-panel="passport"
-          hidden
+  class="forma-membership-panel"
+  data-membership-panel="passport"
+  hidden
+>
+  <div class="forma-membership-panel__header">
+    <p class="forma-membership-panel__eyebrow">
+      Your identity
+    </p>
+
+    <h2 class="forma-membership-panel__title">
+      Passport
+    </h2>
+
+    <p class="forma-membership-panel__description">
+      View the identity, activity and membership status connected
+      to your Forma Passport.
+    </p>
+  </div>
+
+  <div
+    class="forma-membership-passport"
+    data-membership-passport
+  >
+    <article class="forma-membership-passport__identity">
+
+      <div class="forma-membership-passport__identity-top">
+        <p class="forma-membership-passport__mark">
+          FORMA
+        </p>
+
+        <p class="forma-membership-passport__type">
+          Passport
+        </p>
+      </div>
+
+      <div class="forma-membership-passport__identity-main">
+
+        <p class="forma-membership-passport__member-label">
+          Passport holder
+        </p>
+
+        <h3
+          class="forma-membership-passport__name"
+          data-membership-passport-name
         >
-          <div class="forma-membership-panel__header">
-            <p class="forma-membership-panel__eyebrow">
-              Your identity
-            </p>
+          {{ customer.name | default: 'Forma Member' }}
+        </h3>
 
-            <h2 class="forma-membership-panel__title">
-              Passport
-            </h2>
+        <p
+          class="forma-membership-passport__city"
+          data-membership-passport-city
+        >
+          Your city
+        </p>
 
-            <p class="forma-membership-panel__description">
-              View the identity and status connected to your Forma Passport.
-            </p>
-          </div>
-        </section>
+      </div>
+
+      <div class="forma-membership-passport__identity-bottom">
+
+        <div>
+          <span class="forma-membership-passport__meta-label">
+            Status
+          </span>
+
+          <strong
+            class="forma-membership-passport__meta-value"
+            data-membership-passport-status
+          >
+            Explorer
+          </strong>
+        </div>
+
+        <div>
+          <span class="forma-membership-passport__meta-label">
+            Member since
+          </span>
+
+          <strong class="forma-membership-passport__meta-value">
+            {{ 'now' | date: '%Y' }}
+          </strong>
+        </div>
+
+      </div>
+
+    </article>
+
+    <div class="forma-membership-passport__information">
+
+      <div class="forma-membership-passport__information-header">
+
+        <p class="forma-membership-passport__information-eyebrow">
+          Membership details
+        </p>
+
+        <h3 class="forma-membership-passport__information-title">
+          Your Passport at a glance.
+        </h3>
+
+      </div>
+
+      <div class="forma-membership-passport__rows">
+
+        <div class="forma-membership-passport__row">
+          <span>Passport ID</span>
+
+          <strong data-membership-passport-id>
+            FORMA — {{ customer.id | default: '000000' }}
+          </strong>
+        </div>
+
+        <div class="forma-membership-passport__row">
+          <span>Saved products</span>
+
+          <strong data-membership-passport-saved>
+            0
+          </strong>
+        </div>
+
+        <div class="forma-membership-passport__row">
+          <span>Following brands</span>
+
+          <strong data-membership-passport-brands>
+            0
+          </strong>
+        </div>
+
+        <div class="forma-membership-passport__row">
+          <span>Home city</span>
+
+          <strong data-membership-passport-city-detail>
+            Your city
+          </strong>
+        </div>
+
+      </div>
+
+      <div class="forma-membership-passport__actions">
+
+        <a
+          href="/pages/your-forma?open=passport-carry"
+          class="forma-membership-passport__primary-action"
+        >
+          <span>Carry your Passport</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a
+          href="/pages/your-forma"
+          class="forma-membership-passport__secondary-action"
+        >
+          View your full Passport
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
         <section
           class="forma-membership-panel"
