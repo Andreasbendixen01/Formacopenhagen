@@ -106,29 +106,172 @@
       <main class="forma-membership-center__content">
 
         <section
-          class="forma-membership-panel is-active"
-          data-membership-panel="profile"
+        class="forma-membership-panel is-active"
+        data-membership-panel="profile"
         >
-          <div class="forma-membership-panel__header">
+        <div class="forma-membership-panel__header">
             <p class="forma-membership-panel__eyebrow">
-              Personal information
+            Personal information
             </p>
 
             <h2 class="forma-membership-panel__title">
-              Profile
+            Profile
             </h2>
 
             <p class="forma-membership-panel__description">
-              The personal details connected to your Forma membership.
+            The personal details connected to your Forma membership.
             </p>
-          </div>
+        </div>
 
-          <div class="forma-membership-panel__placeholder">
-            <span>Profile settings</span>
-            <span>Coming in the next step</span>
-          </div>
+        <form
+            class="forma-membership-profile"
+            data-membership-profile-form
+            novalidate
+        >
+            <div class="forma-membership-profile__grid">
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipFirstName"
+                >
+                First name
+                </label>
+
+                <input
+                id="FormaMembershipFirstName"
+                class="forma-membership-field__input"
+                type="text"
+                name="firstName"
+                autocomplete="given-name"
+                data-membership-profile-field
+                >
+            </div>
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipLastName"
+                >
+                Last name
+                </label>
+
+                <input
+                id="FormaMembershipLastName"
+                class="forma-membership-field__input"
+                type="text"
+                name="lastName"
+                autocomplete="family-name"
+                data-membership-profile-field
+                >
+            </div>
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipEmail"
+                >
+                Email
+                </label>
+
+                <input
+                id="FormaMembershipEmail"
+                class="
+                    forma-membership-field__input
+                    forma-membership-field__input--readonly
+                "
+                type="email"
+                value="{{ customer.email | escape }}"
+                autocomplete="email"
+                readonly
+                aria-readonly="true"
+                >
+
+                <p class="forma-membership-field__note">
+                Your email is managed through your Shopify customer account.
+                </p>
+            </div>
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipCity"
+                >
+                Home city
+                </label>
+
+                <input
+                id="FormaMembershipCity"
+                class="forma-membership-field__input"
+                type="text"
+                name="city"
+                autocomplete="address-level2"
+                data-membership-profile-field
+                >
+            </div>
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipBirthday"
+                >
+                Birthday
+                </label>
+
+                <input
+                id="FormaMembershipBirthday"
+                class="forma-membership-field__input"
+                type="date"
+                name="birthday"
+                autocomplete="bday"
+                data-membership-profile-field
+                >
+
+                <p class="forma-membership-field__note">
+                Used for future member moments and personal experiences.
+                </p>
+            </div>
+
+            <div class="forma-membership-field">
+                <label
+                class="forma-membership-field__label"
+                for="FormaMembershipPhone"
+                >
+                Phone
+                </label>
+
+                <input
+                id="FormaMembershipPhone"
+                class="forma-membership-field__input"
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                data-membership-profile-field
+                >
+            </div>
+
+            </div>
+
+            <div class="forma-membership-profile__footer">
+
+            <p
+                class="forma-membership-profile__status"
+                data-membership-profile-status
+                aria-live="polite"
+            ></p>
+
+            <button
+                class="forma-membership-profile__save"
+                type="submit"
+                data-membership-profile-save
+            >
+                <span>Save changes</span>
+                <span aria-hidden="true">→</span>
+            </button>
+
+            </div>
+        </form>
         </section>
-
         <section
           class="forma-membership-panel"
           data-membership-panel="preferences"
