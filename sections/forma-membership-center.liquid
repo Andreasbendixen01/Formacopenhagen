@@ -277,7 +277,7 @@
         class="forma-membership-panel"
         data-membership-panel="preferences"
         hidden>
-        
+
   <div class="forma-membership-panel__header">
     <p class="forma-membership-panel__eyebrow">
       Shape your experience
@@ -537,24 +537,193 @@
 </section>
 
         <section
-          class="forma-membership-panel"
-          data-membership-panel="sizes"
-          hidden
-        >
-          <div class="forma-membership-panel__header">
-            <p class="forma-membership-panel__eyebrow">
-              Made to fit
-            </p>
+  class="forma-membership-panel"
+  data-membership-panel="sizes"
+  hidden
+>
+  <div class="forma-membership-panel__header">
+    <p class="forma-membership-panel__eyebrow">
+      Made to fit
+    </p>
 
-            <h2 class="forma-membership-panel__title">
-              Sizes
-            </h2>
+    <h2 class="forma-membership-panel__title">
+      Sizes
+    </h2>
 
-            <p class="forma-membership-panel__description">
-              Keep your preferred sizes available throughout Forma.
-            </p>
-          </div>
-        </section>
+    <p class="forma-membership-panel__description">
+      Keep your everyday sizes available throughout Forma and make future
+      product recommendations more relevant.
+    </p>
+  </div>
+
+  <form
+    class="forma-membership-sizes"
+    data-membership-sizes-form
+  >
+    <div class="forma-membership-sizes__grid">
+
+      <label class="forma-membership-size-card">
+
+        <span class="forma-membership-size-card__number">
+          01
+        </span>
+
+        <span class="forma-membership-size-card__content">
+
+          <span class="forma-membership-size-card__label">
+            Tops
+          </span>
+
+          <span class="forma-membership-size-card__description">
+            Your preferred size for shirts, knitwear, T-shirts and outerwear.
+          </span>
+
+          <span class="forma-membership-size-card__select-wrap">
+
+            <select
+              class="forma-membership-size-card__select"
+              name="tops"
+              data-membership-size-field
+            >
+              <option value="">
+                Select size
+              </option>
+
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+
+            <span aria-hidden="true">
+              ↓
+            </span>
+
+          </span>
+
+        </span>
+
+      </label>
+
+      <label class="forma-membership-size-card">
+
+        <span class="forma-membership-size-card__number">
+          02
+        </span>
+
+        <span class="forma-membership-size-card__content">
+
+          <span class="forma-membership-size-card__label">
+            Bottoms
+          </span>
+
+          <span class="forma-membership-size-card__description">
+            Your preferred size for trousers, denim, shorts and skirts.
+          </span>
+
+          <span class="forma-membership-size-card__select-wrap">
+
+            <select
+              class="forma-membership-size-card__select"
+              name="bottoms"
+              data-membership-size-field
+            >
+              <option value="">
+                Select size
+              </option>
+
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+
+            <span aria-hidden="true">
+              ↓
+            </span>
+
+          </span>
+
+        </span>
+
+      </label>
+
+      <label class="forma-membership-size-card">
+
+        <span class="forma-membership-size-card__number">
+          03
+        </span>
+
+        <span class="forma-membership-size-card__content">
+
+          <span class="forma-membership-size-card__label">
+            Shoes
+          </span>
+
+          <span class="forma-membership-size-card__description">
+            Your usual European shoe size.
+          </span>
+
+          <span class="forma-membership-size-card__select-wrap">
+
+            <select
+              class="forma-membership-size-card__select"
+              name="shoes"
+              data-membership-size-field
+            >
+              <option value="">
+                Select size
+              </option>
+
+              {% for size in (35..48) %}
+                <option value="{{ size }}">
+                  EU {{ size }}
+                </option>
+              {% endfor %}
+            </select>
+
+            <span aria-hidden="true">
+              ↓
+            </span>
+
+          </span>
+
+        </span>
+
+      </label>
+
+    </div>
+
+    <div class="forma-membership-sizes__footer">
+
+      <div>
+        <p
+          class="forma-membership-sizes__status"
+          data-membership-sizes-status
+          aria-live="polite"
+        ></p>
+
+        <p class="forma-membership-sizes__note">
+          You can update your sizes whenever your preferences change.
+        </p>
+      </div>
+
+      <button
+        class="forma-membership-sizes__save"
+        type="submit"
+        data-membership-sizes-save
+      >
+        <span>Save sizes</span>
+        <span aria-hidden="true">→</span>
+      </button>
+
+    </div>
+  </form>
+</section>
 
         <section
           class="forma-membership-panel"

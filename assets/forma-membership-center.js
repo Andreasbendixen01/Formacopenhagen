@@ -74,6 +74,29 @@
     styles: []
   };
 
+    /* ========================================================
+     SIZES
+     ======================================================== */
+
+  const sizesForm = center.querySelector(
+    "[data-membership-sizes-form]"
+  );
+
+  const sizeFields = [
+    ...center.querySelectorAll(
+      "[data-membership-size-field]"
+    )
+  ];
+
+  const sizesStatus = center.querySelector(
+    "[data-membership-sizes-status]"
+  );
+
+  const sizesSaveButton = center.querySelector(
+    "[data-membership-sizes-save]"
+  );
+
+
   function activateTab(tabName) {
     tabs.forEach(tab => {
       const active =
@@ -549,6 +572,123 @@
     }
   }
 
+    /* ========================================================
+     SIZES
+     ======================================================== */
+
+  function hydrateSizes() {
+    const profile = getProfile();
+
+    const sizes =
+      profile
+        ?.preferences
+        ?.sizes || {};
+
+    sizeFields.forEach(field => {
+      field.value =
+        String(
+          sizes[field.name] || ""
+        );
+    });
+  }
+
+  function setSizesStatus(
+    message,
+    type = ""
+  ) {
+    if (!sizesStatus) {
+      return;
+    }
+
+    sizesStatus.textContent =
+      message;
+
+    sizesStatus.classList.toggle(
+      "is-success",
+      type === "success"
+    );
+
+    sizesStatus.classList.toggle(
+      "is-error",
+      type === "error"
+    );
+  }
+
+  function handleSizeChange() {
+    setSizesStatus(
+      "You have unsaved changes."
+    );
+  }
+
+  function saveSizes(event) {
+    event.preventDefault();
+
+    if (
+      !window.Forma
+        ?.profile
+        ?.setSize
+    ) {
+      setSizesStatus(
+        "Your sizes could not be updated.",
+        "error"
+      );
+
+      return;
+    }
+
+    try {
+      sizesSaveButton?.setAttribute(
+        "disabled",
+        ""
+      );
+
+      setSizesStatus(
+        "Saving your sizes..."
+      );
+
+      sizeFields.forEach(field => {
+        window.Forma.profile.setSize(
+          field.name,
+          field.value
+        );
+      });
+
+      const profile = getProfile();
+
+      setSizesStatus(
+        "Your preferred sizes have been updated.",
+        "success"
+      );
+
+      emitProfileUpdated(
+        profile,
+        "membership-center-sizes"
+      );
+
+      window.Forma
+        ?.toast
+        ?.success?.(
+          "Sizes updated"
+        );
+
+      hydrateSizes();
+    } catch (error) {
+      console.error(
+        "[Forma Membership] Could not save sizes.",
+        error
+      );
+
+      setSizesStatus(
+        "Something went wrong. Please try again.",
+        "error"
+      );
+    } finally {
+      sizesSaveButton?.removeAttribute(
+        "disabled"
+      );
+    }
+  }
+
   /* ========================================================
      EVENTS
      ======================================================== */
@@ -563,9 +703,15 @@
         activateTab(tabName);
 
         if (
-          tabName === "preferences"
+        tabName === "preferences"
         ) {
-          hydratePreferences();
+        hydratePreferences();
+        }
+
+        if (
+        tabName === "sizes"
+        ) {
+        hydrateSizes();
         }
       }
     );
@@ -586,8 +732,21 @@
     savePreferences
   );
 
+  sizeFields.forEach(field => {
+  field.addEventListener(
+    "change",
+    handleSizeChange
+    );
+    });
+
+    sizesForm?.addEventListener(
+    "submit",
+    saveSizes
+    );
+
   hydrateProfile();
-  hydratePreferences();
+    hydratePreferences();
+    hydrateSizes();
 
   console.info(
     "[Forma Membership Center] Ready"
