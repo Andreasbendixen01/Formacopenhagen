@@ -272,25 +272,269 @@
             </div>
         </form>
         </section>
+
         <section
-          class="forma-membership-panel"
-          data-membership-panel="preferences"
-          hidden
+        class="forma-membership-panel"
+        data-membership-panel="preferences"
+        hidden>
+        
+  <div class="forma-membership-panel__header">
+    <p class="forma-membership-panel__eyebrow">
+      Shape your experience
+    </p>
+
+    <h2 class="forma-membership-panel__title">
+      Preferences
+    </h2>
+
+    <p class="forma-membership-panel__description">
+      Manage the interests and styles that shape your recommendations,
+      personal edits and discoveries across Forma.
+    </p>
+  </div>
+
+  <form
+    class="forma-membership-preferences"
+    data-membership-preferences-form
+  >
+    <fieldset
+      class="forma-membership-preference-group"
+      data-membership-preference-group="categories"
+    >
+      <legend class="forma-membership-preference-group__header">
+        <span class="forma-membership-preference-group__number">
+          01
+        </span>
+
+        <span>
+          <strong class="forma-membership-preference-group__title">
+            Your interests
+          </strong>
+
+          <span class="forma-membership-preference-group__description">
+            Choose the worlds you would like Forma to bring closer to you.
+          </span>
+        </span>
+      </legend>
+
+      <div class="forma-membership-preference-options">
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="fashion"
+          aria-pressed="false"
         >
-          <div class="forma-membership-panel__header">
-            <p class="forma-membership-panel__eyebrow">
-              Shape your experience
-            </p>
+          Fashion
+        </button>
 
-            <h2 class="forma-membership-panel__title">
-              Preferences
-            </h2>
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="home"
+          aria-pressed="false"
+        >
+          Home
+        </button>
 
-            <p class="forma-membership-panel__description">
-              Manage the interests that shape your recommendations and edits.
-            </p>
-          </div>
-        </section>
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="design"
+          aria-pressed="false"
+        >
+          Design
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="travel"
+          aria-pressed="false"
+        >
+          Travel
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="hotels"
+          aria-pressed="false"
+        >
+          Hotels
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="restaurants"
+          aria-pressed="false"
+        >
+          Restaurants
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="coffee"
+          aria-pressed="false"
+        >
+          Coffee
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="art"
+          aria-pressed="false"
+        >
+          Art
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="architecture"
+          aria-pressed="false"
+        >
+          Architecture
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="culture"
+          aria-pressed="false"
+        >
+          Culture
+        </button>
+
+      </div>
+    </fieldset>
+
+    <fieldset
+      class="forma-membership-preference-group"
+      data-membership-preference-group="styles"
+    >
+      <legend class="forma-membership-preference-group__header">
+        <span class="forma-membership-preference-group__number">
+          02
+        </span>
+
+        <span>
+          <strong class="forma-membership-preference-group__title">
+            Your style
+          </strong>
+
+          <span class="forma-membership-preference-group__description">
+            Select the expressions that feel closest to your personal taste.
+          </span>
+        </span>
+      </legend>
+
+      <div class="forma-membership-preference-options">
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="minimal"
+          aria-pressed="false"
+        >
+          Minimal
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="contemporary"
+          aria-pressed="false"
+        >
+          Contemporary
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="classic"
+          aria-pressed="false"
+        >
+          Classic
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="scandinavian"
+          aria-pressed="false"
+        >
+          Scandinavian
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="streetwear"
+          aria-pressed="false"
+        >
+          Streetwear
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="tailored"
+          aria-pressed="false"
+        >
+          Tailored
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="vintage"
+          aria-pressed="false"
+        >
+          Vintage
+        </button>
+
+        <button
+          class="forma-membership-preference-option"
+          type="button"
+          data-membership-preference-value="avant-garde"
+          aria-pressed="false"
+        >
+          Avant-garde
+        </button>
+
+      </div>
+    </fieldset>
+
+    <div class="forma-membership-preferences__footer">
+
+      <div>
+        <p
+          class="forma-membership-preferences__status"
+          data-membership-preferences-status
+          aria-live="polite"
+        ></p>
+
+        <p class="forma-membership-preferences__note">
+          Your selections help Forma shape recommendations around you.
+        </p>
+      </div>
+
+      <button
+        class="forma-membership-preferences__save"
+        type="submit"
+        data-membership-preferences-save
+      >
+        <span>Save preferences</span>
+        <span aria-hidden="true">→</span>
+      </button>
+
+    </div>
+  </form>
+</section>
 
         <section
           class="forma-membership-panel"
