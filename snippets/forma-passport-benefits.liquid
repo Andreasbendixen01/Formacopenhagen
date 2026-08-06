@@ -1,0 +1,242 @@
+{%- comment -%}
+  FORMA — PASSPORT BENEFITS
+  Preview UI. Replace preview data with partner data later.
+{%- endcomment -%}
+
+<section
+  id="FormaPassportBenefits"
+  class="
+    forma-dashboard-section
+    forma-passport-benefits
+  "
+  data-forma-passport-benefits
+>
+  <div class="forma-dashboard-section__header">
+
+    <div class="forma-dashboard-section__heading">
+
+      <p class="forma-dashboard-section__eyebrow">
+        Included with your membership
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Passport Benefits
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        Member privileges, experiences and rewards selected
+        for your Forma Passport.
+      </p>
+
+    </div>
+
+    <p
+      class="forma-passport-benefits__total"
+      data-passport-benefits-total
+    >
+      0 available
+    </p>
+
+  </div>
+
+  <div
+    class="forma-passport-benefits__grid"
+    data-passport-benefits-grid
+  ></div>
+
+  <div
+    class="forma-passport-benefits__empty"
+    data-passport-benefits-empty
+    hidden
+  >
+    <p class="forma-passport-benefits__empty-index">
+      Your benefits
+    </p>
+
+    <h3 class="forma-passport-benefits__empty-title">
+      New member benefits are on their way.
+    </h3>
+
+    <p class="forma-passport-benefits__empty-text">
+      Benefits, invitations and selected partner privileges
+      will appear here when they become available.
+    </p>
+  </div>
+
+  <p class="forma-passport-benefits__preview-note">
+    Preview benefits shown for development. Final benefits
+    will only be published after partner approval.
+  </p>
+
+  <div
+    class="forma-benefit-drawer"
+    data-benefit-drawer
+    aria-hidden="true"
+    hidden
+  >
+    <button
+      class="forma-benefit-drawer__backdrop"
+      type="button"
+      aria-label="Close benefit details"
+      data-benefit-drawer-close
+    ></button>
+
+    <div
+      class="forma-benefit-drawer__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="FormaBenefitDrawerTitle"
+    >
+      <div class="forma-benefit-drawer__header">
+
+        <div>
+          <p
+            class="forma-benefit-drawer__eyebrow"
+            data-benefit-drawer-brand
+          >
+            Forma Partner
+          </p>
+
+          <h3
+            id="FormaBenefitDrawerTitle"
+            class="forma-benefit-drawer__title"
+            data-benefit-drawer-title
+          >
+            Passport benefit
+          </h3>
+        </div>
+
+        <button
+          class="forma-benefit-drawer__close"
+          type="button"
+          aria-label="Close benefit details"
+          data-benefit-drawer-close
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div class="forma-benefit-drawer__status-row">
+
+        <span
+          class="forma-benefit-drawer__status"
+          data-benefit-drawer-status
+        >
+          Available
+        </span>
+
+        <span
+          class="forma-benefit-drawer__city"
+          data-benefit-drawer-city
+        >
+          Copenhagen
+        </span>
+
+      </div>
+
+      <div class="forma-benefit-drawer__body">
+
+        <div class="forma-benefit-drawer__section">
+
+          <p class="forma-benefit-drawer__section-label">
+            The benefit
+          </p>
+
+          <p
+            class="forma-benefit-drawer__description"
+            data-benefit-drawer-description
+          ></p>
+
+        </div>
+
+        <div class="forma-benefit-drawer__section">
+
+          <p class="forma-benefit-drawer__section-label">
+            How to use
+          </p>
+
+          <ol class="forma-benefit-drawer__steps">
+            <li>
+              <span>01</span>
+              <p>Open your Forma Passport.</p>
+            </li>
+
+            <li>
+              <span>02</span>
+              <p>Show your Passport at the participating partner.</p>
+            </li>
+
+            <li>
+              <span>03</span>
+              <p>Your membership and benefit are verified.</p>
+            </li>
+          </ol>
+
+        </div>
+
+        <div class="forma-benefit-drawer__section">
+
+          <p class="forma-benefit-drawer__section-label">
+            Details
+          </p>
+
+          <div class="forma-benefit-drawer__details">
+
+            <div>
+              <span>Validity</span>
+
+              <strong data-benefit-drawer-validity>
+                Preview only
+              </strong>
+            </div>
+
+            <div>
+              <span>Location</span>
+
+              <strong data-benefit-drawer-location>
+                Selected location
+              </strong>
+            </div>
+
+            <div>
+              <span>Membership</span>
+
+              <strong data-benefit-drawer-level>
+                Explorer
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="forma-benefit-drawer__footer">
+
+        <button
+          class="forma-benefit-drawer__use"
+          type="button"
+          data-benefit-drawer-use
+        >
+          <span data-benefit-drawer-action-label>
+            Use benefit
+          </span>
+
+          <span aria-hidden="true">
+            →
+          </span>
+        </button>
+
+        <p class="forma-benefit-drawer__note">
+          Redemption will be activated when the benefit
+          and partner integration are live.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,254 @@
+{%- comment -%}
+  FORMA — WISH COLLECTIONS
+{%- endcomment -%}
+
+<section
+  id="FormaWishCollections"
+  class="
+    forma-dashboard-section
+    forma-wish-collections
+  "
+  data-forma-wish-collections
+>
+  <div class="forma-dashboard-section__header">
+
+    <div class="forma-dashboard-section__heading">
+
+      <p class="forma-dashboard-section__eyebrow">
+        Things worth wishing for
+      </p>
+
+      <h2 class="forma-dashboard-section__title">
+        Wish Collections
+      </h2>
+
+      <p class="forma-dashboard-section__description">
+        Collect the products, places and ideas you would
+        love to make part of your world.
+      </p>
+
+    </div>
+
+    <button
+      class="forma-wish-collections__create"
+      type="button"
+      data-wish-collection-create
+    >
+      <span>Create collection</span>
+      <span aria-hidden="true">＋</span>
+    </button>
+
+  </div>
+
+  <div
+    class="forma-wish-collections__grid"
+    data-wish-collections-grid
+    hidden
+  ></div>
+
+  <div
+    class="forma-wish-collections__empty"
+    data-wish-collections-empty
+  >
+    <p class="forma-wish-collections__empty-index">
+      Your first collection
+    </p>
+
+    <h3 class="forma-wish-collections__empty-title">
+      Give your wishes a place to live.
+    </h3>
+
+    <p class="forma-wish-collections__empty-text">
+      Create a collection for your birthday, your home,
+      your next journey or anything else worth saving for.
+    </p>
+
+    <button
+      class="forma-wish-collections__empty-action"
+      type="button"
+      data-wish-collection-create
+    >
+      <span>Create your first collection</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+
+  <div
+    class="forma-wish-modal"
+    data-wish-modal
+    aria-hidden="true"
+    hidden
+  >
+    <button
+      class="forma-wish-modal__backdrop"
+      type="button"
+      aria-label="Close"
+      data-wish-modal-close
+    ></button>
+
+    <div
+      class="forma-wish-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="FormaWishModalTitle"
+    >
+      <div class="forma-wish-modal__header">
+
+        <div>
+          <p class="forma-wish-modal__eyebrow">
+            New collection
+          </p>
+
+          <h3
+            id="FormaWishModalTitle"
+            class="forma-wish-modal__title"
+          >
+            What are you wishing for?
+          </h3>
+        </div>
+
+        <button
+          class="forma-wish-modal__close"
+          type="button"
+          aria-label="Close"
+          data-wish-modal-close
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        class="forma-wish-modal__form"
+        data-wish-form
+      >
+        <div class="forma-wish-modal__field">
+
+          <label for="FormaWishTitle">
+            Collection name
+          </label>
+
+          <input
+            id="FormaWishTitle"
+            type="text"
+            name="title"
+            placeholder="Birthday 2026"
+            maxlength="80"
+            required
+            data-wish-title
+          >
+
+        </div>
+
+        <div class="forma-wish-modal__field">
+
+          <label for="FormaWishDescription">
+            Description
+          </label>
+
+          <textarea
+            id="FormaWishDescription"
+            name="description"
+            placeholder="A collection of things I would love..."
+            maxlength="240"
+            rows="4"
+            data-wish-description
+          ></textarea>
+
+        </div>
+
+        <div class="forma-wish-modal__field">
+
+          <label for="FormaWishOccasion">
+            Type
+          </label>
+
+          <select
+            id="FormaWishOccasion"
+            name="occasion"
+            data-wish-occasion
+          >
+            <option value="">
+              Personal collection
+            </option>
+
+            <option value="birthday">
+              Birthday
+            </option>
+
+            <option value="christmas">
+              Christmas
+            </option>
+
+            <option value="wedding">
+              Wedding
+            </option>
+
+            <option value="home">
+              Home
+            </option>
+
+            <option value="travel">
+              Travel
+            </option>
+
+            <option value="other">
+              Something else
+            </option>
+          </select>
+
+        </div>
+
+        <fieldset class="forma-wish-modal__visibility">
+
+          <legend>
+            Visibility
+          </legend>
+
+          <label>
+            <input
+              type="radio"
+              name="visibility"
+              value="private"
+              checked
+            >
+
+            <span>
+              <strong>Private</strong>
+              <small>Only visible inside Your Forma.</small>
+            </span>
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="visibility"
+              value="shared"
+            >
+
+            <span>
+              <strong>Shareable</strong>
+              <small>Creates a link you can share later.</small>
+            </span>
+          </label>
+
+        </fieldset>
+
+        <p
+          class="forma-wish-modal__status"
+          data-wish-form-status
+          aria-live="polite"
+        ></p>
+
+        <button
+          class="forma-wish-modal__submit"
+          type="submit"
+        >
+          <span>Create collection</span>
+          <span aria-hidden="true">→</span>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>

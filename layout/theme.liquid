@@ -119,61 +119,144 @@
       {%- endif -%}
     </main>
 
-    {{ 'forma-engine.js' | asset_url | script_tag }}
-    {{ 'forma-cache.js' | asset_url | script_tag }}
-    {{ 'forma-toast.js' | asset_url | script_tag }}
-    {{ 'forma-api.js' | asset_url | script_tag }}
-    {{ 'forma-profile.js' | asset_url | script_tag }}
-    {{ 'forma-score.js' | asset_url | script_tag }}
-    {{ 'forma-activity.js' | asset_url | script_tag }}
+    {%- comment -%}
+  ==========================================================
+  FORMA — CORE
+  Global foundation loaded across the storefront
+  ==========================================================
+{%- endcomment -%}
 
-    {{ 'forma.js' | asset_url | script_tag }}
+{{ 'forma-engine.js' | asset_url | script_tag }}
+{{ 'forma-cache.js' | asset_url | script_tag }}
+{{ 'forma-toast.js' | asset_url | script_tag }}
+{{ 'forma-api.js' | asset_url | script_tag }}
+{{ 'forma-profile.js' | asset_url | script_tag }}
+{{ 'forma-score.js' | asset_url | script_tag }}
+{{ 'forma-activity.js' | asset_url | script_tag }}
 
-    {%- if template.suffix == 'your-membership' -%}
-      {{ 'forma-membership-center.js' | asset_url | script_tag }}
-    {%- endif -%}
+{{ 'forma.js' | asset_url | script_tag }}
 
-    {{ 'forma-saved-products-ui.js' | asset_url | script_tag }}
-    {{ 'forma-recently-viewed.js' | asset_url | script_tag }}
 
-    {{ 'forma-followed-brands.js' | asset_url | script_tag }}
-    {{ 'forma-followed-brands-ui.js' | asset_url | script_tag }}
+{%- comment -%}
+  ==========================================================
+  FORMA — GLOBAL MEMBER FEATURES
+  Saved products, recently viewed and followed brands
+  ==========================================================
+{%- endcomment -%}
 
-    {{ 'forma-products.js' | asset_url | script_tag }}
-    {{ 'forma-collections.js' | asset_url | script_tag }}
-    {{ 'forma-signals.js' | asset_url | script_tag }}
-    {{ 'forma-entities.js' | asset_url | script_tag }}
-    {{ 'forma-persona.js' | asset_url | script_tag }}   
-    {{ 'forma-recommendations.js' | asset_url | script_tag }} 
-    {{ 'forma-daily-edit-service.js' | asset_url | script_tag }}
-    {{ 'forma-recommendation-service.js' | asset_url | script_tag }}
+{{ 'forma-saved-products-ui.js' | asset_url | script_tag }}
+{{ 'forma-recently-viewed.js' | asset_url | script_tag }}
+{{ 'forma-wishlists.js' | asset_url | script_tag }}
 
-    {%- if request.page_type == 'product' -%}
-      {{ 'forma-product-tracker.js' | asset_url | script_tag }}
-      {{ 'forma-score-ui.js' | asset_url | script_tag }}
-    {%- endif -%}
+{{ 'forma-followed-brands.js' | asset_url | script_tag }}
+{{ 'forma-followed-brands-ui.js' | asset_url | script_tag }}
 
-    {%- if template.suffix == 'your-forma' -%}
-      {{ 'forma-saved-products.js' | asset_url | script_tag }}
-      {{ 'forma-followed-brands-page.js' | asset_url | script_tag }}
-      {{ 'forma-recently-viewed-page.js' | asset_url | script_tag }}
-      {{ 'forma-onboarding.js' | asset_url | script_tag }}
-      {{ 'forma-passport.js' | asset_url | script_tag }}
-      
-      {{ 'forma-ranking.js' | asset_url | script_tag }}
-      {{ 'forma-recommended-products.js' | asset_url | script_tag }}
-      {{ 'forma-recommendation-engine.js' | asset_url | script_tag }}
-      {{ 'forma-daily-edit.js' | asset_url | script_tag }}
-      {{ 'forma-new-arrivals.js' | asset_url | script_tag }}
-      {{ 'forma-new-arrivals-engine.js' | asset_url | script_tag }}
-      {{ 'forma-daily-edit-engine.js' | asset_url | script_tag }}
-      {{ 'forma-continue-exploring.js' | asset_url | script_tag }}
-      {{ 'forma-discover-again.js' | asset_url | script_tag }}
-      {{ 'forma-dashboard.js' | asset_url | script_tag }}
-      {{ 'forma-dashboard-hero.js' | asset_url | script_tag }}
-      {{ 'forma-activity-feed.js' | asset_url | script_tag }}
-      {{ 'forma-dashboard-polish.js' | asset_url | script_tag }}
-      {{ 'forma-dashboard-manager.js' | asset_url | script_tag }}
+
+{%- comment -%}
+  ==========================================================
+  FORMA — DATA & INTELLIGENCE
+  Product data, signals, entities and recommendations
+  ==========================================================
+{%- endcomment -%}
+
+{{ 'forma-products.js' | asset_url | script_tag }}
+{{ 'forma-collections.js' | asset_url | script_tag }}
+{{ 'forma-signals.js' | asset_url | script_tag }}
+{{ 'forma-entities.js' | asset_url | script_tag }}
+{{ 'forma-persona.js' | asset_url | script_tag }}
+
+{{ 'forma-recommendations.js' | asset_url | script_tag }}
+{{ 'forma-daily-edit-service.js' | asset_url | script_tag }}
+{{ 'forma-recommendation-service.js' | asset_url | script_tag }}
+
+
+{%- comment -%}
+  ==========================================================
+  FORMA — PRODUCT PAGE
+  Only loaded on product pages
+  ==========================================================
+{%- endcomment -%}
+
+{%- if request.page_type == 'product' -%}
+  {{ 'forma-product-tracker.js' | asset_url | script_tag }}
+  {{ 'forma-score-ui.js' | asset_url | script_tag }}
+{%- endif -%}
+
+
+{%- comment -%}
+  ==========================================================
+  FORMA — MEMBERSHIP CENTER
+  Only loaded on Your Membership
+  ==========================================================
+{%- endcomment -%}
+
+{%- if template.suffix == 'your-membership' -%}
+  {{ 'forma-membership-center.js' | asset_url | script_tag }}
+{%- endif -%}
+
+
+{%- comment -%}
+  ==========================================================
+  FORMA — YOUR FORMA
+  Dashboard, Passport and personal discovery experience
+  ==========================================================
+{%- endcomment -%}
+
+{%- if template.suffix == 'your-forma' -%}
+
+  {%- comment -%}
+    Member data and page modules
+  {%- endcomment -%}
+
+  {{ 'forma-saved-products.js' | asset_url | script_tag }}
+  {{ 'forma-recently-viewed-page.js' | asset_url | script_tag }}
+  {{ 'forma-followed-brands-page.js' | asset_url | script_tag }}
+  {{ 'forma-wish-collections-page.js' | asset_url | script_tag }}
+
+
+  {%- comment -%}
+    Onboarding and Passport
+  {%- endcomment -%}
+
+  {{ 'forma-onboarding.js' | asset_url | script_tag }}
+  {{ 'forma-passport.js' | asset_url | script_tag }}
+  {{ 'forma-passport-benefits.js' | asset_url | script_tag }}
+
+
+  {%- comment -%}
+    Ranking and recommendation engines
+  {%- endcomment -%}
+
+  {{ 'forma-ranking.js' | asset_url | script_tag }}
+  {{ 'forma-recommended-products.js' | asset_url | script_tag }}
+  {{ 'forma-recommendation-engine.js' | asset_url | script_tag }}
+
+
+  {%- comment -%}
+    Daily discovery modules
+  {%- endcomment -%}
+
+  {{ 'forma-daily-edit.js' | asset_url | script_tag }}
+  {{ 'forma-daily-edit-engine.js' | asset_url | script_tag }}
+
+  {{ 'forma-new-arrivals.js' | asset_url | script_tag }}
+  {{ 'forma-new-arrivals-engine.js' | asset_url | script_tag }}
+
+  {{ 'forma-continue-exploring.js' | asset_url | script_tag }}
+  {{ 'forma-discover-again.js' | asset_url | script_tag }}
+
+
+  {%- comment -%}
+    Dashboard UI and orchestration
+    These load last because they depend on the modules above
+  {%- endcomment -%}
+
+  {{ 'forma-dashboard.js' | asset_url | script_tag }}
+  {{ 'forma-dashboard-hero.js' | asset_url | script_tag }}
+  {{ 'forma-activity-feed.js' | asset_url | script_tag }}
+  {{ 'forma-dashboard-polish.js' | asset_url | script_tag }}
+  {{ 'forma-dashboard-manager.js' | asset_url | script_tag }}
+
 {%- endif -%}
 
   </body>
