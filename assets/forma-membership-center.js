@@ -158,6 +158,49 @@
       "[data-membership-notifications-save]"
     );
 
+      /* ========================================================
+     PRIVACY
+     ======================================================== */
+
+  const PRIVACY_STORAGE_KEY =
+    "forma_privacy_preferences";
+
+  const privacyFields = [
+    ...center.querySelectorAll(
+      "[data-membership-privacy-field]"
+    )
+  ];
+
+  const privacySaveButton = center.querySelector(
+    "[data-membership-privacy-save]"
+  );
+
+  const privacyStatus = center.querySelector(
+    "[data-membership-privacy-status]"
+  );
+
+  const clearActivityButton = center.querySelector(
+    "[data-membership-clear-activity]"
+  );
+
+  const clearConfirmation = center.querySelector(
+    "[data-membership-clear-confirmation]"
+  );
+
+  const clearConfirmButton = center.querySelector(
+    "[data-membership-clear-confirm]"
+  );
+
+  const clearCancelButtons = [
+    ...center.querySelectorAll(
+      "[data-membership-clear-cancel]"
+    )
+  ];
+
+  const exportDataButton = center.querySelector(
+    "[data-membership-export-data]"
+  );
+
 
   function activateTab(tabName) {
     tabs.forEach(tab => {
@@ -1082,6 +1125,342 @@
     }
   }
 
+    /* ========================================================
+     PRIVACY
+     ======================================================== */
+
+  function getDefaultPrivacyPreferences() {
+    return {
+      useActivity: true,
+      personalRecommendations: true
+    };
+  }
+
+  function getPrivacyPreferences() {
+    try {
+      const storedValue =
+        window.localStorage.getItem(
+          PRIVACY_STORAGE_KEY
+        );
+
+      if (!storedValue) {
+        return getDefaultPrivacyPreferences();
+      }
+
+      return {
+        ...getDefaultPrivacyPreferences(),
+        ...JSON.parse(storedValue)
+      };
+    } catch (error) {
+      console.warn(
+        "[Forma Membership] Could not read privacy preferences.",
+        error
+      );
+
+      return getDefaultPrivacyPreferences();
+    }
+  }
+
+  function hydratePrivacy() {
+    const preferences =
+      getPrivacyPreferences();
+
+    privacyFields.forEach(field => {
+      field.checked =
+        Boolean(
+          preferences[field.name]
+        );
+    });
+  }
+
+  function setPrivacyStatus(
+    message,
+    type = ""
+  ) {
+    if (!privacyStatus) {
+      return;
+    }
+
+    privacyStatus.textContent =
+      message;
+
+    privacyStatus.classList.toggle(
+      "is-success",
+      type === "success"
+    );
+
+    privacyStatus.classList.toggle(
+      "is-error",
+      type === "error"
+    );
+  }
+
+  function handlePrivacyChange() {
+    setPrivacyStatus(
+      "You have unsaved changes."
+    );
+  }
+
+  function savePrivacy() {
+    const preferences = {};
+
+    privacyFields.forEach(field => {
+      preferences[field.name] =
+        Boolean(field.checked);
+    });
+
+    try {
+      privacySaveButton?.setAttribute(
+        "disabled",
+        ""
+      );
+
+      window.localStorage.setItem(
+        PRIVACY_STORAGE_KEY,
+        JSON.stringify(preferences)
+      );
+
+      setPrivacyStatus(
+        "Your privacy settings have been updated.",
+        "success"
+      );
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "forma:privacy-updated",
+          {
+            detail: {
+              preferences,
+              source: "membership-center"
+            }
+          }
+        )
+      );
+
+      window.Forma
+        ?.events
+        ?.emit?.(
+          "forma:privacy-updated",
+          {
+            preferences,
+            source: "membership-center"
+          }
+        );
+
+      window.Forma
+        ?.toast
+        ?.success?.(
+          "Privacy settings updated"
+        );
+    } catch (error) {
+      console.error(
+        "[Forma Membership] Could not save privacy settings.",
+        error
+      );
+
+      setPrivacyStatus(
+        "Something went wrong. Please try again.",
+        "error"
+      );
+    } finally {
+      privacySaveButton?.removeAttribute(
+        "disabled"
+      );
+    }
+  }
+
+  function openClearConfirmation() {
+    if (!clearConfirmation) {
+      return;
+    }
+
+    clearConfirmation.hidden = false;
+
+    document.documentElement.classList.add(
+      "forma-privacy-modal-is-open"
+    );
+  }
+
+  function closeClearConfirmation() {
+    if (!clearConfirmation) {
+      return;
+    }
+
+    clearConfirmation.hidden = true;
+
+    document.documentElement.classList.remove(
+      "forma-privacy-modal-is-open"
+    );
+  }
+
+  function clearActivityHistory() {
+    try {
+      if (
+        typeof window.Forma
+          ?.activity
+          ?.clear !== "function"
+      ) {
+        throw new Error(
+          "Forma activity clear method is unavailable."
+        );
+      }
+
+      window.Forma.activity.clear();
+
+      closeClearConfirmation();
+
+      setPrivacyStatus(
+        "Your activity history has been cleared.",
+        "success"
+      );
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "forma:activity-cleared"
+        )
+      );
+
+      window.Forma
+        ?.events
+        ?.emit?.(
+          "forma:activity-cleared"
+        );
+
+      window.Forma
+        ?.toast
+        ?.success?.(
+          "Activity history cleared"
+        );
+    } catch (error) {
+      console.error(
+        "[Forma Membership] Could not clear activity.",
+        error
+      );
+
+      closeClearConfirmation();
+
+      setPrivacyStatus(
+        "Your activity history could not be cleared.",
+        "error"
+      );
+    }
+  }
+
+  function createFormaExport() {
+    const profile =
+      getProfile();
+
+    const notifications =
+      getNotificationPreferences();
+
+    const privacy =
+      getPrivacyPreferences();
+
+    const savedProducts =
+      window.Forma
+        ?.savedProducts
+        ?.getAll?.() || [];
+
+    const followedBrands =
+      window.Forma
+        ?.followedBrands
+        ?.getAll?.() || [];
+
+    const recentlyViewed =
+      window.Forma
+        ?.recentlyViewed
+        ?.getAll?.() || [];
+
+    const activity =
+      window.Forma
+        ?.activity
+        ?.getAll?.() || [];
+
+    return {
+      exportedAt:
+        new Date().toISOString(),
+
+      membership: {
+        platform: "Forma",
+        version: 1
+      },
+
+      profile,
+      notifications,
+      privacy,
+      savedProducts,
+      followedBrands,
+      recentlyViewed,
+      activity
+    };
+  }
+
+  function exportFormaData() {
+    try {
+      const exportData =
+        createFormaExport();
+
+      const file =
+        new Blob(
+          [
+            JSON.stringify(
+              exportData,
+              null,
+              2
+            )
+          ],
+          {
+            type:
+              "application/json;charset=utf-8"
+          }
+        );
+
+      const fileUrl =
+        URL.createObjectURL(file);
+
+      const link =
+        document.createElement("a");
+
+      const date =
+        new Date()
+          .toISOString()
+          .slice(0, 10);
+
+      link.href = fileUrl;
+
+      link.download =
+        `forma-membership-${date}.json`;
+
+      document.body.appendChild(link);
+
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(fileUrl);
+
+      setPrivacyStatus(
+        "Your Forma data has been exported.",
+        "success"
+      );
+
+      window.Forma
+        ?.toast
+        ?.success?.(
+          "Forma data exported"
+        );
+    } catch (error) {
+      console.error(
+        "[Forma Membership] Could not export data.",
+        error
+      );
+
+      setPrivacyStatus(
+        "Your data could not be exported.",
+        "error"
+      );
+    }
+  }
+
   /* ========================================================
      EVENTS
      ======================================================== */
@@ -1117,10 +1496,63 @@
         tabName === "notifications"
         ) {
         hydrateNotifications();
-}
+        }
+
+        if (
+        tabName === "privacy"
+        ) {
+        hydratePrivacy();
+        }
       }
     );
   });
+
+privacyFields.forEach(field => {
+  field.addEventListener(
+    "change",
+    handlePrivacyChange
+  );
+});
+
+privacySaveButton?.addEventListener(
+  "click",
+  savePrivacy
+);
+
+clearActivityButton?.addEventListener(
+  "click",
+  openClearConfirmation
+);
+
+clearCancelButtons.forEach(button => {
+  button.addEventListener(
+    "click",
+    closeClearConfirmation
+  );
+});
+
+clearConfirmButton?.addEventListener(
+  "click",
+  clearActivityHistory
+);
+
+exportDataButton?.addEventListener(
+  "click",
+  exportFormaData
+);
+
+document.addEventListener(
+  "keydown",
+  event => {
+    if (
+      event.key === "Escape" &&
+      clearConfirmation &&
+      !clearConfirmation.hidden
+    ) {
+      closeClearConfirmation();
+    }
+  }
+);
 
   profileForm?.addEventListener(
     "submit",
@@ -1202,6 +1634,7 @@
     hydrateSizes();
     hydrateMembershipPassport();
     hydrateNotifications();
+    hydratePrivacy();
 
   console.info(
     "[Forma Membership Center] Ready"

@@ -1176,23 +1176,312 @@
         </section>
 
         <section
-          class="forma-membership-panel"
-          data-membership-panel="privacy"
-          hidden
+        class="forma-membership-panel"
+        data-membership-panel="privacy"
+        hidden
         >
-          <div class="forma-membership-panel__header">
+        <div class="forma-membership-panel__header">
             <p class="forma-membership-panel__eyebrow">
-              Your information
+            Your information
             </p>
 
             <h2 class="forma-membership-panel__title">
-              Privacy
+            Privacy
             </h2>
 
             <p class="forma-membership-panel__description">
-              Manage your data, privacy and membership access.
+            Control how Forma uses your activity, personalises your experience
+            and manages the information connected to your membership.
             </p>
-          </div>
+        </div>
+
+        <div
+            class="forma-membership-privacy"
+            data-membership-privacy
+        >
+
+            <div class="forma-membership-privacy__list">
+
+            <label class="forma-membership-privacy-row">
+
+                <span class="forma-membership-privacy-row__number">
+                01
+                </span>
+
+                <span class="forma-membership-privacy-row__content">
+
+                <strong class="forma-membership-privacy-row__title">
+                    Personalisation
+                </strong>
+
+                <span class="forma-membership-privacy-row__description">
+                    Allow Forma to learn from the products, brands and stories
+                    you interact with across the platform.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-privacy-row__control">
+
+                <input
+                    class="forma-membership-privacy-row__input"
+                    type="checkbox"
+                    name="useActivity"
+                    data-membership-privacy-field
+                >
+
+                <span
+                    class="forma-membership-privacy-row__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <label class="forma-membership-privacy-row">
+
+                <span class="forma-membership-privacy-row__number">
+                02
+                </span>
+
+                <span class="forma-membership-privacy-row__content">
+
+                <strong class="forma-membership-privacy-row__title">
+                    Personal recommendations
+                </strong>
+
+                <span class="forma-membership-privacy-row__description">
+                    Use your preferences and activity to create personal edits,
+                    recommendations and discoveries.
+                </span>
+
+                </span>
+
+                <span class="forma-membership-privacy-row__control">
+
+                <input
+                    class="forma-membership-privacy-row__input"
+                    type="checkbox"
+                    name="personalRecommendations"
+                    data-membership-privacy-field
+                >
+
+                <span
+                    class="forma-membership-privacy-row__toggle"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </span>
+
+                </span>
+
+            </label>
+
+            <article class="forma-membership-privacy-row">
+
+                <span class="forma-membership-privacy-row__number">
+                03
+                </span>
+
+                <span class="forma-membership-privacy-row__content">
+
+                <strong class="forma-membership-privacy-row__title">
+                    Activity history
+                </strong>
+
+                <span class="forma-membership-privacy-row__description">
+                    Review or clear the activity used to shape your personal
+                    experience inside Forma.
+                </span>
+
+                <span class="forma-membership-privacy-row__actions">
+
+                    <a
+                    href="/pages/your-forma#FormaActivity"
+                    class="forma-membership-privacy-row__link"
+                    >
+                    <span>View activity</span>
+                    <span aria-hidden="true">→</span>
+                    </a>
+
+                    <button
+                    class="
+                        forma-membership-privacy-row__link
+                        forma-membership-privacy-row__link--button
+                    "
+                    type="button"
+                    data-membership-clear-activity
+                    >
+                    <span>Clear activity</span>
+                    <span aria-hidden="true">→</span>
+                    </button>
+
+                </span>
+
+                </span>
+
+            </article>
+
+            <article class="forma-membership-privacy-row">
+
+                <span class="forma-membership-privacy-row__number">
+                04
+                </span>
+
+                <span class="forma-membership-privacy-row__content">
+
+                <strong class="forma-membership-privacy-row__title">
+                    Export your data
+                </strong>
+
+                <span class="forma-membership-privacy-row__description">
+                    Download a copy of the profile, preferences, Passport
+                    and activity currently stored inside your Forma.
+                </span>
+
+                <span class="forma-membership-privacy-row__actions">
+
+                    <button
+                    class="
+                        forma-membership-privacy-row__link
+                        forma-membership-privacy-row__link--button
+                    "
+                    type="button"
+                    data-membership-export-data
+                    >
+                    <span>Export Forma data</span>
+                    <span aria-hidden="true">→</span>
+                    </button>
+
+                </span>
+
+                </span>
+
+            </article>
+
+            <article
+                class="
+                forma-membership-privacy-row
+                forma-membership-privacy-row--danger
+                "
+            >
+
+                <span class="forma-membership-privacy-row__number">
+                05
+                </span>
+
+                <span class="forma-membership-privacy-row__content">
+
+                <strong class="forma-membership-privacy-row__title">
+                    Delete membership
+                </strong>
+
+                <span class="forma-membership-privacy-row__description">
+                    Request permanent deletion of your Forma membership,
+                    profile and associated personal information.
+                </span>
+
+                <span class="forma-membership-privacy-row__actions">
+
+                    <a
+                    href="mailto:{{ shop.email }}?subject={{ 'Forma membership deletion request' | url_encode }}"
+                    class="
+                        forma-membership-privacy-row__link
+                        forma-membership-privacy-row__link--danger
+                    "
+                    >
+                    <span>Request deletion</span>
+                    <span aria-hidden="true">→</span>
+                    </a>
+
+                </span>
+
+                </span>
+
+            </article>
+
+            </div>
+
+            <div class="forma-membership-privacy__footer">
+
+            <p
+                class="forma-membership-privacy__status"
+                data-membership-privacy-status
+                aria-live="polite"
+            ></p>
+
+            <button
+                class="forma-membership-privacy__save"
+                type="button"
+                data-membership-privacy-save
+            >
+                <span>Save privacy settings</span>
+                <span aria-hidden="true">→</span>
+            </button>
+
+            </div>
+
+        </div>
+
+        <div
+            class="forma-membership-confirmation"
+            data-membership-clear-confirmation
+            hidden
+        >
+            <button
+            class="forma-membership-confirmation__backdrop"
+            type="button"
+            aria-label="Close"
+            data-membership-clear-cancel
+            ></button>
+
+            <div
+            class="forma-membership-confirmation__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="FormaClearActivityTitle"
+            >
+            <p class="forma-membership-confirmation__eyebrow">
+                Activity history
+            </p>
+
+            <h3
+                id="FormaClearActivityTitle"
+                class="forma-membership-confirmation__title"
+            >
+                Clear your activity?
+            </h3>
+
+            <p class="forma-membership-confirmation__description">
+                This removes the activity history used in your timeline.
+                Saved products and followed brands will not be removed.
+            </p>
+
+            <div class="forma-membership-confirmation__actions">
+
+                <button
+                class="forma-membership-confirmation__cancel"
+                type="button"
+                data-membership-clear-cancel
+                >
+                Cancel
+                </button>
+
+                <button
+                class="forma-membership-confirmation__confirm"
+                type="button"
+                data-membership-clear-confirm
+                >
+                Clear activity
+                </button>
+
+            </div>
+            </div>
+        </div>
+
         </section>
 
       </main>

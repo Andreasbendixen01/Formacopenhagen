@@ -1230,3 +1230,364 @@
     max-width: none;
   }
 }
+
+/* ==========================================================
+   FORMA — MEMBERSHIP PRIVACY
+   ========================================================== */
+
+.forma-membership-privacy {
+  padding-top: 54px;
+}
+
+.forma-membership-privacy__list {
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-membership-privacy-row {
+  min-height: 150px;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns:
+    46px
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+label.forma-membership-privacy-row {
+  cursor: pointer;
+}
+
+.forma-membership-privacy-row__number {
+  align-self: flex-start;
+  padding-top: 5px;
+  color: rgba(23, 23, 23, 0.4);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.forma-membership-privacy-row__content {
+  display: block;
+}
+
+.forma-membership-privacy-row__title {
+  display: block;
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.forma-membership-privacy-row__description {
+  display: block;
+  max-width: 620px;
+  margin-top: 13px;
+  color: rgba(23, 23, 23, 0.48);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.forma-membership-privacy-row__control {
+  position: relative;
+  display: block;
+}
+
+.forma-membership-privacy-row__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.forma-membership-privacy-row__toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  display: block;
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  border-radius: 100px;
+  background: transparent;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.forma-membership-privacy-row__toggle > span {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(23, 23, 23, 0.54);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.22s ease;
+}
+
+.forma-membership-privacy-row__input:checked +
+.forma-membership-privacy-row__toggle {
+  border-color: #171717;
+  background: #171717;
+}
+
+.forma-membership-privacy-row__input:checked +
+.forma-membership-privacy-row__toggle > span {
+  background: #ffffff;
+  transform: translateX(24px);
+}
+
+.forma-membership-privacy-row__input:focus-visible +
+.forma-membership-privacy-row__toggle {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
+
+.forma-membership-privacy-row__actions {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 30px;
+}
+
+.forma-membership-privacy-row__link {
+  padding: 0 0 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: #171717;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forma-membership-privacy-row__link--danger {
+  color: #8a3030;
+}
+
+.forma-membership-privacy-row--danger {
+  margin-top: 50px;
+  border-top: 1px solid rgba(138, 48, 48, 0.28);
+  border-bottom-color: rgba(138, 48, 48, 0.28);
+}
+
+.forma-membership-privacy-row--danger
+.forma-membership-privacy-row__number,
+.forma-membership-privacy-row--danger
+.forma-membership-privacy-row__description {
+  color: rgba(138, 48, 48, 0.62);
+}
+
+.forma-membership-privacy__footer {
+  min-height: 110px;
+  padding-top: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.forma-membership-privacy__status {
+  min-height: 18px;
+  margin: 4px 0 0;
+  color: rgba(23, 23, 23, 0.54);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.forma-membership-privacy__status.is-success {
+  color: #315f43;
+}
+
+.forma-membership-privacy__status.is-error {
+  color: #8a3030;
+}
+
+.forma-membership-privacy__save {
+  width: min(100%, 250px);
+  min-height: 54px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #ffffff;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.forma-membership-privacy__save:hover {
+  background: transparent;
+  color: #171717;
+}
+
+.forma-membership-privacy__save:disabled {
+  cursor: wait;
+  opacity: 0.52;
+}
+
+/* Confirmation */
+
+.forma-membership-confirmation[hidden] {
+  display: none;
+}
+
+.forma-membership-confirmation {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.forma-membership-confirmation__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.forma-membership-confirmation__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 620px);
+  padding: clamp(34px, 5vw, 58px);
+  background: #f5f4f0;
+  color: #171717;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
+}
+
+.forma-membership-confirmation__eyebrow {
+  margin: 0 0 24px;
+  color: rgba(23, 23, 23, 0.46);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-membership-confirmation__title {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 70px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.forma-membership-confirmation__description {
+  max-width: 480px;
+  margin: 28px 0 0;
+  color: rgba(23, 23, 23, 0.54);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.forma-membership-confirmation__actions {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.forma-membership-confirmation__cancel,
+.forma-membership-confirmation__confirm {
+  min-height: 52px;
+  padding: 0 18px;
+  border: 1px solid #171717;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.forma-membership-confirmation__cancel {
+  background: transparent;
+  color: #171717;
+}
+
+.forma-membership-confirmation__confirm {
+  background: #171717;
+  color: #ffffff;
+}
+
+html.forma-privacy-modal-is-open {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 749px) {
+  .forma-membership-privacy {
+    padding-top: 42px;
+  }
+
+  .forma-membership-privacy-row {
+    min-height: 0;
+    grid-template-columns:
+      32px
+      minmax(0, 1fr)
+      auto;
+    gap: 14px;
+    padding: 26px 0;
+  }
+
+  .forma-membership-privacy-row:not(
+    :has(.forma-membership-privacy-row__control)
+  ) {
+    grid-template-columns:
+      32px
+      minmax(0, 1fr);
+  }
+
+  .forma-membership-privacy-row__toggle {
+    width: 46px;
+    height: 26px;
+  }
+
+  .forma-membership-privacy-row__toggle > span {
+    width: 16px;
+    height: 16px;
+  }
+
+  .forma-membership-privacy-row__input:checked +
+  .forma-membership-privacy-row__toggle > span {
+    transform: translateX(20px);
+  }
+
+  .forma-membership-privacy__footer {
+    flex-direction: column-reverse;
+  }
+
+  .forma-membership-privacy__save {
+    width: 100%;
+    max-width: none;
+  }
+
+  .forma-membership-confirmation__actions {
+    grid-template-columns: 1fr;
+  }
+}
