@@ -112,8 +112,8 @@
         : `
           <div class="forma-wish-card__placeholder">
             <span>FORMA</span>
-            <span>Wish Collection</span>
-          </div>
+            <span>Collection</span>
+        </div>
         `;
 
     return `

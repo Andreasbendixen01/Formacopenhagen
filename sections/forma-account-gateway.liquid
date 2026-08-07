@@ -1,0 +1,123 @@
+{%- comment -%}
+  ==========================================================
+  FORMA — ACCOUNT GATEWAY
+  Entry point for sign in and membership creation
+  ==========================================================
+{%- endcomment -%}
+
+{{ 'forma-account-gateway.css' | asset_url | stylesheet_tag }}
+
+{%- if customer -%}
+
+  <script>
+    window.location.replace('/pages/your-forma');
+  </script>
+
+{%- else -%}
+
+  <section
+    class="forma-account-gateway"
+    data-forma-account-gateway
+  >
+    <div class="forma-account-gateway__container">
+
+      <div class="forma-account-gateway__intro">
+
+        <p class="forma-account-gateway__eyebrow">
+          Your Forma
+        </p>
+
+        <h1 class="forma-account-gateway__title">
+          Welcome back.
+        </h1>
+
+        <p class="forma-account-gateway__description">
+          Sign in to access your Passport, Collections,
+          saved products and personal discoveries.
+        </p>
+
+      </div>
+
+      <div class="forma-account-gateway__actions">
+
+        <a
+          href="{{ routes.account_login_url }}"
+          class="
+            forma-account-gateway__action
+            forma-account-gateway__action--primary
+          "
+        >
+          <span>
+            Continue to sign in
+          </span>
+
+          <span aria-hidden="true">
+            →
+          </span>
+        </a>
+
+        <div class="forma-account-gateway__divider">
+          <span></span>
+
+          <p>
+            New to Forma?
+          </p>
+
+          <span></span>
+        </div>
+
+        <div class="forma-account-gateway__membership">
+
+          <h2 class="forma-account-gateway__membership-title">
+            Create your membership.
+          </h2>
+
+          <p class="forma-account-gateway__membership-description">
+            Build a more personal experience around the brands,
+            places and ideas you love.
+          </p>
+
+          <a
+            href="{{ routes.account_register_url }}"
+            class="
+              forma-account-gateway__action
+              forma-account-gateway__action--secondary
+            "
+          >
+            <span>
+              Create your membership
+            </span>
+
+            <span aria-hidden="true">
+              →
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="forma-account-gateway__footer">
+
+        <p>
+          One membership. Your entire Forma.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Forma account gateway",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Forma account gateway"
+    }
+  ]
+}
+{% endschema %}

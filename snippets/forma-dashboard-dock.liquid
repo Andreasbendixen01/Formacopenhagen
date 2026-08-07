@@ -1,0 +1,86 @@
+{%- comment -%}
+  FORMA — DASHBOARD NAVIGATION DOCK
+{%- endcomment -%}
+
+<nav
+  class="forma-dashboard-dock"
+  aria-label="Your Forma navigation"
+  data-forma-dashboard-dock
+  aria-hidden="true"
+>
+  <div class="forma-dashboard-dock__inner">
+
+    <div class="forma-dashboard-dock__sections">
+
+      <button
+        class="forma-dashboard-dock__item"
+        type="button"
+        data-forma-navigate="passport"
+        data-forma-dock-item="passport"
+      >
+        <span>Passport</span>
+      </button>
+
+      <button
+        class="forma-dashboard-dock__item"
+        type="button"
+        data-forma-navigate="benefits"
+        data-forma-dock-item="benefits"
+      >
+        <span>Benefits</span>
+      </button>
+
+      <button
+        class="forma-dashboard-dock__item"
+        type="button"
+        data-forma-navigate="following"
+        data-forma-dock-item="following"
+      >
+        <span>Following</span>
+      </button>
+
+      <button
+        class="forma-dashboard-dock__item"
+        type="button"
+        data-forma-navigate="collections"
+        data-forma-dock-item="collections"
+      >
+        <span>Collections</span>
+      </button>
+
+      <button
+        class="forma-dashboard-dock__item"
+        type="button"
+        data-forma-navigate="discover"
+        data-forma-dock-item="discover"
+      >
+        <span>Discover</span>
+      </button>
+
+    </div>
+
+    <span
+      class="forma-dashboard-dock__divider"
+      aria-hidden="true"
+    ></span>
+
+    <a
+      class="
+        forma-dashboard-dock__item
+        forma-dashboard-dock__item--membership
+      "
+      href="/pages/your-membership"
+      aria-label="Open Membership Center"
+    >
+      <span>Membership</span>
+
+      <span
+        class="forma-dashboard-dock__external"
+        aria-hidden="true"
+      >
+        ↗
+      </span>
+    </a>
+
+  </div>
+</nav>

@@ -3957,3 +3957,392 @@ html.forma-wish-modal-is-open {
   box-shadow: none;
 }
 }
+
+/* ==========================================================
+   FORMA — HERO QUICK ACTIONS
+   ========================================================== */
+
+.forma-dashboard__quick-actions {
+  width: min(100%, 620px);
+  margin-top: clamp(54px, 8vh, 96px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 54px;
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-dashboard__quick-action {
+  min-height: 52px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+  background: transparent;
+  color: #171717;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-dashboard__quick-action:hover {
+  padding-left: 8px;
+}
+
+.forma-dashboard__quick-action span:last-child {
+  color: rgba(23, 23, 23, 0.48);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s ease;
+}
+
+.forma-dashboard__quick-action:hover span:last-child {
+  color: #171717;
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================
+   FORMA — FLOATING DASHBOARD DOCK 2.0
+   ========================================================== */
+
+.forma-dashboard-dock {
+  position: fixed;
+  left: 50%;
+  bottom: max(
+    24px,
+    env(safe-area-inset-bottom)
+  );
+  z-index: 2147483000;
+
+  width: min(
+    calc(100vw - 40px),
+    850px
+  );
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform:
+    translateX(-50%)
+    translateY(28px)
+    scale(0.985);
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.42s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-dashboard-dock.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    scale(1);
+}
+
+.forma-dashboard-dock__inner {
+  position: relative;
+
+  min-height: 58px;
+  padding: 7px 10px 7px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  border: 1px solid
+    rgba(23, 23, 23, 0.12);
+
+  border-radius: 18px;
+
+  background:
+    rgba(245, 244, 240, 0.88);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(135%);
+
+  box-shadow:
+    0 18px 55px
+      rgba(0, 0, 0, 0.12),
+    0 4px 14px
+      rgba(0, 0, 0, 0.055);
+}
+
+.forma-dashboard-dock__sections {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2.4vw, 34px);
+}
+
+.forma-dashboard-dock__item {
+  position: relative;
+
+  min-height: 42px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  flex: 0 0 auto;
+
+  border: 0;
+  background: transparent;
+
+  color: rgba(23, 23, 23, 0.48);
+
+  font: inherit;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.025em;
+
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.forma-dashboard-dock__item::before {
+  content: "";
+
+  position: absolute;
+  top: 4px;
+  left: 50%;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+  background: #171717;
+
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(-4px);
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.3s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-dashboard-dock__item:hover {
+  color: #171717;
+}
+
+.forma-dashboard-dock__item.is-active {
+  color: #171717;
+}
+
+.forma-dashboard-dock__item.is-active::before {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+.forma-dashboard-dock__divider {
+  width: 1px;
+  height: 24px;
+
+  flex: 0 0 auto;
+
+  background:
+    rgba(23, 23, 23, 0.16);
+}
+
+.forma-dashboard-dock__item--membership {
+  min-height: 42px;
+  padding: 0 15px;
+
+  border-radius: 11px;
+
+  color: #ffffff;
+  background: #171717;
+
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.25s ease;
+}
+
+.forma-dashboard-dock__item--membership::before {
+  display: none;
+}
+
+.forma-dashboard-dock__item--membership:hover {
+  background: rgba(23, 23, 23, 0.84);
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.forma-dashboard-dock__external {
+  font-size: 12px;
+  line-height: 1;
+
+  transition:
+    transform 0.25s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-dashboard-dock__item--membership:hover
+.forma-dashboard-dock__external {
+  transform:
+    translate(2px, -2px);
+}
+
+
+/* ==========================================================
+   FORMA — NAVIGATION TARGET HIGHLIGHT
+   ========================================================== */
+
+[data-forma-navigation-target] {
+  scroll-margin-top: 120px;
+}
+
+[data-forma-navigation-target].is-forma-navigation-highlight {
+  animation:
+    forma-navigation-highlight
+    0.85s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes forma-navigation-highlight {
+  0% {
+    opacity: 0.58;
+    transform: translateY(8px);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==========================================================
+   FORMA — RESPONSIVE NAVIGATION
+   ========================================================== */
+
+@media screen and (max-width: 749px) {
+  .forma-dashboard__quick-actions {
+    width: 100%;
+    margin-top: 52px;
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .forma-dashboard-dock {
+  width: calc(100vw - 20px);
+
+  bottom: max(
+    10px,
+    env(safe-area-inset-bottom)
+  );
+}
+
+.forma-dashboard-dock__inner {
+  min-height: 60px;
+  padding: 7px;
+
+  gap: 7px;
+
+  border-radius: 16px;
+}
+
+.forma-dashboard-dock__sections {
+  min-width: 0;
+  flex: 1 1 auto;
+
+  gap: 0;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.forma-dashboard-dock__sections::-webkit-scrollbar {
+  display: none;
+}
+
+.forma-dashboard-dock__item {
+  min-height: 44px;
+  padding: 0 13px;
+
+  font-size: 9px;
+}
+
+.forma-dashboard-dock__item::before {
+  top: 3px;
+}
+
+.forma-dashboard-dock__divider {
+  height: 28px;
+}
+
+.forma-dashboard-dock__item--membership {
+  padding: 0 13px;
+
+  background: #171717;
+  color: #ffffff;
+
+  font-size: 8px;
+}
+
+.forma-dashboard-dock__external {
+  font-size: 11px;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forma-dashboard-dock,
+  .forma-dashboard-dock__item,
+  .forma-dashboard__quick-action,
+  [data-forma-navigation-target] {
+    transition: none;
+    animation: none;
+    scroll-behavior: auto;
+  }
+}
