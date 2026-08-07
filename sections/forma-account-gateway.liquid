@@ -5,7 +5,6 @@
 {%- endcomment -%}
 
 {{ 'forma-account-gateway.css' | asset_url | stylesheet_tag }}
-{{ 'forma-account-gateway.js' | asset_url | script_tag }}
 
 {%- if customer -%}
 
@@ -82,22 +81,22 @@
         {%- if shop.customer_accounts_enabled -%}
 
         <button
-            type="button"
-            class="forma-account-gateway__action"
-            data-forma-login-open
-            aria-haspopup="dialog"
-            aria-controls="FormaLoginModal"
-            >
-            <span class="forma-account-gateway__action-label">
-                Sign in
-            </span>
+        type="button"
+        class="forma-account-gateway__action"
+        data-forma-login-open
+        aria-haspopup="dialog"
+        aria-controls="FormaLoginModal"
+        >
+        <span class="forma-account-gateway__action-label">
+            Sign in
+        </span>
 
-            <span
-                class="forma-account-gateway__action-arrow"
-                aria-hidden="true"
-            >
-                →
-            </span>
+        <span
+            class="forma-account-gateway__action-arrow"
+            aria-hidden="true"
+        >
+            →
+        </span>
         </button>
 
         {%- endif -%}
@@ -242,6 +241,8 @@
   </script>
 
 {%- endif -%}
+
+{{ 'forma-account-gateway.js' | asset_url | script_tag }}
 
 {% schema %}
 {
