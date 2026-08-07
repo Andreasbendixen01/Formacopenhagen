@@ -78,21 +78,30 @@
         aria-label="Account options"
       >
 
-        <a
-          href="{{ routes.account_login_url }}"
-          class="forma-account-gateway__action"
-        >
-          <span class="forma-account-gateway__action-label">
-            Sign in
-          </span>
+        {%- if shop.customer_accounts_enabled -%}
 
-          <span
-            class="forma-account-gateway__action-arrow"
-            aria-hidden="true"
-          >
-            →
-          </span>
-        </a>
+        <shopify-account
+            class="forma-account-login"
+            menu="customer-account-main-menu"
+        >
+            <div
+            slot="signed-out-avatar"
+            class="forma-account-gateway__action forma-account-gateway__action--signin"
+            >
+            <span class="forma-account-gateway__action-label">
+                Sign in
+            </span>
+
+            <span
+                class="forma-account-gateway__action-arrow"
+                aria-hidden="true"
+            >
+                →
+            </span>
+            </div>
+        </shopify-account>
+
+        {%- endif -%}
 
         <a
           href="{{ routes.account_register_url }}"
