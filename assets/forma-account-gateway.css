@@ -461,3 +461,338 @@
   color: #171717;
   transform: translateX(10px);
 }
+
+/* ==========================================================
+   FORMA — LOGIN MODAL
+   ========================================================== */
+
+.forma-login-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.forma-login-modal[hidden] {
+  display: none;
+}
+
+.forma-login-modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.forma-login-modal__backdrop {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  background: rgba(20, 20, 20, 0.18);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  cursor: pointer;
+}
+
+.forma-login-modal__dialog {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, 580px);
+  min-height: 540px;
+
+  padding: 32px 36px 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #f5f4f0;
+  color: #171717;
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.14),
+    0 8px 28px rgba(0, 0, 0, 0.06);
+
+  opacity: 0;
+
+  transform:
+    translateY(18px)
+    scale(0.985);
+
+  transition:
+    opacity 0.36s ease,
+    transform 0.46s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-login-modal.is-visible
+.forma-login-modal__dialog {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* Header */
+
+.forma-login-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 24px;
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.13);
+}
+
+.forma-login-modal__eyebrow {
+  margin: 0;
+
+  color: rgba(23, 23, 23, 0.42);
+
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.forma-login-modal__close {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-radius: 50%;
+
+  background: transparent;
+  color: #171717;
+
+  font: inherit;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.25s ease;
+}
+
+.forma-login-modal__close:hover {
+  background: rgba(23, 23, 23, 0.05);
+  transform: rotate(4deg);
+}
+
+
+/* Content */
+
+.forma-login-modal__content {
+  flex: 1;
+
+  padding-top: clamp(50px, 8vh, 76px);
+}
+
+.forma-login-modal__title {
+  max-width: 430px;
+
+  margin: 0;
+
+  font-size: clamp(52px, 5vw, 74px);
+  font-weight: 400;
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+}
+
+.forma-login-modal__description {
+  max-width: 360px;
+
+  margin: 26px 0 0;
+
+  color: rgba(23, 23, 23, 0.48);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* Main action */
+
+.forma-login-modal__continue {
+  position: relative;
+
+  width: 100%;
+  min-height: 64px;
+
+  margin-top: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.16);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.16);
+
+  color: #171717;
+
+  font-size: 11px;
+  text-decoration: none;
+
+  overflow: hidden;
+}
+
+.forma-login-modal__continue::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 1px;
+
+  background: #171717;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition:
+    transform 0.45s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-login-modal__continue span {
+  transition:
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-login-modal__continue:hover::after {
+  transform: scaleX(1);
+}
+
+.forma-login-modal__continue:hover
+span:first-child {
+  transform: translateX(6px);
+}
+
+.forma-login-modal__continue:hover
+span:last-child {
+  transform: translateX(9px);
+}
+
+
+/* Membership */
+
+.forma-login-modal__membership {
+  margin-top: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: rgba(23, 23, 23, 0.4);
+
+  font-size: 10px;
+}
+
+.forma-login-modal__membership a {
+  color: #171717;
+  text-decoration: none;
+}
+
+
+/* Footer */
+
+.forma-login-modal__footer {
+  padding-top: 20px;
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.1);
+
+  color: rgba(23, 23, 23, 0.3);
+
+  font-size: 8px;
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+/* Body lock */
+
+html.forma-login-is-open,
+html.forma-login-is-open body {
+  overflow: hidden;
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 749px) {
+
+  .forma-login-modal {
+    padding: 0;
+  }
+
+  .forma-login-modal__dialog {
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+      24px
+      20px
+      24px;
+
+    box-shadow: none;
+  }
+
+  .forma-login-modal__content {
+    padding-top: 56px;
+  }
+
+  .forma-login-modal__title {
+    font-size: clamp(
+      52px,
+      16vw,
+      72px
+    );
+  }
+
+}

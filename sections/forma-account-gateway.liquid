@@ -5,6 +5,7 @@
 {%- endcomment -%}
 
 {{ 'forma-account-gateway.css' | asset_url | stylesheet_tag }}
+{{ 'forma-account-gateway.js' | asset_url | script_tag }}
 
 {%- if customer -%}
 
@@ -80,13 +81,12 @@
 
         {%- if shop.customer_accounts_enabled -%}
 
-        <shopify-account
-            class="forma-account-login"
-            menu="customer-account-main-menu"
-        >
-            <div
-            slot="signed-out-avatar"
-            class="forma-account-gateway__action forma-account-gateway__action--signin"
+        <button
+            type="button"
+            class="forma-account-gateway__action"
+            data-forma-login-open
+            aria-haspopup="dialog"
+            aria-controls="FormaLoginModal"
             >
             <span class="forma-account-gateway__action-label">
                 Sign in
@@ -98,8 +98,7 @@
             >
                 →
             </span>
-            </div>
-        </shopify-account>
+        </button>
 
         {%- endif -%}
 
@@ -135,6 +134,78 @@
 
     </div>
   </section>
+
+  <div
+  id="FormaLoginModal"
+  class="forma-login-modal"
+  data-forma-login-modal
+  aria-hidden="true"
+  hidden
+>
+  <button
+    type="button"
+    class="forma-login-modal__backdrop"
+    data-forma-login-close
+    aria-label="Close sign in"
+  ></button>
+
+  <section
+    class="forma-login-modal__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="FormaLoginTitle"
+  >
+    <header class="forma-login-modal__header">
+      <p class="forma-login-modal__eyebrow">
+        Your Forma
+      </p>
+
+      <button
+        type="button"
+        class="forma-login-modal__close"
+        data-forma-login-close
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </header>
+
+    <div class="forma-login-modal__content">
+      <h2
+        id="FormaLoginTitle"
+        class="forma-login-modal__title"
+      >
+        Welcome back.
+      </h2>
+
+      <p class="forma-login-modal__description">
+        Continue securely to access your personal Forma.
+      </p>
+
+      <a
+        href="/customer_authentication/login?return_to={{ '/pages/your-forma' | url_encode }}"
+        class="forma-login-modal__continue"
+      >
+        <span>Continue to sign in</span>
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <div class="forma-login-modal__membership">
+        <span>New to Forma?</span>
+
+        <a href="/pages/create-membership">
+          Create membership →
+        </a>
+      </div>
+    </div>
+
+    <footer class="forma-login-modal__footer">
+      <span>Secure authentication by Shopify</span>
+    </footer>
+  </section>
+</div>
+
+
 
   <script>
     (() => {
