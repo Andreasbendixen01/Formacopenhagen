@@ -47,13 +47,14 @@
    ========================================================== */
 
 .forma-account-gateway__title {
+  max-width: 540px;
   margin: 0;
 
-  font-size: clamp(68px, 7vw, 104px);
+  font-size: clamp(62px, 6.25vw, 92px);
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.92;
 
-  letter-spacing: -0.065em;
+  letter-spacing: -0.062em;
 }
 
 
@@ -62,17 +63,21 @@
    ========================================================== */
 
 .forma-account-gateway__statement {
-  margin-top: 38px;
+  margin-top: 42px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .forma-account-gateway__statement-line {
   margin: 0;
 
-  color: rgba(23, 23, 23, 0.46);
+  color: rgba(23, 23, 23, 0.43);
 
-  font-size: clamp(18px, 1.7vw, 23px);
+  font-size: clamp(18px, 1.65vw, 22px);
   font-weight: 400;
-  line-height: 1.38;
+  line-height: 1.32;
 
   letter-spacing: -0.025em;
 
@@ -80,9 +85,9 @@
   transform: translateY(7px);
 
   transition:
-    opacity 0.65s ease,
-    transform 0.8s
-      cubic-bezier(0.22, 1, 0.36, 1);
+  opacity 0.65s ease,
+  transform 0.8s
+  cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .forma-account-gateway__statement-line--3 {
@@ -97,10 +102,10 @@
 .forma-account-gateway__actions {
   width: 100%;
 
-  margin-top: 46px;
+  margin-top: 40px;
 
   border-top:
-    1px solid rgba(23, 23, 23, 0.15);
+  1px solid rgba(23, 23, 23, 0.15);
 }
 
 .forma-account-gateway__action {
@@ -169,20 +174,16 @@
       cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.forma-account-gateway__action:hover::after {
-  transform: scaleX(1);
-}
-
 .forma-account-gateway__action:hover
 .forma-account-gateway__action-label {
-  transform: translateX(8px);
+  transform: translateX(6px);
 }
 
 .forma-account-gateway__action:hover
 .forma-account-gateway__action-arrow {
   color: #171717;
 
-  transform: translateX(12px);
+  transform: translateX(10px);
 }
 
 
@@ -204,12 +205,12 @@
    ========================================================== */
 
 .forma-account-gateway__note {
-  margin: 58px 0 0;
+  margin: 54px 0 0;
 
-  color: rgba(23, 23, 23, 0.42);
+  color: rgba(23, 23, 23, 0.48);
 
   font-size: 9px;
-  line-height: 1;
+  line-height: 1.2;
 
   letter-spacing: 0.14em;
 
@@ -321,16 +322,21 @@
   }
 
   .forma-account-gateway__title {
-    font-size: clamp(
-      60px,
-      18vw,
-      82px
-    );
-  }
+  max-width: 100%;
+
+  font-size: clamp(
+    56px,
+    16vw,
+    76px
+  );
+
+  line-height: 0.94;
+}
 
   .forma-account-gateway__statement {
-    margin-top: 32px;
-  }
+  margin-top: 34px;
+  gap: 4px;
+}
 
   .forma-account-gateway__statement-line {
     font-size: 18px;
