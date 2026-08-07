@@ -1,7 +1,6 @@
 {%- comment -%}
   ==========================================================
   FORMA — ACCOUNT GATEWAY
-  Minimal entry point for sign in and membership creation
   ==========================================================
 {%- endcomment -%}
 
@@ -21,22 +20,61 @@
   >
     <div class="forma-account-gateway__container">
 
-      <p class="forma-account-gateway__eyebrow">
+      <p
+        class="
+          forma-account-gateway__eyebrow
+          forma-account-gateway__reveal
+        "
+      >
         Your Forma
       </p>
 
-      <h1 class="forma-account-gateway__title">
+      <h1
+        class="
+          forma-account-gateway__title
+          forma-account-gateway__reveal
+        "
+        data-forma-account-greeting
+      >
         Welcome.
       </h1>
 
       <div class="forma-account-gateway__statement">
-        <p>Your Passport.</p>
-        <p>Your Collections.</p>
-        <p>Your world.</p>
+
+        <p
+          class="
+            forma-account-gateway__statement-line
+            forma-account-gateway__statement-line--1
+          "
+        >
+          Your Passport.
+        </p>
+
+        <p
+          class="
+            forma-account-gateway__statement-line
+            forma-account-gateway__statement-line--2
+          "
+        >
+          Your Collections.
+        </p>
+
+        <p
+          class="
+            forma-account-gateway__statement-line
+            forma-account-gateway__statement-line--3
+          "
+        >
+          Your world.
+        </p>
+
       </div>
 
       <nav
-        class="forma-account-gateway__actions"
+        class="
+          forma-account-gateway__actions
+          forma-account-gateway__reveal
+        "
         aria-label="Account options"
       >
 
@@ -44,11 +82,14 @@
           href="{{ routes.account_login_url }}"
           class="forma-account-gateway__action"
         >
-          <span>
-            Continue to sign in
+          <span class="forma-account-gateway__action-label">
+            Sign in
           </span>
 
-          <span aria-hidden="true">
+          <span
+            class="forma-account-gateway__action-arrow"
+            aria-hidden="true"
+          >
             →
           </span>
         </a>
@@ -60,23 +101,65 @@
             forma-account-gateway__action--membership
           "
         >
-          <span>
-            Create your membership
+          <span class="forma-account-gateway__action-label">
+            Create membership
           </span>
 
-          <span aria-hidden="true">
+          <span
+            class="forma-account-gateway__action-arrow"
+            aria-hidden="true"
+          >
             →
           </span>
         </a>
 
       </nav>
 
-      <p class="forma-account-gateway__note">
+      <p
+        class="
+          forma-account-gateway__note
+          forma-account-gateway__reveal
+        "
+      >
         One membership. Your entire Forma.
       </p>
 
     </div>
   </section>
+
+  <script>
+    (() => {
+      const gateway = document.querySelector(
+        '[data-forma-account-gateway]'
+      );
+
+      if (!gateway) return;
+
+      const greeting = gateway.querySelector(
+        '[data-forma-account-greeting]'
+      );
+
+      if (greeting) {
+        const hour = new Date().getHours();
+
+        let message = 'Welcome.';
+
+        if (hour >= 5 && hour < 12) {
+          message = 'Good morning.';
+        } else if (hour >= 12 && hour < 18) {
+          message = 'Good afternoon.';
+        } else if (hour >= 18) {
+          message = 'Good evening.';
+        }
+
+        greeting.textContent = message;
+      }
+
+      requestAnimationFrame(() => {
+        gateway.classList.add('is-ready');
+      });
+    })();
+  </script>
 
 {%- endif -%}
 

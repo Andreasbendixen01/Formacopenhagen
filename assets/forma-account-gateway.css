@@ -8,9 +8,9 @@
   );
 
   padding:
-    clamp(72px, 11vh, 130px)
+    clamp(54px, 7vh, 82px)
     24px
-    clamp(54px, 8vh, 90px);
+    clamp(48px, 7vh, 76px);
 
   display: flex;
   align-items: center;
@@ -20,19 +20,19 @@
 }
 
 .forma-account-gateway__container {
-  width: min(100%, 720px);
+  width: min(100%, 560px);
   margin: 0 auto;
 }
 
 
 /* ==========================================================
-   INTRO
+   EYEBROW
    ========================================================== */
 
 .forma-account-gateway__eyebrow {
-  margin: 0 0 30px;
+  margin: 0 0 27px;
 
-  color: rgba(23, 23, 23, 0.43);
+  color: rgba(23, 23, 23, 0.42);
 
   font-size: 9px;
   line-height: 1;
@@ -41,10 +41,15 @@
   text-transform: uppercase;
 }
 
+
+/* ==========================================================
+   GREETING
+   ========================================================== */
+
 .forma-account-gateway__title {
   margin: 0;
 
-  font-size: clamp(68px, 8vw, 112px);
+  font-size: clamp(68px, 7vw, 104px);
   font-weight: 400;
   line-height: 0.9;
 
@@ -57,22 +62,30 @@
    ========================================================== */
 
 .forma-account-gateway__statement {
-  margin-top: clamp(38px, 5vh, 54px);
+  margin-top: 38px;
 }
 
-.forma-account-gateway__statement p {
+.forma-account-gateway__statement-line {
   margin: 0;
 
-  color: rgba(23, 23, 23, 0.5);
+  color: rgba(23, 23, 23, 0.46);
 
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(18px, 1.7vw, 23px);
   font-weight: 400;
-  line-height: 1.42;
+  line-height: 1.38;
 
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+
+  opacity: 0;
+  transform: translateY(7px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.8s
+      cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.forma-account-gateway__statement p:last-child {
+.forma-account-gateway__statement-line--3 {
   color: #171717;
 }
 
@@ -82,12 +95,12 @@
    ========================================================== */
 
 .forma-account-gateway__actions {
-  width: min(100%, 520px);
+  width: 100%;
 
-  margin-top: clamp(56px, 8vh, 82px);
+  margin-top: 46px;
 
   border-top:
-    1px solid rgba(23, 23, 23, 0.16);
+    1px solid rgba(23, 23, 23, 0.15);
 }
 
 .forma-account-gateway__action {
@@ -100,10 +113,10 @@
   align-items: center;
   justify-content: space-between;
 
-  gap: 30px;
+  gap: 32px;
 
   border-bottom:
-    1px solid rgba(23, 23, 23, 0.16);
+    1px solid rgba(23, 23, 23, 0.15);
 
   color: #171717;
   background: transparent;
@@ -111,89 +124,172 @@
   font-size: 11px;
   line-height: 1;
 
-  letter-spacing: 0.035em;
+  letter-spacing: 0.025em;
 
   text-decoration: none;
 
-  transition:
-    padding-left 0.32s
-      cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.2s ease;
+  overflow: hidden;
 }
 
-.forma-account-gateway__action > span:last-child {
-  color: rgba(23, 23, 23, 0.45);
+.forma-account-gateway__action::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 1px;
+
+  background: #171717;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition:
+    transform 0.5s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-account-gateway__action-label {
+  transition:
+    transform 0.38s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-account-gateway__action-arrow {
+  color: rgba(23, 23, 23, 0.42);
 
   font-size: 15px;
+  line-height: 1;
 
   transition:
-    transform 0.3s
-      cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.2s ease;
+    color 0.25s ease,
+    transform 0.42s
+      cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.forma-account-gateway__action:hover {
-  padding-left: 10px;
+.forma-account-gateway__action:hover::after {
+  transform: scaleX(1);
 }
 
 .forma-account-gateway__action:hover
-> span:last-child {
+.forma-account-gateway__action-label {
+  transform: translateX(8px);
+}
+
+.forma-account-gateway__action:hover
+.forma-account-gateway__action-arrow {
   color: #171717;
 
-  transform: translateX(5px);
+  transform: translateX(12px);
 }
 
 
 /* ==========================================================
-   CREATE MEMBERSHIP
+   MEMBERSHIP ACTION
    ========================================================== */
 
 .forma-account-gateway__action--membership {
-  color: rgba(23, 23, 23, 0.62);
+  color: rgba(23, 23, 23, 0.56);
 }
 
-.forma-account-gateway__action--membership::after {
-  content: "NEW";
-
-  margin-left: auto;
-  margin-right: 2px;
-
-  padding: 5px 7px;
-
-  border: 1px solid
-    rgba(23, 23, 23, 0.16);
-
-  border-radius: 100px;
-
-  color: rgba(23, 23, 23, 0.42);
-
-  font-size: 7px;
-  line-height: 1;
-
-  letter-spacing: 0.13em;
-}
-
-.forma-account-gateway__action--membership
-> span:last-child {
-  margin-left: 6px;
+.forma-account-gateway__action--membership:hover {
+  color: #171717;
 }
 
 
 /* ==========================================================
-   NOTE
+   SIGNATURE
    ========================================================== */
 
 .forma-account-gateway__note {
-  margin: clamp(54px, 8vh, 80px) 0 0;
+  margin: 58px 0 0;
 
-  color: rgba(23, 23, 23, 0.32);
+  color: rgba(23, 23, 23, 0.42);
 
   font-size: 9px;
   line-height: 1;
 
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
 
   text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   PAGE INTRO
+   ========================================================== */
+
+.forma-account-gateway__reveal {
+  opacity: 0;
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.85s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.05s;
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__title {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.12s;
+}
+
+
+/* ==========================================================
+   STATEMENT SEQUENCE
+   ========================================================== */
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__statement-line--1 {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.28s;
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__statement-line--2 {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.42s;
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__statement-line--3 {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.56s;
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__actions {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.72s;
+}
+
+.forma-account-gateway.is-ready
+.forma-account-gateway__note {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-delay: 0.86s;
 }
 
 
@@ -204,37 +300,44 @@
 @media screen and (max-width: 749px) {
 
   .forma-account-gateway {
+    min-height: calc(
+      100svh - var(--header-height, 0px)
+    );
+
     align-items: flex-start;
 
     padding:
-      74px
+      64px
       20px
-      50px;
+      46px;
   }
 
   .forma-account-gateway__container {
     width: 100%;
   }
 
+  .forma-account-gateway__eyebrow {
+    margin-bottom: 25px;
+  }
+
   .forma-account-gateway__title {
     font-size: clamp(
-      62px,
-      19vw,
-      86px
+      60px,
+      18vw,
+      82px
     );
   }
 
   .forma-account-gateway__statement {
-    margin-top: 34px;
+    margin-top: 32px;
   }
 
-  .forma-account-gateway__statement p {
+  .forma-account-gateway__statement-line {
     font-size: 18px;
   }
 
   .forma-account-gateway__actions {
-    width: 100%;
-    margin-top: 54px;
+    margin-top: 42px;
   }
 
   .forma-account-gateway__action {
@@ -243,12 +346,33 @@
     font-size: 10px;
   }
 
-  .forma-account-gateway__action--membership::after {
-    font-size: 6px;
+  .forma-account-gateway__note {
+    margin-top: 48px;
+
+    line-height: 1.4;
   }
 
-  .forma-account-gateway__note {
-    margin-top: 54px;
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .forma-account-gateway__reveal,
+  .forma-account-gateway__statement-line,
+  .forma-account-gateway__action-label,
+  .forma-account-gateway__action-arrow,
+  .forma-account-gateway__action::after {
+    transition: none;
+  }
+
+  .forma-account-gateway__reveal,
+  .forma-account-gateway__statement-line {
+    opacity: 1;
+    transform: none;
   }
 
 }
