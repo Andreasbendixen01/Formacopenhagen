@@ -1,8 +1,8 @@
 <li class="forma-header-save">
   <a
-    href="/pages/your-forma"
+    href="{% if customer %}/pages/your-forma{% else %}/pages/sign-in{% endif %}"
     class="forma-header-save__link"
-    aria-label="Open Your Forma"
+    aria-label="{% if customer %}Open Your Forma{% else %}Sign in to Forma{% endif %}"
     data-forma-header-save
   >
     <span class="forma-header-save__icon" aria-hidden="true">
