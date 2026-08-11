@@ -185,8 +185,7 @@
 
 {%- comment -%}
   ==========================================================
-  FORMA — MEMBERSHIP CENTER
-  Only loaded on Your Membership
+Membership Center
   ==========================================================
 {%- endcomment -%}
 
@@ -197,15 +196,30 @@
 
 {%- comment -%}
   ==========================================================
-  FORMA — YOUR FORMA
-  Dashboard, Passport and personal discovery experience
+Onboarding
+Loads on both Your Forma and Create Membership
+  ==========================================================
+{%- endcomment -%}
+
+{%- if template.suffix == 'your-forma'
+  or template.suffix == 'create-membership'
+-%}
+  {{ 'forma-onboarding.js' | asset_url | script_tag }}
+{%- endif -%}
+
+
+{%- comment -%}
+  ==========================================================
+YOUR FORMA PAGE
   ==========================================================
 {%- endcomment -%}
 
 {%- if template.suffix == 'your-forma' -%}
 
   {%- comment -%}
-    Member data and page modules
+    ==========================================================
+  Member data and page modules
+    ==========================================================
   {%- endcomment -%}
 
   {{ 'forma-saved-products.js' | asset_url | script_tag }}
@@ -213,27 +227,29 @@
   {{ 'forma-followed-brands-page.js' | asset_url | script_tag }}
   {{ 'forma-wish-collections-page.js' | asset_url | script_tag }}
 
-
   {%- comment -%}
-    Onboarding and Passport
+    ==========================================================
+  Passport
+    ==========================================================
   {%- endcomment -%}
 
-  {{ 'forma-onboarding.js' | asset_url | script_tag }}
   {{ 'forma-passport.js' | asset_url | script_tag }}
   {{ 'forma-passport-benefits.js' | asset_url | script_tag }}
 
-
   {%- comment -%}
-    Ranking and recommendation engines
+    ==========================================================
+  Ranking and recommendation engines
+    ==========================================================
   {%- endcomment -%}
 
   {{ 'forma-ranking.js' | asset_url | script_tag }}
   {{ 'forma-recommended-products.js' | asset_url | script_tag }}
   {{ 'forma-recommendation-engine.js' | asset_url | script_tag }}
 
-
   {%- comment -%}
-    Daily discovery modules
+    ==========================================================
+  Daily discovery modules
+    ==========================================================
   {%- endcomment -%}
 
   {{ 'forma-daily-edit.js' | asset_url | script_tag }}
@@ -245,10 +261,11 @@
   {{ 'forma-continue-exploring.js' | asset_url | script_tag }}
   {{ 'forma-discover-again.js' | asset_url | script_tag }}
 
-
   {%- comment -%}
-    Dashboard UI and orchestration
-    These load last because they depend on the modules above
+    ==========================================================
+  Dashboard UI and orchestration
+  These load last because they depend on the modules above
+    ==========================================================
   {%- endcomment -%}
 
   {{ 'forma-dashboard.js' | asset_url | script_tag }}
