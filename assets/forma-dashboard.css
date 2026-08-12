@@ -4348,183 +4348,240 @@ html.forma-wish-modal-is-open {
 }
 
 /* ==========================================================
-   FORMA — MEMBER SHELL 2.0
+   FORMA — MEMBER SHELL
+   Editorial sidebar navigation
+   ========================================================== */
+
+.forma-dashboard__layout {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    clamp(180px, 15vw, 220px)
+    minmax(0, 1fr);
+
+  column-gap: clamp(56px, 7vw, 120px);
+
+  align-items: start;
+}
+
+
+/* ==========================================================
+   SIDEBAR
    ========================================================== */
 
 .forma-shell {
+  position: relative;
+
   width: 100%;
 
-  margin-bottom: clamp(52px, 7vw, 92px);
+  align-self: stretch;
 
-  color: #171717;
+  border-right:
+    1px solid rgba(23, 23, 23, 0.11);
 }
 
-.forma-shell__top {
-  min-height: 54px;
+.forma-shell__inner {
+  position: sticky;
+
+  top: 120px;
+
+  min-height:
+    calc(100vh - 170px);
+
+  padding:
+    4px
+    clamp(26px, 3vw, 44px)
+    40px
+    0;
 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  border-bottom:
-    1px solid rgba(23, 23, 23, 0.12);
+  flex-direction: column;
 }
 
-.forma-shell__identity,
-.forma-shell__membership {
-  color: inherit;
+
+/* YOUR FORMA */
+
+.forma-shell__identity {
+  margin-bottom: 46px;
+
+  color: #171717;
+
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
   text-decoration: none;
 }
 
-.forma-shell__eyebrow {
-  font-size: 9px;
-  line-height: 1;
 
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.forma-shell__membership {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 10px;
-
-  color: rgba(23, 23, 23, 0.48);
-
-  font-size: 9px;
-  line-height: 1;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  transition:
-    color 0.2s ease;
-}
-
-.forma-shell__membership span:last-child {
-  font-size: 11px;
-
-  transition:
-    transform 0.3s
-      cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.forma-shell__membership:hover {
-  color: #171717;
-}
-
-.forma-shell__membership:hover
-span:last-child {
-  transform: translate(2px, -2px);
-}
-
-
-/* Navigation */
+/* ==========================================================
+   PRIMARY NAVIGATION
+   ========================================================== */
 
 .forma-shell__navigation {
-  min-height: 62px;
-
   display: flex;
-  align-items: center;
-
-  gap: clamp(24px, 3.4vw, 48px);
-
-  overflow-x: auto;
-
-  scrollbar-width: none;
-
-  border-bottom:
-    1px solid rgba(23, 23, 23, 0.12);
-}
-
-.forma-shell__navigation::-webkit-scrollbar {
-  display: none;
+  flex-direction: column;
 }
 
 .forma-shell__link {
   position: relative;
 
-  min-height: 62px;
+  min-height: 47px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  flex: 0 0 auto;
+  gap: 20px;
 
   color: rgba(23, 23, 23, 0.42);
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1;
-
-  letter-spacing: 0.025em;
 
   text-decoration: none;
 
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.09);
+
   transition:
-    color 0.22s ease;
+    color 0.25s ease,
+    padding-left 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.forma-shell__link::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: -1px;
-
-  height: 1px;
-
-  background: #171717;
-
-  transform: scaleX(0);
-  transform-origin: center;
-
-  transition:
-    transform 0.35s
-      cubic-bezier(0.22, 1, 0.36, 1);
+.forma-shell__link:first-child {
+  border-top:
+    1px solid rgba(23, 23, 23, 0.09);
 }
 
 .forma-shell__link:hover {
   color: #171717;
+
+  padding-left: 4px;
 }
 
 .forma-shell__link.is-active {
   color: #171717;
 }
 
-.forma-shell__link.is-active::after {
-  transform: scaleX(1);
+
+/* Active indicator */
+
+.forma-shell__link.is-active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 14px;
+  height: 1px;
+
+  background: #171717;
+
+  transform:
+    translateY(-50%);
+}
+
+.forma-shell__link.is-active {
+  padding-left: 24px;
 }
 
 
-/* Mobile */
+/* Arrow */
 
-@media screen and (max-width: 749px) {
+.forma-shell__arrow {
+  opacity: 0;
 
-  .forma-shell {
-    margin-bottom: 48px;
-  }
+  transform:
+    translateX(-6px);
 
-  .forma-shell__top {
-    min-height: 48px;
-  }
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  .forma-shell__navigation {
-    min-height: 56px;
+.forma-shell__link:hover
+.forma-shell__arrow,
+.forma-shell__link.is-active
+.forma-shell__arrow {
+  opacity: 1;
 
-    gap: 28px;
-  }
+  transform:
+    translateX(0);
+}
 
-  .forma-shell__link {
-    min-height: 56px;
 
-    font-size: 9px;
-  }
+/* ==========================================================
+   MEMBERSHIP
+   ========================================================== */
 
+.forma-shell__secondary {
+  margin-top: auto;
+
+  padding-top: 48px;
+}
+
+.forma-shell__membership {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: rgba(23, 23, 23, 0.5);
+
+  font-size: 10px;
+  line-height: 1;
+
+  letter-spacing: 0.035em;
+
+  text-decoration: none;
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.11);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.11);
+
+  transition:
+    color 0.25s ease;
+}
+
+.forma-shell__membership:hover {
+  color: #171717;
+}
+
+.forma-shell__membership
+span:last-child {
+  transition:
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-shell__membership:hover
+span:last-child {
+  transform:
+    translate(2px, -2px);
+}
+
+
+/* ==========================================================
+   CONTENT
+   ========================================================== */
+
+.forma-dashboard__content {
+  min-width: 0;
+
+  padding-top: 4px;
 }
 
 /* ==========================================================
@@ -4580,6 +4637,96 @@ span:last-child {
 
   [data-forma-dashboard] {
     transition: none;
+  }
+
+}
+
+/* ==========================================================
+   FORMA SHELL — MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 899px) {
+
+  .forma-dashboard__layout {
+    display: block;
+  }
+
+  .forma-shell {
+    width: 100%;
+
+    border-right: 0;
+
+    border-bottom:
+      1px solid rgba(23, 23, 23, 0.11);
+
+    margin-bottom: 48px;
+  }
+
+  .forma-shell__inner {
+    position: relative;
+
+    top: auto;
+
+    min-height: 0;
+
+    padding: 0;
+  }
+
+  .forma-shell__identity {
+    margin-bottom: 20px;
+  }
+
+  .forma-shell__navigation {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 28px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .forma-shell__navigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .forma-shell__link {
+    min-height: 52px;
+
+    flex: 0 0 auto;
+
+    border: 0;
+
+    padding: 0;
+
+    font-size: 10px;
+  }
+
+  .forma-shell__link:first-child {
+    border-top: 0;
+  }
+
+  .forma-shell__link.is-active {
+    padding-left: 0;
+  }
+
+  .forma-shell__link.is-active::before {
+    left: 0;
+    top: auto;
+    bottom: -1px;
+
+    width: 100%;
+  }
+
+  .forma-shell__arrow {
+    display: none;
+  }
+
+  .forma-shell__secondary {
+    display: none;
   }
 
 }
