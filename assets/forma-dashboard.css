@@ -4346,3 +4346,240 @@ html.forma-wish-modal-is-open {
     scroll-behavior: auto;
   }
 }
+
+/* ==========================================================
+   FORMA — MEMBER SHELL 2.0
+   ========================================================== */
+
+.forma-shell {
+  width: 100%;
+
+  margin-bottom: clamp(52px, 7vw, 92px);
+
+  color: #171717;
+}
+
+.forma-shell__top {
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.12);
+}
+
+.forma-shell__identity,
+.forma-shell__membership {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forma-shell__eyebrow {
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.forma-shell__membership {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: rgba(23, 23, 23, 0.48);
+
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.2s ease;
+}
+
+.forma-shell__membership span:last-child {
+  font-size: 11px;
+
+  transition:
+    transform 0.3s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-shell__membership:hover {
+  color: #171717;
+}
+
+.forma-shell__membership:hover
+span:last-child {
+  transform: translate(2px, -2px);
+}
+
+
+/* Navigation */
+
+.forma-shell__navigation {
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+
+  gap: clamp(24px, 3.4vw, 48px);
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.12);
+}
+
+.forma-shell__navigation::-webkit-scrollbar {
+  display: none;
+}
+
+.forma-shell__link {
+  position: relative;
+
+  min-height: 62px;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  color: rgba(23, 23, 23, 0.42);
+
+  font-size: 10px;
+  line-height: 1;
+
+  letter-spacing: 0.025em;
+
+  text-decoration: none;
+
+  transition:
+    color 0.22s ease;
+}
+
+.forma-shell__link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 1px;
+
+  background: #171717;
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition:
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-shell__link:hover {
+  color: #171717;
+}
+
+.forma-shell__link.is-active {
+  color: #171717;
+}
+
+.forma-shell__link.is-active::after {
+  transform: scaleX(1);
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 749px) {
+
+  .forma-shell {
+    margin-bottom: 48px;
+  }
+
+  .forma-shell__top {
+    min-height: 48px;
+  }
+
+  .forma-shell__navigation {
+    min-height: 56px;
+
+    gap: 28px;
+  }
+
+  .forma-shell__link {
+    min-height: 56px;
+
+    font-size: 9px;
+  }
+
+}
+
+/* ==========================================================
+   FORMA — PAGE TRANSITIONS
+   ========================================================== */
+
+[data-forma-dashboard] {
+  transition:
+    opacity 0.38s ease,
+    transform 0.44s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Enter from right */
+
+.forma-page-enter {
+  opacity: 0;
+
+  transform:
+    translateX(44px);
+}
+
+.forma-page-enter.forma-page-enter-active {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+
+/* Navigate deeper */
+
+.forma-page-leave {
+  opacity: 0;
+
+  transform:
+    translateX(-32px);
+}
+
+
+/* Navigate back toward Home */
+
+.forma-page-leave-back {
+  opacity: 0;
+
+  transform:
+    translateX(32px);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  [data-forma-dashboard] {
+    transition: none;
+  }
+
+}

@@ -1,0 +1,107 @@
+{%- comment -%}
+  ==========================================================
+  FORMA — MEMBER SHELL 2.0
+  Shared navigation across the Your Forma universe
+  ==========================================================
+{%- endcomment -%}
+
+{%- assign forma_path = request.path -%}
+
+<header
+  class="forma-shell"
+  data-forma-shell
+>
+  <div class="forma-shell__top">
+
+    <a
+      href="/pages/your-forma"
+      class="forma-shell__identity"
+    >
+      <span class="forma-shell__eyebrow">
+        Your Forma
+      </span>
+    </a>
+
+    <a
+      href="/pages/your-membership"
+      class="forma-shell__membership"
+    >
+      <span>Membership</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+
+  </div>
+
+  <nav
+    class="forma-shell__navigation"
+    aria-label="Your Forma"
+  >
+
+    <a
+      href="/pages/your-forma"
+      class="
+        forma-shell__link
+        {% if forma_path == '/pages/your-forma' %}
+          is-active
+        {% endif %}
+      "
+      data-forma-page-link
+      data-forma-direction="back"
+    >
+      Home
+    </a>
+
+    <a
+      href="/pages/your-forma-for-you"
+      class="
+        forma-shell__link
+        {% if forma_path == '/pages/your-forma-for-you' %}
+          is-active
+        {% endif %}
+      "
+      data-forma-page-link
+    >
+      For You
+    </a>
+
+    <a
+      href="/pages/your-forma-saved"
+      class="
+        forma-shell__link
+        {% if forma_path == '/pages/your-forma-saved' %}
+          is-active
+        {% endif %}
+      "
+      data-forma-page-link
+    >
+      Saved
+    </a>
+
+    <a
+      href="/pages/your-forma-collections"
+      class="
+        forma-shell__link
+        {% if forma_path == '/pages/your-forma-collections' %}
+          is-active
+        {% endif %}
+      "
+      data-forma-page-link
+    >
+      Collections
+    </a>
+
+    <a
+      href="/pages/your-forma-passport"
+      class="
+        forma-shell__link
+        {% if forma_path == '/pages/your-forma-passport' %}
+          is-active
+        {% endif %}
+      "
+      data-forma-page-link
+    >
+      Passport
+    </a>
+
+  </nav>
+</header>
