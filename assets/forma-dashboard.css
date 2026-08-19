@@ -4348,21 +4348,19 @@ html.forma-wish-modal-is-open {
 }
 
 /* ==========================================================
-   FORMA — MEMBER SHELL
+   FORMA — MEMBER SHELL LAYOUT
    Editorial sidebar navigation
    ========================================================== */
 
 .forma-dashboard__layout {
   width: 100%;
-
   display: grid;
+
   grid-template-columns:
-    clamp(180px, 15vw, 220px)
+    clamp(210px, 17vw, 250px)
     minmax(0, 1fr);
 
-  column-gap: clamp(56px, 7vw, 120px);
-
-  align-items: start;
+  align-items: stretch;
 }
 
 
@@ -4374,8 +4372,7 @@ html.forma-wish-modal-is-open {
   position: relative;
 
   width: 100%;
-
-  align-self: stretch;
+  min-height: 100%;
 
   border-right:
     1px solid rgba(23, 23, 23, 0.11);
@@ -4391,16 +4388,18 @@ html.forma-wish-modal-is-open {
 
   padding:
     4px
-    clamp(26px, 3vw, 44px)
+    clamp(28px, 3vw, 48px)
     40px
-    0;
+    clamp(24px, 3vw, 40px);
 
   display: flex;
   flex-direction: column;
 }
 
 
-/* YOUR FORMA */
+/* ==========================================================
+   YOUR FORMA
+   ========================================================== */
 
 .forma-shell__identity {
   margin-bottom: 46px;
@@ -4460,7 +4459,6 @@ html.forma-wish-modal-is-open {
 
 .forma-shell__link:hover {
   color: #171717;
-
   padding-left: 4px;
 }
 
@@ -4469,7 +4467,9 @@ html.forma-wish-modal-is-open {
 }
 
 
-/* Active indicator */
+/* ==========================================================
+   ACTIVE INDICATOR
+   ========================================================== */
 
 .forma-shell__link.is-active::before {
   content: "";
@@ -4493,7 +4493,9 @@ html.forma-wish-modal-is-open {
 }
 
 
-/* Arrow */
+/* ==========================================================
+   ARROW
+   ========================================================== */
 
 .forma-shell__arrow {
   opacity: 0;
@@ -4524,7 +4526,6 @@ html.forma-wish-modal-is-open {
 
 .forma-shell__secondary {
   margin-top: auto;
-
   padding-top: 48px;
 }
 
