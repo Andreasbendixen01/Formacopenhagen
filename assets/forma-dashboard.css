@@ -4354,13 +4354,12 @@ html.forma-wish-modal-is-open {
 
 .forma-dashboard__layout {
   width: 100%;
-  display: grid;
+  display: block;
+}
 
-  grid-template-columns:
-    clamp(210px, 17vw, 250px)
-    minmax(0, 1fr);
-
-  align-items: stretch;
+.forma-dashboard__content {
+  width: 100%;
+  min-width: 0;
 }
 
 
@@ -5245,4 +5244,12 @@ span:last-child {
       clamp(48px, 14vw, 76px);
   }
 
+}
+
+/* ==========================================================
+   FORMA — NO SIDEBAR ON YOUR FORMA
+   ========================================================== */
+
+.forma-shell {
+  display: none !important;
 }
