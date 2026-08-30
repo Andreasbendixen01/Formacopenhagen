@@ -5489,3 +5489,247 @@ span:last-child {
   }
 
 }
+
+/* =========================================================
+   FORMA — YOUR FORMA LANDING / NAVIGATION
+   ========================================================= */
+
+.forma-dashboard__overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  margin: 0 0 110px;
+}
+
+.forma-dashboard__overview-item {
+  min-height: 150px;
+  padding: 28px 32px;
+  border-right: 1px solid rgba(0,0,0,.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.forma-dashboard__overview-item:last-child {
+  border-right: 0;
+}
+
+.forma-dashboard__overview-value {
+  font-size: clamp(42px, 4vw, 64px);
+  line-height: .95;
+  letter-spacing: -.055em;
+  font-weight: 400;
+}
+
+.forma-dashboard__overview-label {
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  opacity: .45;
+}
+
+
+/* =========================================================
+   YOUR FORMA INTRO
+   ========================================================= */
+
+.forma-dashboard__modules {
+  margin-top: 0;
+}
+
+.forma-dashboard__modules-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  margin-bottom: 42px;
+  align-items: end;
+}
+
+.forma-dashboard__modules-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  opacity: .55;
+}
+
+.forma-dashboard__modules-title {
+  margin: 0;
+  max-width: 850px;
+  font-size: clamp(48px, 6vw, 92px);
+  line-height: .94;
+  letter-spacing: -.065em;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   MODULE GRID
+   ========================================================= */
+
+.forma-dashboard__module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgba(0,0,0,.14);
+  border-left: 1px solid rgba(0,0,0,.14);
+}
+
+.forma-dashboard__module {
+  position: relative;
+  min-height: 330px;
+  padding: 28px 40px 34px;
+  border-right: 1px solid rgba(0,0,0,.14);
+  border-bottom: 1px solid rgba(0,0,0,.14);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #f7f7f5;
+  color: #111;
+
+  text-decoration: none;
+  overflow: hidden;
+
+  transition:
+    background-color .35s ease,
+    color .35s ease;
+}
+
+.forma-dashboard__module:hover {
+  background: #111;
+  color: #fff;
+}
+
+
+/* module number */
+
+.forma-dashboard__module-number {
+  font-size: 10px;
+  letter-spacing: .12em;
+  opacity: .42;
+  transition: opacity .35s ease;
+}
+
+.forma-dashboard__module:hover .forma-dashboard__module-number {
+  opacity: .55;
+}
+
+
+/* module content */
+
+.forma-dashboard__module-title {
+  margin: 0 0 8px;
+  font-size: clamp(38px, 4vw, 64px);
+  line-height: .95;
+  letter-spacing: -.055em;
+  font-weight: 400;
+}
+
+.forma-dashboard__module-description {
+  margin: 0;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.45;
+  opacity: .55;
+}
+
+
+/* arrow */
+
+.forma-dashboard__module-arrow {
+  position: absolute;
+  right: 38px;
+  bottom: 30px;
+
+  font-size: 22px;
+  line-height: 1;
+
+  transition:
+    transform .35s ease,
+    opacity .35s ease;
+}
+
+.forma-dashboard__module:hover .forma-dashboard__module-arrow {
+  transform: translateX(7px);
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   Hide the old little menu underneath the hero
+   ========================================================= */
+
+.forma-dashboard__quick-actions {
+  display: none !important;
+}
+
+
+/* =========================================================
+   HERO CLEANUP
+   ========================================================= */
+
+.forma-dashboard__hero {
+  padding-bottom: 0 !important;
+}
+
+.forma-dashboard__hero-footer {
+  display: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 749px) {
+
+  .forma-dashboard__overview {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 70px;
+  }
+
+  .forma-dashboard__overview-item {
+    min-height: 115px;
+    padding: 20px;
+  }
+
+  .forma-dashboard__overview-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .forma-dashboard__overview-item:nth-child(-n+2) {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+
+  .forma-dashboard__modules-header {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .forma-dashboard__modules-eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .forma-dashboard__modules-title {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+
+  .forma-dashboard__module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-dashboard__module {
+    min-height: 260px;
+    padding: 22px 24px 28px;
+  }
+
+  .forma-dashboard__module-title {
+    font-size: 42px;
+  }
+
+  .forma-dashboard__module-arrow {
+    right: 24px;
+    bottom: 25px;
+  }
+}
