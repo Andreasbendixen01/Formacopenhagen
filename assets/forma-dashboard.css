@@ -4952,3 +4952,297 @@ span:last-child {
   }
 
 }
+
+/* ==========================================================
+   FORMA — MEMBER HOME NAVIGATION
+   ========================================================== */
+
+.forma-home-navigation {
+  margin-top: clamp(90px, 10vw, 160px);
+}
+
+
+.forma-home-navigation__header {
+  margin-bottom: 34px;
+}
+
+
+.forma-home-navigation__title {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size:
+    clamp(32px, 4.5vw, 64px);
+
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+}
+
+
+/* GRID */
+
+.forma-home-navigation__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-left:
+    1px solid rgba(23, 23, 23, 0.14);
+}
+
+
+/* CARD */
+
+.forma-home-card {
+  position: relative;
+
+  min-height:
+    clamp(280px, 25vw, 390px);
+
+  padding:
+    clamp(26px, 3vw, 44px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-right:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  color: #171717;
+
+  text-decoration: none;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+
+.forma-home-card:hover {
+  background:
+    rgba(255, 255, 255, 0.72);
+}
+
+
+/* DARK FIRST CARD */
+
+.forma-home-card--dark {
+  background: #171717;
+  color: #ffffff;
+}
+
+
+.forma-home-card--dark:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+
+/* NUMBER */
+
+.forma-home-card__number {
+  color: currentColor;
+
+  opacity: 0.38;
+
+  font-size: 9px;
+
+  line-height: 1;
+
+  letter-spacing: 0.16em;
+}
+
+
+/* CONTENT */
+
+.forma-home-card__content {
+  max-width: 620px;
+}
+
+
+.forma-home-card__content h3 {
+  margin: 0;
+
+  font-size:
+    clamp(42px, 5vw, 72px);
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+}
+
+
+.forma-home-card__content p {
+  margin:
+    16px 0 0;
+
+  max-width: 360px;
+
+  color: currentColor;
+
+  opacity: 0.48;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+}
+
+
+/* ARROW */
+
+.forma-home-card__arrow {
+  align-self: flex-end;
+
+  font-size: 20px;
+
+  opacity: 0.45;
+
+  transform:
+    translateX(0);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.forma-home-card:hover
+.forma-home-card__arrow {
+  opacity: 1;
+
+  transform:
+    translateX(6px);
+}
+
+
+/* ==========================================================
+   MEMBER PAGE HEADER
+   ========================================================== */
+
+.forma-member-page-header {
+  min-height:
+    clamp(360px, 48vw, 620px);
+
+  padding-bottom:
+    clamp(56px, 7vw, 96px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.16);
+}
+
+
+.forma-member-page-header__title {
+  max-width: 980px;
+
+  margin: 0;
+
+  font-size:
+    clamp(52px, 7vw, 104px);
+
+  font-weight: 400;
+
+  line-height: 0.92;
+
+  letter-spacing: -0.065em;
+}
+
+
+.forma-member-page-header__description {
+  max-width: 580px;
+
+  margin:
+    28px 0 0;
+
+  color:
+    rgba(23, 23, 23, 0.52);
+
+  font-size: 15px;
+
+  line-height: 1.55;
+}
+
+
+/* ==========================================================
+   VIEW TRANSITION
+   ========================================================== */
+
+.forma-member-view {
+  animation:
+    forma-member-view-enter
+    0.5s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@keyframes forma-member-view-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 899px) {
+
+  .forma-home-navigation__grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .forma-home-card {
+    min-height: 260px;
+  }
+
+
+  .forma-member-page-header {
+    min-height: 420px;
+  }
+
+
+  .forma-member-page-header__title {
+    font-size:
+      clamp(48px, 14vw, 76px);
+  }
+
+}

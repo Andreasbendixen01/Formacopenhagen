@@ -5,527 +5,647 @@
 <section
   class="forma-dashboard"
   data-forma-dashboard
+  data-forma-member-app
 >
 
   <div class="forma-dashboard__layout">
 
-    {%- comment -%}
-      ==========================================================
-      YOUR FORMA — SHARED MEMBER NAVIGATION
-      ==========================================================
-    {%- endcomment -%}
-
     {% render 'forma-shell' %}
-
-
-    {%- comment -%}
-      ==========================================================
-      YOUR FORMA — PAGE CONTENT
-      ==========================================================
-    {%- endcomment -%}
 
     <main class="forma-dashboard__content">
 
       <div class="forma-dashboard__container">
 
-        {% render 'forma-dashboard-hero' %}
 
-        {% render 'forma-home-navigation' %}
-
-        {% render 'forma-dashboard-overview' %}
-
-        {% render 'forma-passport' %}
-
-        {% render 'forma-passport-benefits' %}
-
-        {% render 'forma-dashboard-following' %}
-
-        {% render 'forma-dashboard-saved' %}
-
-        {% render 'forma-wish-collections' %}
-
-
-        {%- comment -%}
-          ======================================================
-          DISCOVER AGAIN
-          ======================================================
-        {%- endcomment -%}
+        <!-- ==================================================
+             HOME
+             ================================================== -->
 
         <section
-          class="forma-dashboard-section forma-discover-again"
-          data-forma-discover-again
-          hidden
+          class="forma-member-view"
+          data-forma-view="home"
         >
-          <div class="forma-dashboard-section__header">
 
-            <div class="forma-dashboard-section__heading">
+          {% render 'forma-dashboard-hero' %}
+
+          {% render 'forma-dashboard-overview' %}
+
+
+          <!-- HOME NAVIGATION -->
+
+          <section class="forma-home-navigation">
+
+            <div class="forma-home-navigation__header">
 
               <p class="forma-dashboard-section__eyebrow">
-                Worth another look
+                Your Forma
               </p>
 
-              <h2 class="forma-dashboard-section__title">
-                Discover Again
+              <h2 class="forma-home-navigation__title">
+                Everything that makes your Forma yours.
               </h2>
-
-              <p class="forma-dashboard-section__description">
-                Products from your journey that deserve to be rediscovered.
-              </p>
 
             </div>
 
-          </div>
 
-          <div
-            class="forma-discover-again__layout"
-            data-forma-discover-again-content
-          >
+            <div class="forma-home-navigation__grid">
 
-            <article
-              class="forma-discover-again__featured"
-              data-forma-discover-again-featured
-            ></article>
 
-            <div
-              class="forma-discover-again__secondary"
-              data-forma-discover-again-secondary
-            ></div>
+              <a
+                href="?forma=home"
+                class="forma-home-card forma-home-card--dark"
+                data-forma-route="home"
+              >
+                <span class="forma-home-card__number">01</span>
 
-          </div>
+                <div class="forma-home-card__content">
+                  <h3>Home</h3>
+
+                  <p>
+                    Your Forma at a glance.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+              <a
+                href="?forma=for-you"
+                class="forma-home-card"
+                data-forma-route="for-you"
+              >
+                <span class="forma-home-card__number">02</span>
+
+                <div class="forma-home-card__content">
+                  <h3>For You</h3>
+
+                  <p>
+                    A personal edit shaped around you.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+              <a
+                href="?forma=saved"
+                class="forma-home-card"
+                data-forma-route="saved"
+              >
+                <span class="forma-home-card__number">03</span>
+
+                <div class="forma-home-card__content">
+                  <h3>Saved</h3>
+
+                  <p>
+                    Everything you decided to keep.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+              <a
+                href="?forma=collections"
+                class="forma-home-card"
+                data-forma-route="collections"
+              >
+                <span class="forma-home-card__number">04</span>
+
+                <div class="forma-home-card__content">
+                  <h3>Collections</h3>
+
+                  <p>
+                    Your own worlds within Forma.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+              <a
+                href="?forma=passport"
+                class="forma-home-card"
+                data-forma-route="passport"
+              >
+                <span class="forma-home-card__number">05</span>
+
+                <div class="forma-home-card__content">
+                  <h3>Passport</h3>
+
+                  <p>
+                    Your membership and Forma journey.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+              <a
+                href="?forma=activity"
+                class="forma-home-card"
+                data-forma-route="activity"
+              >
+                <span class="forma-home-card__number">06</span>
+
+                <div class="forma-home-card__content">
+                  <h3>Activity</h3>
+
+                  <p>
+                    Your journey across Forma.
+                  </p>
+                </div>
+
+                <span class="forma-home-card__arrow">
+                  →
+                </span>
+              </a>
+
+
+            </div>
+
+          </section>
+
         </section>
 
 
-        {%- comment -%}
-          ======================================================
-          TODAY'S EDIT
-          ======================================================
-        {%- endcomment -%}
+
+        <!-- ==================================================
+             FOR YOU
+             ================================================== -->
 
         <section
-          class="forma-dashboard-section forma-daily-edit"
-          data-forma-daily-edit
-          data-forma-section="daily-edit"
+          class="forma-member-view"
+          data-forma-view="for-you"
           hidden
         >
 
-          <div class="forma-dashboard-section__header">
+          <header class="forma-member-page-header">
 
-            <div class="forma-dashboard-section__heading">
+            <p class="forma-dashboard-section__eyebrow">
+              For You
+            </p>
 
-              <p class="forma-dashboard-section__eyebrow">
-                Curated today
-              </p>
+            <h1 class="forma-member-page-header__title">
+              A personal edit shaped around you.
+            </h1>
 
-              <h2 class="forma-dashboard-section__title">
-                Today’s Edit
-              </h2>
+            <p class="forma-member-page-header__description">
+              Discover products, brands and inspiration selected from
+              the way you explore Forma.
+            </p>
 
-              <p class="forma-dashboard-section__description">
-                A daily selection shaped by your taste, activity and the brands you follow.
-              </p>
-
-            </div>
-
-            <p
-              class="forma-daily-edit__date"
-              data-forma-daily-edit-date
-            ></p>
-
-          </div>
-
-          <div
-            class="forma-daily-edit__layout"
-            data-forma-daily-edit-grid
-          ></div>
-
-        </section>
+          </header>
 
 
-        {%- comment -%}
-          ======================================================
-          SINCE YOUR LAST VISIT
-          ======================================================
-        {%- endcomment -%}
-
-        <section
-          class="forma-dashboard-section forma-new-arrivals"
-          data-forma-new-arrivals
-          data-forma-section="new-arrivals"
-          hidden
-        >
-
-          <div class="forma-dashboard-section__header">
-
-            <div class="forma-dashboard-section__heading">
-
-              <p class="forma-dashboard-section__eyebrow">
-                Your brand updates
-              </p>
-
-              <h2 class="forma-dashboard-section__title">
-                Since Your Last Visit
-              </h2>
-
-              <p class="forma-dashboard-section__description">
-                New arrivals from the brands you follow, gathered in one place.
-              </p>
-
-            </div>
-
-            <p
-              class="forma-new-arrivals__total"
-              data-forma-new-arrivals-total
-            ></p>
-
-          </div>
-
-
-          <div
-            class="forma-new-arrivals__skeleton"
-            data-forma-new-arrivals-skeleton
-            aria-hidden="true"
+          <section
+            class="forma-dashboard-section forma-continue"
+            data-forma-continue
           >
+            <div class="forma-dashboard-section__header">
 
-            {%- for index in (1..3) -%}
+              <div class="forma-dashboard-section__heading">
 
-              <div class="forma-new-arrivals__skeleton-row">
+                <p class="forma-dashboard-section__eyebrow">
+                  Pick up where you left off
+                </p>
 
-                <span class="forma-new-arrivals__skeleton-index"></span>
+                <h2 class="forma-dashboard-section__title">
+                  Continue Exploring
+                </h2>
 
-                <span class="forma-new-arrivals__skeleton-name"></span>
-
-                <span class="forma-new-arrivals__skeleton-count"></span>
-
-                <span class="forma-new-arrivals__skeleton-icon"></span>
+                <p class="forma-dashboard-section__description">
+                  A personal selection of products worth another look.
+                </p>
 
               </div>
 
-            {%- endfor -%}
-
-          </div>
+            </div>
 
 
-          <div
-            class="forma-new-arrivals__list"
-            data-forma-new-arrivals-list
-          ></div>
-
-
-          <div
-            class="forma-new-arrivals__empty"
-            data-forma-new-arrivals-empty
-            hidden
-          >
-
-            <p class="forma-new-arrivals__empty-index">
-              You’re up to date
-            </p>
-
-            <h3 class="forma-new-arrivals__empty-title">
-              Nothing new since your last visit.
-            </h3>
-
-            <p class="forma-new-arrivals__empty-text">
-              We’ll keep an eye on the brands you follow and collect their newest
-              arrivals here.
-            </p>
-
-            <a
-              href="/pages/brands"
-              class="forma-new-arrivals__empty-link"
+            <div
+              class="forma-continue__content"
+              data-forma-continue-content
+              hidden
             >
-              <span>Discover more brands</span>
-              <span aria-hidden="true">→</span>
-            </a>
 
-          </div>
+              <article
+                class="forma-continue__featured"
+                data-forma-continue-featured
+              ></article>
 
-        </section>
+              <div
+                class="forma-continue__secondary"
+                data-forma-continue-secondary
+              ></div>
+
+            </div>
 
 
-        {%- comment -%}
-          ======================================================
-          CONTINUE EXPLORING
-          ======================================================
-        {%- endcomment -%}
+            <div
+              class="forma-recently-viewed__empty"
+              data-forma-continue-empty
+              hidden
+            >
 
-        <section
-          class="forma-dashboard-section forma-continue"
-          data-forma-continue
-        >
-
-          <div class="forma-dashboard-section__header">
-
-            <div class="forma-dashboard-section__heading">
-
-              <p class="forma-dashboard-section__eyebrow">
-                Pick up where you left off
+              <p class="forma-recently-viewed__empty-index">
+                Continue
               </p>
 
-              <h2 class="forma-dashboard-section__title">
-                Continue Exploring
-              </h2>
+              <h3 class="forma-recently-viewed__empty-title">
+                Your next discovery starts here.
+              </h3>
 
-              <p class="forma-dashboard-section__description">
-                A personal selection of products worth another look.
+              <p class="forma-recently-viewed__empty-text">
+                Explore Forma and the products worth returning to
+                will appear here.
               </p>
 
             </div>
 
-            <a
-              href="/collections/all"
-              class="forma-dashboard-section__link"
-            >
-              <span>Explore products</span>
-              <span aria-hidden="true">→</span>
-            </a>
-
-          </div>
+          </section>
 
 
-          <div
-            class="forma-continue__content"
-            data-forma-continue-content
+          <section
+            class="forma-dashboard-section forma-daily-edit"
+            data-forma-daily-edit
+            data-forma-section="daily-edit"
             hidden
           >
 
-            <article
-              class="forma-continue__featured"
-              data-forma-continue-featured
-            ></article>
+            <div class="forma-dashboard-section__header">
+
+              <div class="forma-dashboard-section__heading">
+
+                <p class="forma-dashboard-section__eyebrow">
+                  Curated today
+                </p>
+
+                <h2 class="forma-dashboard-section__title">
+                  Today’s Edit
+                </h2>
+
+                <p class="forma-dashboard-section__description">
+                  A daily selection shaped by your taste, activity
+                  and the brands you follow.
+                </p>
+
+              </div>
+
+              <p
+                class="forma-daily-edit__date"
+                data-forma-daily-edit-date
+              ></p>
+
+            </div>
 
             <div
-              class="forma-continue__secondary"
-              data-forma-continue-secondary
+              class="forma-daily-edit__layout"
+              data-forma-daily-edit-grid
             ></div>
 
-          </div>
+          </section>
 
 
-          <div
-            class="forma-recently-viewed__empty"
-            data-forma-continue-empty
+          <section
+            class="forma-dashboard-section forma-new-arrivals"
+            data-forma-new-arrivals
+            data-forma-section="new-arrivals"
             hidden
           >
 
-            <p class="forma-recently-viewed__empty-index">
-              03
-            </p>
+            <div class="forma-dashboard-section__header">
 
-            <h3 class="forma-recently-viewed__empty-title">
-              Your next discovery starts here.
-            </h3>
+              <div class="forma-dashboard-section__heading">
 
-            <p class="forma-recently-viewed__empty-text">
-              Explore Forma and the products worth returning to will appear here.
-            </p>
+                <p class="forma-dashboard-section__eyebrow">
+                  Your brand updates
+                </p>
 
-            <a
-              href="/collections/all"
-              class="forma-recently-viewed__empty-link"
+                <h2 class="forma-dashboard-section__title">
+                  Since Your Last Visit
+                </h2>
+
+                <p class="forma-dashboard-section__description">
+                  New arrivals from the brands you follow,
+                  gathered in one place.
+                </p>
+
+              </div>
+
+              <p
+                class="forma-new-arrivals__total"
+                data-forma-new-arrivals-total
+              ></p>
+
+            </div>
+
+
+            <div
+              class="forma-new-arrivals__skeleton"
+              data-forma-new-arrivals-skeleton
+              aria-hidden="true"
             >
-              <span>Start exploring</span>
-              <span aria-hidden="true">→</span>
-            </a>
 
-          </div>
+              {% for index in (1..3) %}
+
+                <div class="forma-new-arrivals__skeleton-row">
+
+                  <span class="forma-new-arrivals__skeleton-index"></span>
+
+                  <span class="forma-new-arrivals__skeleton-name"></span>
+
+                  <span class="forma-new-arrivals__skeleton-count"></span>
+
+                  <span class="forma-new-arrivals__skeleton-icon"></span>
+
+                </div>
+
+              {% endfor %}
+
+            </div>
+
+
+            <div
+              class="forma-new-arrivals__list"
+              data-forma-new-arrivals-list
+            ></div>
+
+
+            <div
+              class="forma-new-arrivals__empty"
+              data-forma-new-arrivals-empty
+              hidden
+            >
+
+              <p class="forma-new-arrivals__empty-index">
+                You’re up to date
+              </p>
+
+              <h3 class="forma-new-arrivals__empty-title">
+                Nothing new since your last visit.
+              </h3>
+
+              <p class="forma-new-arrivals__empty-text">
+                We’ll keep an eye on the brands you follow.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <section
+            class="forma-dashboard-section forma-recommended"
+            data-forma-recommended
+            hidden
+          >
+
+            <div class="forma-dashboard-section__header">
+
+              <div class="forma-dashboard-section__heading">
+
+                <p class="forma-dashboard-section__eyebrow">
+                  Chosen around you
+                </p>
+
+                <h2 class="forma-dashboard-section__title">
+                  Recommended for You
+                </h2>
+
+                <p class="forma-dashboard-section__description">
+                  A personal edit shaped by the brands,
+                  products and details you explore.
+                </p>
+
+              </div>
+
+              <button
+                class="forma-recommended__refresh"
+                type="button"
+                data-forma-recommended-refresh
+              >
+                Refresh selection
+              </button>
+
+            </div>
+
+            <div
+              class="forma-recommended__grid"
+              data-forma-recommended-grid
+            ></div>
+
+          </section>
 
         </section>
 
 
-        {%- comment -%}
-          ======================================================
-          RECOMMENDED FOR YOU
-          ======================================================
-        {%- endcomment -%}
+
+        <!-- ==================================================
+             SAVED
+             ================================================== -->
 
         <section
-          class="forma-dashboard-section forma-recommended"
-          data-forma-recommended
+          class="forma-member-view"
+          data-forma-view="saved"
           hidden
         >
 
-          <div class="forma-dashboard-section__header">
+          <header class="forma-member-page-header">
 
-            <div class="forma-dashboard-section__heading">
+            <p class="forma-dashboard-section__eyebrow">
+              Saved
+            </p>
 
-              <p class="forma-dashboard-section__eyebrow">
-                Chosen around you
-              </p>
+            <h1 class="forma-member-page-header__title">
+              Everything you decided to keep.
+            </h1>
 
-              <h2 class="forma-dashboard-section__title">
-                Recommended for You
-              </h2>
+            <p class="forma-member-page-header__description">
+              The products that caught your eye and earned a place
+              in your Forma.
+            </p>
 
-              <p class="forma-dashboard-section__description">
-                A personal edit shaped by the brands, products and details you explore.
-              </p>
+          </header>
 
-            </div>
-
-            <button
-              class="forma-recommended__refresh"
-              type="button"
-              data-forma-recommended-refresh
-            >
-              Refresh selection
-            </button>
-
-          </div>
-
-          <div
-            class="forma-recommended__grid"
-            data-forma-recommended-grid
-          ></div>
+          {% render 'forma-dashboard-saved' %}
 
         </section>
 
 
-        {%- comment -%}
-          ======================================================
-          RECENT ACTIVITY
-          ======================================================
-        {%- endcomment -%}
+
+        <!-- ==================================================
+             COLLECTIONS
+             ================================================== -->
 
         <section
-          id="FormaActivity"
-          class="forma-dashboard-section forma-activity"
+          class="forma-member-view"
+          data-forma-view="collections"
+          hidden
         >
 
-          <div class="forma-dashboard-section__header">
+          <header class="forma-member-page-header">
 
-            <div class="forma-dashboard-section__heading">
+            <p class="forma-dashboard-section__eyebrow">
+              Collections
+            </p>
 
-              <p class="forma-dashboard-section__eyebrow">
-                Your activity
-              </p>
+            <h1 class="forma-member-page-header__title">
+              Your own worlds within Forma.
+            </h1>
 
-              <h2 class="forma-dashboard-section__title">
-                Recent Activity
-              </h2>
+            <p class="forma-member-page-header__description">
+              Organise the things you discover into collections
+              that mean something to you.
+            </p>
 
-              <p class="forma-dashboard-section__description">
-                Everything you've explored, saved and followed across Forma.
-              </p>
+          </header>
 
-            </div>
+          {% render 'forma-wish-collections' %}
 
-          </div>
-
-
-          <div
-            class="forma-activity-feed"
-            data-forma-activity-feed
-          ></div>
+        </section>
 
 
-          <div
-            class="forma-activity-empty"
-            data-forma-activity-empty
-            hidden
-          >
 
-            <p class="forma-activity-empty__index">
+        <!-- ==================================================
+             PASSPORT
+             ================================================== -->
+
+        <section
+          class="forma-member-view"
+          data-forma-view="passport"
+          hidden
+        >
+
+          <header class="forma-member-page-header">
+
+            <p class="forma-dashboard-section__eyebrow">
+              Your identity
+            </p>
+
+            <h1 class="forma-member-page-header__title">
+              Forma Passport
+            </h1>
+
+            <p class="forma-member-page-header__description">
+              Your membership identity inside Forma, shaped by
+              the brands, places and experiences you discover.
+            </p>
+
+          </header>
+
+          {% render 'forma-passport' %}
+
+          {% render 'forma-passport-benefits' %}
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ACTIVITY
+             ================================================== -->
+
+        <section
+          class="forma-member-view"
+          data-forma-view="activity"
+          hidden
+        >
+
+          <header class="forma-member-page-header">
+
+            <p class="forma-dashboard-section__eyebrow">
               Activity
             </p>
 
-            <h3 class="forma-activity-empty__title">
-              Your journey starts here.
-            </h3>
+            <h1 class="forma-member-page-header__title">
+              Your journey across Forma.
+            </h1>
 
-            <p class="forma-activity-empty__text">
-              Save products, follow brands and explore stories to build your personal timeline.
+            <p class="forma-member-page-header__description">
+              Everything you've explored, saved and followed.
             </p>
 
-          </div>
+          </header>
+
+
+          <section
+            id="FormaActivity"
+            class="forma-dashboard-section forma-activity"
+          >
+
+            <div class="forma-dashboard-section__header">
+
+              <div class="forma-dashboard-section__heading">
+
+                <p class="forma-dashboard-section__eyebrow">
+                  Your activity
+                </p>
+
+                <h2 class="forma-dashboard-section__title">
+                  Recent Activity
+                </h2>
+
+                <p class="forma-dashboard-section__description">
+                  Everything you've explored, saved and followed
+                  across Forma.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="forma-activity-feed"
+              data-forma-activity-feed
+            ></div>
+
+
+            <div
+              class="forma-activity-empty"
+              data-forma-activity-empty
+              hidden
+            >
+
+              <p class="forma-activity-empty__index">
+                Activity
+              </p>
+
+              <h3 class="forma-activity-empty__title">
+                Your journey starts here.
+              </h3>
+
+              <p class="forma-activity-empty__text">
+                Save products, follow brands and explore stories
+                to build your personal timeline.
+              </p>
+
+            </div>
+
+          </section>
 
         </section>
 
+
       </div>
-      {%- comment -%}
-        END .forma-dashboard__container
-      {%- endcomment -%}
 
     </main>
-    {%- comment -%}
-      END .forma-dashboard__content
-    {%- endcomment -%}
-
-  </div>
-  {%- comment -%}
-    END .forma-dashboard__layout
-  {%- endcomment -%}
-
-</section>
-
-
-{% else %}
-
-
-<section class="forma-membership">
-
-  <div class="forma-membership__container">
-
-    <div class="forma-membership__content">
-
-      <p class="forma-membership__eyebrow">
-        Your Forma
-      </p>
-
-      <h1 class="forma-membership__title">
-        Your personal membership to a curated world of brands, places and experiences.
-      </h1>
-
-      <p class="forma-membership__description">
-        Discover your world through the brands you follow, the places you explore and the inspiration you choose to keep.
-      </p>
-
-
-      <div class="forma-membership__benefits">
-
-        <p class="forma-membership__benefit">
-          Save the things you love
-        </p>
-
-        <p class="forma-membership__benefit">
-          Follow brands that define your taste
-        </p>
-
-        <p class="forma-membership__benefit">
-          Discover extraordinary places
-        </p>
-
-        <p class="forma-membership__benefit">
-          Unlock your Forma Passport
-        </p>
-
-      </div>
-
-
-      <div class="forma-membership__actions">
-
-        <a
-          href="/customer_authentication/login?return_to={{ '/pages/your-forma' | url_encode }}"
-          class="forma-membership__primary-button"
-        >
-          Create Your Forma
-        </a>
-
-        <p class="forma-membership__signin">
-
-          Already a member?
-
-          <a
-            href="/customer_authentication/login?return_to={{ '/pages/your-forma' | url_encode }}"
-          >
-            Sign in
-          </a>
-
-        </p>
-
-      </div>
-
-    </div>
 
   </div>
 
@@ -2865,6 +2985,167 @@
       padding: 28px;
     }
   }
+
+<script>
+(() => {
+  const root = document.querySelector(
+    '[data-forma-member-app]'
+  );
+
+  if (!root) return;
+
+
+  const views = Array.from(
+    root.querySelectorAll('[data-forma-view]')
+  );
+
+  const navigation = Array.from(
+    root.querySelectorAll('[data-forma-nav-item]')
+  );
+
+  const routes = [
+    'home',
+    'for-you',
+    'saved',
+    'collections',
+    'passport',
+    'activity'
+  ];
+
+
+  function getRoute() {
+    const params = new URLSearchParams(
+      window.location.search
+    );
+
+    const route = params.get('forma');
+
+    return routes.includes(route)
+      ? route
+      : 'home';
+  }
+
+
+  function setActiveNavigation(route) {
+
+    navigation.forEach((item) => {
+
+      const isActive =
+        item.dataset.formaNavItem === route;
+
+      item.classList.toggle(
+        'is-active',
+        isActive
+      );
+
+      if (isActive) {
+        item.setAttribute(
+          'aria-current',
+          'page'
+        );
+      } else {
+        item.removeAttribute(
+          'aria-current'
+        );
+      }
+
+    });
+
+  }
+
+
+  function showView(route) {
+
+    views.forEach((view) => {
+
+      const isActive =
+        view.dataset.formaView === route;
+
+      view.hidden = !isActive;
+
+      view.classList.toggle(
+        'is-active',
+        isActive
+      );
+
+    });
+
+    setActiveNavigation(route);
+
+    root.dataset.formaCurrentView = route;
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+  }
+
+
+  function navigate(route) {
+
+    if (!routes.includes(route)) {
+      route = 'home';
+    }
+
+    const url = new URL(
+      window.location.href
+    );
+
+    if (route === 'home') {
+      url.searchParams.delete('forma');
+    } else {
+      url.searchParams.set(
+        'forma',
+        route
+      );
+    }
+
+    history.pushState(
+      {},
+      '',
+      url
+    );
+
+    showView(route);
+
+  }
+
+
+  root.addEventListener(
+    'click',
+    (event) => {
+
+      const link =
+        event.target.closest(
+          '[data-forma-route]'
+        );
+
+      if (!link) return;
+
+      event.preventDefault();
+
+      navigate(
+        link.dataset.formaRoute
+      );
+
+    }
+  );
+
+
+  window.addEventListener(
+    'popstate',
+    () => {
+      showView(getRoute());
+    }
+  );
+
+
+  showView(getRoute());
+
+})();
+</script>
+
 {% endstyle %}
 
 {% schema %}

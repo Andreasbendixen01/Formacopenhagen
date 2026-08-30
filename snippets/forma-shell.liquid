@@ -24,57 +24,76 @@
     </a>
 
     <nav
-      class="forma-shell__navigation"
-      aria-label="Your Forma navigation"
-    >
+  class="forma-shell__navigation"
+  data-forma-member-navigation
+>
 
-      <a
-        href="/pages/your-forma"
-        class="forma-shell__link{% if forma_path == '/pages/your-forma' %} is-active{% endif %}"
-        data-forma-page-link
-        data-forma-direction="back"
-      >
-        <span>Home</span>
-        <span class="forma-shell__arrow" aria-hidden="true">→</span>
-      </a>
+  <a
+    href="?forma=home"
+    class="forma-shell__link"
+    data-forma-route="home"
+    data-forma-nav-item="home"
+  >
+    <span>Home</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
 
-      <a
-        href="/pages/your-forma-for-you"
-        class="forma-shell__link{% if forma_path == '/pages/your-forma-for-you' %} is-active{% endif %}"
-        data-forma-page-link
-      >
-        <span>For You</span>
-        <span class="forma-shell__arrow" aria-hidden="true">→</span>
-      </a>
 
-      <a
-        href="/pages/your-forma-saved"
-        class="forma-shell__link{% if forma_path == '/pages/your-forma-saved' %} is-active{% endif %}"
-        data-forma-page-link
-      >
-        <span>Saved</span>
-        <span class="forma-shell__arrow" aria-hidden="true">→</span>
-      </a>
+  <a
+    href="?forma=for-you"
+    class="forma-shell__link"
+    data-forma-route="for-you"
+    data-forma-nav-item="for-you"
+  >
+    <span>For You</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
 
-      <a
-        href="/pages/your-forma-collections"
-        class="forma-shell__link{% if forma_path == '/pages/your-forma-collections' %} is-active{% endif %}"
-        data-forma-page-link
-      >
-        <span>Collections</span>
-        <span class="forma-shell__arrow" aria-hidden="true">→</span>
-      </a>
 
-      <a
-        href="/pages/your-forma-passport"
-        class="forma-shell__link{% if forma_path == '/pages/your-forma-passport' %} is-active{% endif %}"
-        data-forma-page-link
-      >
-        <span>Passport</span>
-        <span class="forma-shell__arrow" aria-hidden="true">→</span>
-      </a>
+  <a
+    href="?forma=saved"
+    class="forma-shell__link"
+    data-forma-route="saved"
+    data-forma-nav-item="saved"
+  >
+    <span>Saved</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
 
-    </nav>
+
+  <a
+    href="?forma=collections"
+    class="forma-shell__link"
+    data-forma-route="collections"
+    data-forma-nav-item="collections"
+  >
+    <span>Collections</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
+
+
+  <a
+    href="?forma=passport"
+    class="forma-shell__link"
+    data-forma-route="passport"
+    data-forma-nav-item="passport"
+  >
+    <span>Passport</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
+
+
+  <a
+    href="?forma=activity"
+    class="forma-shell__link"
+    data-forma-route="activity"
+    data-forma-nav-item="activity"
+  >
+    <span>Activity</span>
+    <span class="forma-shell__arrow">→</span>
+  </a>
+
+</nav>
 
     <div class="forma-shell__secondary">
 
