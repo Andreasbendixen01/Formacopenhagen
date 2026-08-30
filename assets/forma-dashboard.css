@@ -5253,3 +5253,71 @@ span:last-child {
 .forma-shell {
   display: none !important;
 }
+/* ==========================================================
+   FORMA — PERSONAL STATUS
+   ========================================================== */
+
+.forma-dashboard__overview {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  margin-top: 28px;
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-dashboard__overview-item {
+  min-height: 82px;
+
+  padding:
+    18px 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-right:
+    1px solid rgba(23, 23, 23, 0.12);
+}
+
+.forma-dashboard__overview-item:first-child {
+  padding-left: 0;
+}
+
+.forma-dashboard__overview-item:last-child {
+  border-right: none;
+}
+
+.forma-dashboard__overview-value {
+  display: block;
+
+  font-size: 24px;
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+
+  font-weight: 400;
+}
+
+.forma-dashboard__overview-label {
+  display: block;
+
+  margin-top: 7px;
+
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(23, 23, 23, 0.42);
+}
