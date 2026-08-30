@@ -4731,3 +4731,224 @@ span:last-child {
   }
 
 }
+
+/* ==========================================================
+   FORMA — HOME NAVIGATION
+   ========================================================== */
+
+.forma-home-navigation {
+  width: 100%;
+  margin-top: clamp(24px, 4vw, 56px);
+  padding-top: clamp(24px, 3vw, 40px);
+  border-top: 1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-home-navigation__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: clamp(28px, 4vw, 54px);
+}
+
+.forma-home-navigation__eyebrow {
+  margin: 0;
+
+  color: rgba(23, 23, 23, 0.46);
+
+  font-size: 10px;
+  line-height: 1;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.forma-home-navigation__intro {
+  max-width: 320px;
+  margin: 0;
+
+  color: rgba(23, 23, 23, 0.46);
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  text-align: right;
+}
+
+.forma-home-navigation__grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  border-top:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-left:
+    1px solid rgba(23, 23, 23, 0.14);
+}
+
+.forma-home-navigation__item {
+  position: relative;
+
+  min-height: clamp(190px, 18vw, 270px);
+
+  padding: clamp(24px, 3vw, 42px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  color: #171717;
+  text-decoration: none;
+
+  border-right:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.14);
+
+  background: transparent;
+
+  transition:
+    background-color 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s ease;
+}
+
+.forma-home-navigation__item:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+.forma-home-navigation__item.is-active {
+  background: #171717;
+  color: #ffffff;
+}
+
+.forma-home-navigation__number {
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: 0.14em;
+
+  opacity: 0.42;
+
+  transition: opacity 0.25s ease;
+}
+
+.forma-home-navigation__item:hover
+.forma-home-navigation__number,
+.forma-home-navigation__item.is-active
+.forma-home-navigation__number {
+  opacity: 0.58;
+}
+
+.forma-home-navigation__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.forma-home-navigation__title {
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.forma-home-navigation__description {
+  max-width: 320px;
+
+  color: rgba(23, 23, 23, 0.48);
+
+  font-size: 11px;
+  line-height: 1.45;
+
+  transition: color 0.25s ease;
+}
+
+.forma-home-navigation__item:hover
+.forma-home-navigation__description,
+.forma-home-navigation__item.is-active
+.forma-home-navigation__description {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.forma-home-navigation__arrow {
+  align-self: flex-end;
+
+  font-size: 20px;
+  line-height: 1;
+
+  opacity: 0.42;
+
+  transform: translateX(0);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-home-navigation__item:hover
+.forma-home-navigation__arrow {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 749px) {
+
+  .forma-home-navigation {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  .forma-home-navigation__header {
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .forma-home-navigation__intro {
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .forma-home-navigation__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-home-navigation__item {
+    min-height: 180px;
+    padding: 24px;
+  }
+
+  .forma-home-navigation__title {
+    font-size: 32px;
+  }
+
+  .forma-home-navigation__description {
+    max-width: 260px;
+  }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .forma-home-navigation__item,
+  .forma-home-navigation__arrow {
+    transition: none;
+  }
+
+}
