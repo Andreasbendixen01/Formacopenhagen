@@ -4733,168 +4733,302 @@ span:last-child {
 
 /* ==========================================================
    FORMA — HOME NAVIGATION
+   Premium member landing
    ========================================================== */
 
 .forma-home-navigation {
   width: 100%;
-  margin-top: clamp(24px, 4vw, 56px);
-  padding-top: clamp(24px, 3vw, 40px);
-  border-top: 1px solid rgba(23, 23, 23, 0.14);
+  margin-top: clamp(72px, 8vw, 120px);
 }
 
 .forma-home-navigation__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: clamp(28px, 4vw, 54px);
+  width: 100%;
+  margin-bottom: clamp(32px, 4vw, 52px);
 }
 
 .forma-home-navigation__eyebrow {
-  margin: 0;
+  margin: 0 0 18px;
 
-  color: rgba(23, 23, 23, 0.46);
-
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1;
 
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+
+  color: rgba(23, 23, 23, 0.42);
 }
 
-.forma-home-navigation__intro {
-  max-width: 320px;
+.forma-home-navigation__title {
+  max-width: 980px;
+
   margin: 0;
 
-  color: rgba(23, 23, 23, 0.46);
+  font-size: clamp(48px, 6.5vw, 92px);
+  line-height: 0.9;
 
-  font-size: 11px;
-  line-height: 1.5;
+  font-weight: 400;
 
-  text-align: right;
+  letter-spacing: -0.065em;
 }
 
+
+/* ==========================================================
+   GRID
+   ========================================================== */
+
 .forma-home-navigation__grid {
+  width: 100%;
+
   display: grid;
+
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
 
   border-top:
-    1px solid rgba(23, 23, 23, 0.14);
+    1px solid rgba(23, 23, 23, 0.16);
 
   border-left:
-    1px solid rgba(23, 23, 23, 0.14);
+    1px solid rgba(23, 23, 23, 0.16);
 }
+
+
+/* ==========================================================
+   CARD
+   ========================================================== */
 
 .forma-home-navigation__item {
   position: relative;
 
-  min-height: clamp(190px, 18vw, 270px);
+  min-height: clamp(250px, 25vw, 360px);
 
-  padding: clamp(24px, 3vw, 42px);
+  padding: clamp(26px, 3vw, 42px);
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  gap: 40px;
+  overflow: hidden;
 
   color: #171717;
+
   text-decoration: none;
 
+  background: #f7f7f4;
+
   border-right:
-    1px solid rgba(23, 23, 23, 0.14);
+    1px solid rgba(23, 23, 23, 0.16);
 
   border-bottom:
-    1px solid rgba(23, 23, 23, 0.14);
+    1px solid rgba(23, 23, 23, 0.16);
 
-  background: transparent;
+  transform: translateZ(0);
 
   transition:
-    background-color 0.35s
-      cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.35s ease;
+    background-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.forma-home-navigation__item:hover {
-  background: #171717;
-  color: #ffffff;
-}
 
-.forma-home-navigation__item.is-active {
-  background: #171717;
-  color: #ffffff;
-}
+/* ==========================================================
+   NUMBER
+   ========================================================== */
 
 .forma-home-navigation__number {
   font-size: 9px;
   line-height: 1;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
 
-  opacity: 0.42;
+  color: currentColor;
 
-  transition: opacity 0.25s ease;
+  opacity: 0.38;
+
+  transition:
+    opacity 320ms ease;
+}
+
+
+/* ==========================================================
+   CONTENT
+   ========================================================== */
+
+.forma-home-navigation__content {
+  max-width: 620px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.forma-home-navigation__label {
+  margin: 0;
+
+  font-size: clamp(34px, 4vw, 58px);
+
+  line-height: 0.94;
+
+  font-weight: 400;
+
+  letter-spacing: -0.055em;
+}
+
+.forma-home-navigation__description {
+  max-width: 380px;
+
+  margin: 0;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  color: currentColor;
+
+  opacity: 0.46;
+
+  transition:
+    opacity 320ms ease;
+}
+
+
+/* ==========================================================
+   ARROW
+   ========================================================== */
+
+.forma-home-navigation__arrow {
+  position: absolute;
+
+  top: clamp(26px, 3vw, 42px);
+  right: clamp(26px, 3vw, 42px);
+
+  font-size: 22px;
+  line-height: 1;
+
+  opacity: 0.38;
+
+  transform: translate3d(0, 0, 0);
+
+  transition:
+    opacity 320ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
+.forma-home-navigation__item:hover {
+  background: #171717;
+
+  color: #ffffff;
+
+  transform: translateY(-4px);
+
+  z-index: 2;
 }
 
 .forma-home-navigation__item:hover
-.forma-home-navigation__number,
-.forma-home-navigation__item.is-active
 .forma-home-navigation__number {
   opacity: 0.58;
 }
 
-.forma-home-navigation__content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.forma-home-navigation__title {
-  font-size: clamp(28px, 3vw, 46px);
-  font-weight: 400;
-  line-height: 0.96;
-  letter-spacing: -0.045em;
-}
-
-.forma-home-navigation__description {
-  max-width: 320px;
-
-  color: rgba(23, 23, 23, 0.48);
-
-  font-size: 11px;
-  line-height: 1.45;
-
-  transition: color 0.25s ease;
-}
-
 .forma-home-navigation__item:hover
-.forma-home-navigation__description,
-.forma-home-navigation__item.is-active
 .forma-home-navigation__description {
-  color: rgba(255, 255, 255, 0.58);
-}
-
-.forma-home-navigation__arrow {
-  align-self: flex-end;
-
-  font-size: 20px;
-  line-height: 1;
-
-  opacity: 0.42;
-
-  transform: translateX(0);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.35s
-      cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.58;
 }
 
 .forma-home-navigation__item:hover
 .forma-home-navigation__arrow {
   opacity: 1;
-  transform: translateX(6px);
+
+  transform:
+    translate3d(7px, -7px, 0);
+}
+
+
+/* ==========================================================
+   ACTIVE
+   ========================================================== */
+
+.forma-home-navigation__item.is-active {
+  background: #171717;
+  color: #ffffff;
+
+  z-index: 1;
+}
+
+.forma-home-navigation__item.is-active
+.forma-home-navigation__number {
+  opacity: 0.58;
+}
+
+.forma-home-navigation__item.is-active
+.forma-home-navigation__description {
+  opacity: 0.58;
+}
+
+.forma-home-navigation__item.is-active
+.forma-home-navigation__arrow {
+  opacity: 1;
+}
+
+
+/* ==========================================================
+   ENTRANCE ANIMATION
+   ========================================================== */
+
+.forma-home-navigation__item {
+  opacity: 0;
+
+  animation:
+    forma-home-card-enter
+    700ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+.forma-home-navigation__item:nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.forma-home-navigation__item:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.forma-home-navigation__item:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.forma-home-navigation__item:nth-child(4) {
+  animation-delay: 260ms;
+}
+
+.forma-home-navigation__item:nth-child(5) {
+  animation-delay: 320ms;
+}
+
+.forma-home-navigation__item:nth-child(6) {
+  animation-delay: 380ms;
+}
+
+@keyframes forma-home-card-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
 }
 
 
@@ -4902,21 +5036,15 @@ span:last-child {
    MOBILE
    ========================================================== */
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 899px) {
 
   .forma-home-navigation {
-    margin-top: 24px;
-    padding-top: 24px;
+    margin-top: 64px;
   }
 
-  .forma-home-navigation__header {
-    display: block;
-    margin-bottom: 28px;
-  }
-
-  .forma-home-navigation__intro {
-    margin-top: 14px;
-    text-align: left;
+  .forma-home-navigation__title {
+    font-size:
+      clamp(46px, 13vw, 72px);
   }
 
   .forma-home-navigation__grid {
@@ -4924,16 +5052,14 @@ span:last-child {
   }
 
   .forma-home-navigation__item {
-    min-height: 180px;
-    padding: 24px;
+    min-height: 230px;
+
+    padding: 26px;
   }
 
-  .forma-home-navigation__title {
-    font-size: 32px;
-  }
-
-  .forma-home-navigation__description {
-    max-width: 260px;
+  .forma-home-navigation__arrow {
+    top: 26px;
+    right: 26px;
   }
 
 }
@@ -4947,190 +5073,14 @@ span:last-child {
 
   .forma-home-navigation__item,
   .forma-home-navigation__arrow {
+    animation: none;
     transition: none;
   }
 
-}
+  .forma-home-navigation__item {
+    opacity: 1;
+  }
 
-/* ==========================================================
-   FORMA — MEMBER HOME NAVIGATION
-   ========================================================== */
-
-.forma-home-navigation {
-  margin-top: clamp(90px, 10vw, 160px);
-}
-
-
-.forma-home-navigation__header {
-  margin-bottom: 34px;
-}
-
-
-.forma-home-navigation__title {
-  max-width: 760px;
-
-  margin: 0;
-
-  font-size:
-    clamp(32px, 4.5vw, 64px);
-
-  font-weight: 400;
-
-  line-height: 0.98;
-
-  letter-spacing: -0.045em;
-}
-
-
-/* GRID */
-
-.forma-home-navigation__grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  border-top:
-    1px solid rgba(23, 23, 23, 0.14);
-
-  border-left:
-    1px solid rgba(23, 23, 23, 0.14);
-}
-
-
-/* CARD */
-
-.forma-home-card {
-  position: relative;
-
-  min-height:
-    clamp(280px, 25vw, 390px);
-
-  padding:
-    clamp(26px, 3vw, 44px);
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  border-right:
-    1px solid rgba(23, 23, 23, 0.14);
-
-  border-bottom:
-    1px solid rgba(23, 23, 23, 0.14);
-
-  color: #171717;
-
-  text-decoration: none;
-
-  background:
-    rgba(255, 255, 255, 0.18);
-
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
-}
-
-
-.forma-home-card:hover {
-  background:
-    rgba(255, 255, 255, 0.72);
-}
-
-
-/* DARK FIRST CARD */
-
-.forma-home-card--dark {
-  background: #171717;
-  color: #ffffff;
-}
-
-
-.forma-home-card--dark:hover {
-  background: #171717;
-  color: #ffffff;
-}
-
-
-/* NUMBER */
-
-.forma-home-card__number {
-  color: currentColor;
-
-  opacity: 0.38;
-
-  font-size: 9px;
-
-  line-height: 1;
-
-  letter-spacing: 0.16em;
-}
-
-
-/* CONTENT */
-
-.forma-home-card__content {
-  max-width: 620px;
-}
-
-
-.forma-home-card__content h3 {
-  margin: 0;
-
-  font-size:
-    clamp(42px, 5vw, 72px);
-
-  font-weight: 400;
-
-  line-height: 0.95;
-
-  letter-spacing: -0.055em;
-}
-
-
-.forma-home-card__content p {
-  margin:
-    16px 0 0;
-
-  max-width: 360px;
-
-  color: currentColor;
-
-  opacity: 0.48;
-
-  font-size: 12px;
-
-  line-height: 1.45;
-}
-
-
-/* ARROW */
-
-.forma-home-card__arrow {
-  align-self: flex-end;
-
-  font-size: 20px;
-
-  opacity: 0.45;
-
-  transform:
-    translateX(0);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.35s
-      cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-.forma-home-card:hover
-.forma-home-card__arrow {
-  opacity: 1;
-
-  transform:
-    translateX(6px);
 }
 
 
@@ -5320,33 +5270,6 @@ span:last-child {
 
   color:
     rgba(23, 23, 23, 0.42);
-}
-
-/* ==========================================================
-   FORMA — HOME NAVIGATION / FINAL LANDING
-   ========================================================== */
-
-.forma-home-navigation {
-  width: 100%;
-  margin-top: clamp(42px, 5vw, 72px);
-}
-
-.forma-home-navigation__intro {
-  width: 100%;
-  margin: 0 0 clamp(28px, 3vw, 44px);
-}
-
-.forma-home-navigation__title {
-  max-width: 980px;
-
-  margin: 0;
-
-  font-size: clamp(46px, 6vw, 84px);
-  line-height: 0.94;
-
-  font-weight: 400;
-
-  letter-spacing: -0.055em;
 }
 
 
