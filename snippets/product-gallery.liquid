@@ -22,100 +22,187 @@
 <style>
 
   /* ============================================================
-     FORMA PRODUCT GALLERY — AUTO SLIDER
-     ============================================================ */
+   FORMA PRODUCT GALLERY — CONTINUOUS EDITORIAL SLIDER
+   ============================================================ */
 
-  .product-gallery--forma-auto {
-    position: relative;
-  }
+.product-gallery--forma-auto {
+  position: relative;
+  width: 100%;
+}
 
-  .product-gallery--forma-auto .product-gallery__image-list {
-    position: relative;
-  }
+.product-gallery--forma-auto .product-gallery__image-list {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.product-gallery--forma-auto .product-gallery__carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.product-gallery--forma-auto .product-gallery__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.product-gallery--forma-auto .product-gallery__media {
+  flex: 0 0 72%;
+  width: 72%;
+  min-width: 72%;
+  scroll-snap-align: none;
+  position: relative;
+}
+
+.product-gallery--forma-auto .product-gallery__media img,
+.product-gallery--forma-auto .product-gallery__media video,
+.product-gallery--forma-auto .product-gallery__media model-viewer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   Forma counter
+   ------------------------------------------------------------ */
+
+.forma-gallery-meta {
+  position: absolute;
+  z-index: 20;
+  left: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  color: #111;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+.forma-gallery-progress {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: rgba(17,17,17,.2);
+  overflow: hidden;
+}
+
+.forma-gallery-progress__bar {
+  display: block;
+  width: 30%;
+  height: 100%;
+  background: #111;
+}
+
+/* ------------------------------------------------------------
+   Controls
+   ------------------------------------------------------------ */
+
+.forma-gallery-controls {
+  position: absolute;
+  z-index: 20;
+  right: 2rem;
+  bottom: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.forma-gallery-controls button {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(17,17,17,.18);
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.72);
+
+  color: #111;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease;
+}
+
+.forma-gallery-controls button:hover {
+  background: #111;
+  color: #fff;
+  transform: scale(1.04);
+}
+
+/* ------------------------------------------------------------
+   Desktop
+   ------------------------------------------------------------ */
+
+@media screen and (min-width: 1000px) {
 
   .product-gallery--forma-auto .product-gallery__carousel {
-    scroll-behavior: smooth;
+    height: calc(100vh - var(--sticky-area-height, 0px));
+    min-height: 680px;
+    max-height: 900px;
   }
 
   .product-gallery--forma-auto .product-gallery__media {
-    transition: opacity 0.45s ease;
+    height: 100%;
+    flex-basis: 62vw;
+    min-width: 62vw;
+  }
+
+}
+
+/* ------------------------------------------------------------
+   Mobile
+   ------------------------------------------------------------ */
+
+@media screen and (max-width: 999px) {
+
+  .product-gallery--forma-auto .product-gallery__carousel {
+    height: auto;
+  }
+
+  .product-gallery--forma-auto .product-gallery__media {
+    flex: 0 0 88vw;
+    width: 88vw;
+    min-width: 88vw;
   }
 
   .forma-gallery-meta {
-    position: absolute;
-    z-index: 5;
-    left: 1.25rem;
-    bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    pointer-events: none;
-    color: #111;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .forma-gallery-progress {
-    width: 5.5rem;
-    height: 1px;
-    background: rgba(17,17,17,.18);
-    overflow: hidden;
-  }
-
-  .forma-gallery-progress__bar {
-    display: block;
-    width: 0;
-    height: 100%;
-    background: #111;
-    transform-origin: left center;
+    left: 1rem;
+    bottom: 1rem;
   }
 
   .forma-gallery-controls {
-    position: absolute;
-    z-index: 5;
-    right: 1.25rem;
-    bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    right: 1rem;
+    bottom: .75rem;
   }
 
   .forma-gallery-controls button {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: grid;
-    place-items: center;
-    border: 1px solid rgba(17,17,17,.18);
-    border-radius: 50%;
-    background: rgba(255,255,255,.82);
-    color: #111;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    width: 38px;
+    height: 38px;
   }
 
-  .forma-gallery-controls button:hover {
-    background: #111;
-    color: #fff;
-  }
-
-  @media screen and (max-width: 699px) {
-    .forma-gallery-meta {
-      left: 0.9rem;
-      bottom: 0.9rem;
-    }
-
-    .forma-gallery-controls {
-      right: 0.9rem;
-      bottom: 0.7rem;
-    }
-
-    .forma-gallery-controls button {
-      width: 2.25rem;
-      height: 2.25rem;
-    }
-  }
+}
 
   {%- if mobile_controls == 'free_scroll' -%}
     @media screen and (max-width: 999px) {
@@ -192,7 +279,7 @@
 <product-gallery
   class="product-gallery product-gallery--forma-auto"
   data-forma-auto-slider="true"
-  data-forma-auto-slider-delay="4000"
+  data-forma-auto-slider-speed="0.18"
   form="{{ product_form_id }}"
   filtered-indexes="{{ filtered_indexes | json }}"
   {% if enable_media_autoplay %}
@@ -492,173 +579,220 @@
 (() => {
   const gallery = document.currentScript.closest('product-gallery');
 
-  if (!gallery || gallery.dataset.formaAutoInitialized === 'true') {
-    return;
-  }
+  if (!gallery) return;
 
-  gallery.dataset.formaAutoInitialized = 'true';
-
-  const carousel = gallery.querySelector('.product-gallery__carousel');
-  const previousButton = gallery.querySelector('.forma-gallery-prev');
-  const nextButton = gallery.querySelector('.forma-gallery-next');
-  const pauseButton = gallery.querySelector('.forma-gallery-pause');
-  const counter = gallery.querySelector('.forma-gallery-counter');
-  const progressBar = gallery.querySelector('.forma-gallery-progress__bar');
+  const carousel = gallery.querySelector(
+    '.product-gallery__carousel'
+  );
 
   if (!carousel) return;
 
-  const delay = 4000;
-  let currentIndex = 0;
-  let timer = null;
-  let progressTimer = null;
-  let paused = false;
+  const slides = [
+    ...carousel.querySelectorAll(
+      '.product-gallery__media:not([hidden])'
+    )
+  ];
 
-  const getSlides = () => {
-    return [
-      ...gallery.querySelectorAll(
-        '.product-gallery__media:not([hidden])'
-      )
-    ];
-  };
+  if (slides.length < 2) return;
 
-  const formatNumber = number => {
-    return String(number).padStart(2, '0');
-  };
+  let isPaused = false;
+  let animationFrame;
+  let lastTime = performance.now();
 
-  const updateUI = () => {
-    const slides = getSlides();
+  const speed = Number(
+    gallery.dataset.formaAutoSliderSpeed || 0.18
+  );
 
-    if (!slides.length) return;
+  /*
+   * Duplicate the first set of slides.
+   *
+   * This gives us a seamless infinite loop rather
+   * than jumping back to the first image.
+   */
 
-    currentIndex = Math.min(
-      currentIndex,
-      slides.length - 1
+  const originalSlides = [...slides];
+
+  originalSlides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+
+    clone.classList.add(
+      'forma-gallery-clone'
     );
 
-    if (counter) {
-      counter.textContent =
-        `${formatNumber(currentIndex + 1)} / ${formatNumber(slides.length)}`;
-    }
-  };
+    clone.setAttribute(
+      'aria-hidden',
+      'true'
+    );
 
-  const stopAutoplay = () => {
-    clearTimeout(timer);
-    cancelAnimationFrame(progressTimer);
+    carousel.appendChild(clone);
+  });
 
-    timer = null;
-    progressTimer = null;
-  };
+  const originalWidth = originalSlides.reduce(
+    (total, slide) => total + slide.offsetWidth,
+    0
+  );
 
-  const startProgress = () => {
-    if (!progressBar || paused) return;
+  const animate = now => {
 
-    const startTime = performance.now();
+    if (!isPaused) {
 
-    const animate = now => {
-      if (paused) return;
+      const delta = now - lastTime;
 
-      const elapsed = now - startTime;
-      const percentage =
-        Math.min(elapsed / delay, 1) * 100;
+      carousel.scrollLeft +=
+        speed * delta;
 
-      progressBar.style.width = `${percentage}%`;
+      /*
+       * Once we've travelled through the original
+       * set of images, move back by exactly that
+       * width.
+       *
+       * Because the images are duplicated, the user
+       * will not see the reset.
+       */
 
-      if (percentage < 100) {
-        progressTimer =
-          requestAnimationFrame(animate);
+      if (
+        carousel.scrollLeft >=
+        originalWidth
+      ) {
+        carousel.scrollLeft -=
+          originalWidth;
       }
-    };
+    }
 
-    progressBar.style.width = '0%';
+    lastTime = now;
 
-    progressTimer =
+    animationFrame =
       requestAnimationFrame(animate);
   };
 
-  const startAutoplay = () => {
-    stopAutoplay();
+  /*
+   * Pause while the user interacts.
+   */
 
-    if (paused) return;
+  carousel.addEventListener(
+    'mouseenter',
+    () => {
+      isPaused = true;
+    }
+  );
 
-    startProgress();
+  carousel.addEventListener(
+    'mouseleave',
+    () => {
+      isPaused = false;
+      lastTime = performance.now();
+    }
+  );
 
-    timer = setTimeout(() => {
-      goTo(currentIndex + 1);
-    }, delay);
-  };
+  carousel.addEventListener(
+    'touchstart',
+    () => {
+      isPaused = true;
+    },
+    { passive: true }
+  );
 
-  const goTo = index => {
-    const slides = getSlides();
+  carousel.addEventListener(
+    'touchend',
+    () => {
+      setTimeout(() => {
+        isPaused = false;
+        lastTime = performance.now();
+      }, 600);
+    },
+    { passive: true }
+  );
 
-    if (slides.length < 2) return;
+  /*
+   * Manual controls.
+   */
 
-    currentIndex =
-      (index + slides.length) % slides.length;
+  const nextButton =
+    gallery.querySelector(
+      '.forma-gallery-next'
+    );
 
-    const slide = slides[currentIndex];
+  const previousButton =
+    gallery.querySelector(
+      '.forma-gallery-prev'
+    );
 
-    if (slide) {
-      carousel.scrollTo({
-        left: slide.offsetLeft,
+  const pauseButton =
+    gallery.querySelector(
+      '.forma-gallery-pause'
+    );
+
+  nextButton?.addEventListener(
+    'click',
+    () => {
+
+      isPaused = true;
+
+      carousel.scrollBy({
+        left: carousel.clientWidth * .55,
         behavior: 'smooth'
       });
+
+      setTimeout(() => {
+        lastTime = performance.now();
+        isPaused = false;
+      }, 1200);
+
     }
+  );
 
-    updateUI();
-    startAutoplay();
-  };
+  previousButton?.addEventListener(
+    'click',
+    () => {
 
-  previousButton?.addEventListener('click', () => {
-    goTo(currentIndex - 1);
-  });
+      isPaused = true;
 
-  nextButton?.addEventListener('click', () => {
-    goTo(currentIndex + 1);
-  });
+      carousel.scrollBy({
+        left: -(carousel.clientWidth * .55),
+        behavior: 'smooth'
+      });
 
-  pauseButton?.addEventListener('click', () => {
-    paused = !paused;
+      setTimeout(() => {
+        lastTime = performance.now();
+        isPaused = false;
+      }, 1200);
 
-    pauseButton.setAttribute(
-      'aria-pressed',
-      String(paused)
-    );
-
-    pauseButton.setAttribute(
-      'aria-label',
-      paused
-        ? 'Play image slideshow'
-        : 'Pause image slideshow'
-    );
-
-    pauseButton.innerHTML =
-      `<span aria-hidden="true">${
-        paused ? '▶' : 'Ⅱ'
-      }</span>`;
-
-    if (paused) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
     }
-  });
+  );
 
-  carousel.addEventListener('mouseenter', () => {
-    if (!paused) {
-      stopAutoplay();
+  pauseButton?.addEventListener(
+    'click',
+    () => {
+
+      isPaused = !isPaused;
+
+      pauseButton.innerHTML =
+        `<span aria-hidden="true">${
+          isPaused ? '▶' : 'Ⅱ'
+        }</span>`;
+
+      pauseButton.setAttribute(
+        'aria-label',
+        isPaused
+          ? 'Play image slideshow'
+          : 'Pause image slideshow'
+      );
+
+      lastTime = performance.now();
     }
-  });
+  );
 
-  carousel.addEventListener('mouseleave', () => {
-    if (!paused) {
-      startAutoplay();
-    }
-  });
+  /*
+   * Start.
+   */
 
-  updateUI();
-  startAutoplay();
+  lastTime = performance.now();
+
+  animationFrame =
+    requestAnimationFrame(animate);
+
 })();
 </script>
 
-
+  
 </product-gallery>
