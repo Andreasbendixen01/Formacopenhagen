@@ -49,8 +49,8 @@
     {%- endif -%}
   }
 
-  /* ============================================================
-   FORMA PRODUCT PAGE — FLOATING GLASS PRODUCT INFO
+  //* ============================================================
+   FORMA PRODUCT PAGE — FULL HEIGHT GLASS PRODUCT INFO
    ============================================================ */
 
 @media screen and (min-width: 1000px) {
@@ -65,44 +65,53 @@
     max-width: none;
   }
 
+  /* ----------------------------------------------------------
+     FULL HEIGHT GLASS PANEL
+     ---------------------------------------------------------- */
+
   #shopify-section-{{ section.id }} .product-info {
     position: absolute;
 
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 0;
+    right: 0;
+    bottom: 0;
 
-    width: min(38vw, 560px);
+    width: min(39vw, 590px);
 
     z-index: 30;
 
-    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
 
-    background:
-      linear-gradient(
-        135deg,
-        rgba(255,255,255,.78),
-        rgba(245,245,243,.60)
-      );
+    padding: 2.5rem 2.5rem;
 
-    border: 1px solid rgba(255,255,255,.65);
+    /*
+     * Forma glass effect.
+     * Same visual language as the mega menu:
+     * translucent grey + blur + subtle border.
+     */
+
+    background: rgba(210, 210, 208, 0.68);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.30);
 
     box-shadow:
-      0 20px 60px rgba(0,0,0,.08);
+      -12px 0 40px rgba(0, 0, 0, 0.035);
 
     backdrop-filter:
-      blur(28px)
-      saturate(120%);
+      blur(30px)
+      saturate(110%);
 
     -webkit-backdrop-filter:
-      blur(28px)
-      saturate(120%);
+      blur(30px)
+      saturate(110%);
 
-    border-radius: 2px;
+    border-radius: 0;
   }
 
   /*
-   * Slightly more breathing room inside
-   * the information panel.
+   * Make sure the content itself remains sharp
+   * while the background stays translucent.
    */
 
   #shopify-section-{{ section.id }} .product-info > * {
