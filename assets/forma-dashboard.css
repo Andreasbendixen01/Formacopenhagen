@@ -4867,15 +4867,11 @@ span:last-child {
 }
 
 .forma-home-navigation__label {
-  margin: 0;
-
-  font-size: clamp(42px, 4.8vw, 72px);
-
-  line-height: 0.92;
-
-  font-weight: 400;
-
-  letter-spacing: -0.06em;
+  
+  font-size: clamp(42px, 4.8vw, 72px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.06em !important;
+  font-weight: 400 !important;
 }
 
 .forma-home-card__description {
