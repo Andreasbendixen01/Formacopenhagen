@@ -5574,14 +5574,14 @@ span:last-child {
    ========================================================== */
 
 .forma-dashboard__hero {
-  min-height: clamp(420px, 48vw, 600px) !important;
+  min-height: clamp(390px, 44vw, 550px) !important;
 
   padding:
     clamp(28px, 3.5vw, 48px)
     0
-    clamp(28px, 3.5vw, 48px) !important;
+    clamp(20px, 2.5vw, 32px) !important;
 
-  gap: clamp(40px, 5vw, 72px) !important;
+  gap: clamp(36px, 4vw, 60px) !important;
 }
 
 
