@@ -1658,7 +1658,7 @@
   .forma-dashboard__overview-item:last-child {
     border-right: 0;
   }
-
+  
 .forma-dashboard__overview-value {
 
   font-size: clamp(30px, 3vw, 44px);
@@ -5565,83 +5565,6 @@ span:last-child {
 
   .forma-home-navigation__item {
     min-height: 170px;
-  }
-
-}
-
-/* ==========================================================
-   FORMA — YOUR FORMA / FINAL HERO COMPRESSION
-   ========================================================== */
-
-.forma-dashboard__hero {
-  min-height: clamp(390px, 44vw, 550px) !important;
-
-  padding:
-    clamp(28px, 3.5vw, 48px)
-    0
-    clamp(20px, 2.5vw, 32px) !important;
-
-  gap: clamp(36px, 4vw, 60px) !important;
-}
-
-
-/* ==========================================================
-   PERSONAL STATUS
-   ========================================================== */
-
-.forma-dashboard__overview-item {
-  min-height: 110px !important;
-
-  padding:
-    18px 24px !important;
-
-  justify-content: center !important;
-}
-
-
-.forma-dashboard__overview-value {
-  font-size:
-    clamp(30px, 3vw, 44px) !important;
-
-  line-height: 1 !important;
-
-  letter-spacing: -0.045em !important;
-}
-
-
-.forma-dashboard__overview-label {
-  margin-top: 8px !important;
-
-  font-size: 9px !important;
-
-  line-height: 1 !important;
-
-  letter-spacing: 0.16em !important;
-}
-
-
-/* ==========================================================
-   MOBILE
-   ========================================================== */
-
-@media screen and (max-width: 899px) {
-
-  .forma-dashboard__hero {
-    min-height: 420px !important;
-
-    padding:
-      28px 0 36px !important;
-
-    gap: 48px !important;
-  }
-
-  .forma-dashboard__overview-item {
-    min-height: 105px !important;
-    padding: 18px 20px !important;
-  }
-
-  .forma-dashboard__overview-value {
-    font-size: clamp(30px, 9vw, 42px) !important;
   }
 
 }
