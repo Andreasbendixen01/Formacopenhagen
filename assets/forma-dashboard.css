@@ -4734,7 +4734,7 @@ span:last-child {
 
 /* ==========================================================
    FORMA — HOME NAVIGATION
-   Canonical Your Forma navigation
+   Canonical Your Forma member navigation
    ========================================================== */
 
 .forma-home-navigation {
@@ -4747,29 +4747,13 @@ span:last-child {
   margin-bottom: clamp(32px, 4vw, 52px);
 }
 
-.forma-home-navigation__eyebrow {
-  margin: 0 0 18px;
-
-  font-size: 9px;
-  line-height: 1;
-
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: rgba(23, 23, 23, 0.42);
-}
-
 .forma-home-navigation__title {
   max-width: 980px;
-
   margin: 0;
 
   font-size: clamp(48px, 6.5vw, 92px);
-
-  line-height: 0.9;
-
   font-weight: 400;
-
+  line-height: 0.9;
   letter-spacing: -0.065em;
 }
 
@@ -4782,7 +4766,6 @@ span:last-child {
   width: 100%;
 
   display: grid;
-
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
 
@@ -4791,6 +4774,172 @@ span:last-child {
 
   border-left:
     1px solid rgba(23, 23, 23, 0.16);
+}
+
+
+/* ==========================================================
+   CARD
+   ========================================================== */
+
+.forma-home-card {
+  position: relative;
+
+  min-height: clamp(250px, 25vw, 360px);
+
+  padding: clamp(26px, 3vw, 42px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  border-right:
+    1px solid rgba(23, 23, 23, 0.16);
+
+  border-bottom:
+    1px solid rgba(23, 23, 23, 0.16);
+
+  color: #171717;
+  text-decoration: none;
+
+  background: #f7f7f4;
+
+  transition:
+    background-color 320ms ease,
+    color 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-home-card:hover {
+  background: #eeeeeb;
+}
+
+
+/* ==========================================================
+   DARK CARD
+   ========================================================== */
+
+.forma-home-card--dark {
+  background: #171717;
+  color: #ffffff;
+}
+
+.forma-home-card--dark:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   NUMBER
+   ========================================================== */
+
+.forma-home-card__number {
+  color: currentColor;
+
+  opacity: 0.38;
+
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+}
+
+
+/* ==========================================================
+   CONTENT
+   ========================================================== */
+
+.forma-home-card__content {
+  max-width: 620px;
+}
+
+.forma-home-card__content h3 {
+  margin: 0;
+
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.forma-home-card__content p {
+  max-width: 360px;
+
+  margin: 16px 0 0;
+
+  color: currentColor;
+  opacity: 0.48;
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+/* ==========================================================
+   ARROW
+   ========================================================== */
+
+.forma-home-card__arrow {
+  align-self: flex-end;
+
+  font-size: 20px;
+  line-height: 1;
+
+  opacity: 0.45;
+
+  transform: translateX(0);
+
+  transition:
+    opacity 250ms ease,
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forma-home-card:hover
+.forma-home-card__arrow {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 899px) {
+
+  .forma-home-navigation {
+    margin-top: 64px;
+  }
+
+  .forma-home-navigation__title {
+    font-size: clamp(46px, 13vw, 72px);
+  }
+
+  .forma-home-navigation__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forma-home-card {
+    min-height: 230px;
+    padding: 26px;
+  }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .forma-home-card,
+  .forma-home-card__arrow {
+    animation: none;
+    transition: none;
+  }
+
 }
 
 
@@ -4833,26 +4982,6 @@ span:last-child {
 
 
 /* ==========================================================
-   NUMBER
-   ========================================================== */
-
-.forma-home-card__number {
-  font-size: 9px;
-
-  line-height: 1;
-
-  letter-spacing: 0.16em;
-
-  color: currentColor;
-
-  opacity: 0.38;
-
-  transition:
-    opacity 320ms ease;
-}
-
-
-/* ==========================================================
    CONTENT
    ========================================================== */
 
@@ -4864,56 +4993,6 @@ span:last-child {
   flex-direction: column;
 
   gap: 14px;
-}
-
-.forma-home-navigation__label {
-  
-  font-size: clamp(42px, 4.8vw, 72px) !important;
-  line-height: 0.92 !important;
-  letter-spacing: -0.06em !important;
-  font-weight: 400 !important;
-}
-
-.forma-home-card__description {
-  max-width: 380px;
-
-  margin: 0;
-
-  font-size: 12px;
-
-  line-height: 1.5;
-
-  color: currentColor;
-
-  opacity: 0.46;
-
-  transition:
-    opacity 320ms ease;
-}
-
-
-/* ==========================================================
-   ARROW
-   ========================================================== */
-
-.forma-home-card__arrow {
-  position: absolute;
-
-  top: clamp(26px, 3vw, 42px);
-  right: clamp(26px, 3vw, 42px);
-
-  font-size: 22px;
-
-  line-height: 1;
-
-  opacity: 0.38;
-
-  transform:
-    translate3d(0, 0, 0);
-
-  transition:
-    opacity 320ms ease,
-    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
