@@ -5362,11 +5362,11 @@ span:last-child {
 .forma-home-navigation__label {
   margin-top: auto;
 
-  font-size: clamp(27px, 3vw, 42px);
+  font-size: clamp(42px, 4.8vw, 72px);
 
-  line-height: 0.95;
+  line-height: 0.92;
 
-  letter-spacing: -0.04em;
+  letter-spacing: -0.06em;
 
   font-weight: 400;
 }
