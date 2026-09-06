@@ -53,6 +53,10 @@
    FORMA — PRODUCT GALLERY + GLASS INFO
    ============================================================ */
 
+/* ============================================================
+   FORMA — FINAL PRODUCT EXPERIENCE
+   ============================================================ */
+
 @media screen and (min-width: 1000px) {
 
   /* ----------------------------------------------------------
@@ -67,7 +71,7 @@
 
 
   /* ----------------------------------------------------------
-     GALLERY
+     FULL PRODUCT GALLERY
      ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-gallery {
@@ -78,20 +82,16 @@
     width: 100% !important;
     max-width: none !important;
 
-    grid-column: 1 / -1 !important;
-
     height: calc(100vh - 204px) !important;
 
     min-height: 680px !important;
     max-height: 900px !important;
 
     overflow: hidden !important;
+
+    z-index: 1 !important;
   }
 
-
-  /* ----------------------------------------------------------
-     GALLERY IMAGE AREA
-     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-gallery__image-list {
     width: 100% !important;
@@ -100,26 +100,39 @@
     overflow: hidden !important;
   }
 
+
   #shopify-section-{{ section.id }} .product-gallery__carousel {
     width: 100% !important;
     height: 100% !important;
 
     overflow: hidden !important;
+
+    z-index: 1 !important;
   }
 
 
   /* ----------------------------------------------------------
-     GLASS PANEL
+     FORMA GLASS PANEL
      ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info {
+
     position: absolute !important;
 
     top: 0 !important;
-    right: 0 !important;
+
+    /*
+     * Push the glass all the way to the viewport edge.
+     * The product sits inside Prestige's container,
+     * so we compensate for the container margin.
+     */
+
+    right: calc((100vw - 100%) / -2) !important;
+
     bottom: auto !important;
 
     width: min(39vw, 590px) !important;
+
     height: calc(100vh - 204px) !important;
 
     min-height: 680px !important;
@@ -137,10 +150,17 @@
 
     isolation: isolate !important;
 
- overflow: visible !important;
+    /*
+     * Keep content inside the glass.
+     * No second scrollbar.
+     */
+
+    overflow: hidden !important;
 
     border: 0 !important;
-    border-left: 1px solid rgba(255,255,255,.18) !important;
+
+    border-left:
+      1px solid rgba(255,255,255,.18) !important;
 
     box-shadow:
       -15px 0 45px rgba(0,0,0,.035) !important;
@@ -161,7 +181,8 @@
 
     z-index: -1 !important;
 
-    background: rgba(105,105,103,.24) !important;
+    background:
+      rgba(105,105,103,.24) !important;
 
     backdrop-filter:
       blur(26px)
@@ -176,10 +197,11 @@
 
 
   /* ----------------------------------------------------------
-     PRODUCT INFORMATION ABOVE GLASS
+     PRODUCT INFO ABOVE GLASS
      ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info > * {
+
     position: relative !important;
 
     z-index: 1 !important;
@@ -187,16 +209,31 @@
 
 
   /* ----------------------------------------------------------
-     KEEP HEADER ABOVE PRODUCT
+     HEADER ALWAYS ABOVE EVERYTHING
      ---------------------------------------------------------- */
 
-  header,
-  .shopify-section-header,
+  .header,
+  .shopify-section-group-header-group,
   #shopify-section-header,
-  .header {
+  header {
+
     position: relative !important;
 
     z-index: 100 !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     GALLERY CONTROLS
+     Keep them above the image but below the glass.
+     ---------------------------------------------------------- */
+
+  #shopify-section-{{ section.id }} .product-gallery
+  carousel-navigation {
+
+    position: relative !important;
+
+    z-index: 10 !important;
   }
 
 }
