@@ -50,67 +50,87 @@
   }
 
   //* ============================================================
-   FORMA PRODUCT PAGE — FULL HEIGHT GLASS PRODUCT INFO
+   FORMA PRODUCT PAGE — FULL WIDTH GLASS PRODUCT INFO
    ============================================================ */
 
 @media screen and (min-width: 1000px) {
 
+  /* ----------------------------------------------------------
+     PRODUCT AREA
+     Make the gallery span the complete product width.
+     The information panel then sits ON TOP of the images.
+     ---------------------------------------------------------- */
+
   #shopify-section-{{ section.id }} .product {
-    position: relative;
-    display: block;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
   }
 
   #shopify-section-{{ section.id }} .product-gallery {
-    width: 100%;
-    max-width: none;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    grid-column: 1 / -1 !important;
   }
 
   /* ----------------------------------------------------------
-     FULL HEIGHT GLASS PANEL
+     GLASS PANEL
      ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info {
-  position: absolute;
+    position: absolute !important;
 
-  top: 0;
-  right: 0;
-  bottom: 0;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 
-  width: min(39vw, 590px);
+    width: min(39vw, 590px) !important;
 
-  z-index: 30;
+    z-index: 50 !important;
 
-  display: flex;
-  flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
 
-  padding: 2.5rem 2.5rem;
+    padding: 2.5rem 2.5rem !important;
 
-  background: rgba(150, 150, 148, 0.38) !important;
+    /*
+     * TRUE TRANSPARENT FORMA GLASS
+     * The image underneath must remain visible.
+     */
 
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(155, 155, 153, 0.30) !important;
 
-  box-shadow:
-    -12px 0 40px rgba(0, 0, 0, 0.025);
+    border: 0 !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.20) !important;
 
-  backdrop-filter:
-    blur(30px) saturate(115%) !important;
+    box-shadow:
+      -15px 0 50px rgba(0, 0, 0, 0.025) !important;
 
-  -webkit-backdrop-filter:
-    blur(30px) saturate(115%) !important;
+    backdrop-filter:
+      blur(26px)
+      saturate(115%) !important;
 
-  border-radius: 0;
-}
+    -webkit-backdrop-filter:
+      blur(26px)
+      saturate(115%) !important;
+
+    border-radius: 0 !important;
+
+    overflow: hidden;
   }
 
-  /*
-   * Make sure the content itself remains sharp
-   * while the background stays translucent.
-   */
+  /* ----------------------------------------------------------
+     KEEP PRODUCT CONTENT SHARP
+     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info > * {
     position: relative;
     z-index: 2;
   }
+
+}
 
   @media screen and (min-width: 1000px) {
     #shopify-section-{{ section.id }} {
