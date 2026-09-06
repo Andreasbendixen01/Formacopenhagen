@@ -50,84 +50,154 @@
   }
 
   /* ============================================================
-   FORMA — TRUE GLASS PRODUCT INFO
+   FORMA — PRODUCT GALLERY + GLASS INFO
    ============================================================ */
 
 @media screen and (min-width: 1000px) {
 
+  /* ----------------------------------------------------------
+     PRODUCT WRAPPER
+     ---------------------------------------------------------- */
+
   #shopify-section-{{ section.id }} .product {
     position: relative !important;
+    display: block !important;
+    width: 100% !important;
   }
+
+
+  /* ----------------------------------------------------------
+     GALLERY
+     ---------------------------------------------------------- */
+
+  #shopify-section-{{ section.id }} .product-gallery {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    grid-column: 1 / -1 !important;
+
+    height: calc(100vh - 204px) !important;
+
+    min-height: 680px !important;
+    max-height: 900px !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     GALLERY IMAGE AREA
+     ---------------------------------------------------------- */
+
+  #shopify-section-{{ section.id }} .product-gallery__image-list {
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-gallery__carousel {
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     GLASS PANEL
+     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info {
     position: absolute !important;
 
     top: 0 !important;
     right: 0 !important;
-    bottom: 0 !important;
+    bottom: auto !important;
 
     width: min(39vw, 590px) !important;
+    height: calc(100vh - 204px) !important;
 
-    z-index: 50 !important;
+    min-height: 680px !important;
+    max-height: 900px !important;
+
+    z-index: 20 !important;
+
+    box-sizing: border-box !important;
 
     padding: 2.5rem 2.5rem !important;
-
-    /*
-     * IMPORTANT:
-     * Remove Prestige's solid color-scheme background.
-     */
 
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
 
-    /*
-     * Forma smoked glass layer.
-     */
+    isolation: isolate !important;
 
-    isolation: isolate;
-    overflow: hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 
-    border-left: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border: 0 !important;
+    border-left: 1px solid rgba(255,255,255,.18) !important;
 
     box-shadow:
-      -15px 0 45px rgba(0, 0, 0, 0.04) !important;
+      -15px 0 45px rgba(0,0,0,.035) !important;
   }
 
-  /*
-   * Actual glass surface.
-   *
-   * This sits behind the product information but
-   * above the moving product images.
-   */
+
+  /* ----------------------------------------------------------
+     GLASS SURFACE
+     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info::before {
+
     content: "" !important;
 
     position: absolute !important;
+
     inset: 0 !important;
 
     z-index: -1 !important;
 
-    background: rgba(105, 105, 103, 0.24) !important;
+    background: rgba(105,105,103,.24) !important;
 
     backdrop-filter:
-      blur(24px)
+      blur(26px)
       saturate(115%) !important;
 
     -webkit-backdrop-filter:
-      blur(24px)
+      blur(26px)
       saturate(115%) !important;
 
     pointer-events: none !important;
   }
 
-  /*
-   * Keep all product information above the glass.
-   */
+
+  /* ----------------------------------------------------------
+     PRODUCT INFORMATION ABOVE GLASS
+     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info > * {
     position: relative !important;
+
+    z-index: 1 !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     KEEP HEADER ABOVE PRODUCT
+     ---------------------------------------------------------- */
+
+  header,
+  .shopify-section-header,
+  #shopify-section-header,
+  .header {
+    position: relative !important;
+
+    z-index: 100 !important;
   }
 
 }
