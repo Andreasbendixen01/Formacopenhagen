@@ -1640,9 +1640,8 @@
   }
 
   .forma-dashboard__overview-item {
-  min-height: 112px;
-  padding:
-    18px 24px;
+  min-height: 110px;
+  padding: 18px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
