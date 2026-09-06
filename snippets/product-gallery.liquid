@@ -20,6 +20,103 @@
 {%- endcomment -%}
 
 <style>
+
+  /* ============================================================
+     FORMA PRODUCT GALLERY — AUTO SLIDER
+     ============================================================ */
+
+  .product-gallery--forma-auto {
+    position: relative;
+  }
+
+  .product-gallery--forma-auto .product-gallery__image-list {
+    position: relative;
+  }
+
+  .product-gallery--forma-auto .product-gallery__carousel {
+    scroll-behavior: smooth;
+  }
+
+  .product-gallery--forma-auto .product-gallery__media {
+    transition: opacity 0.45s ease;
+  }
+
+  .forma-gallery-meta {
+    position: absolute;
+    z-index: 5;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: none;
+    color: #111;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .forma-gallery-progress {
+    width: 5.5rem;
+    height: 1px;
+    background: rgba(17,17,17,.18);
+    overflow: hidden;
+  }
+
+  .forma-gallery-progress__bar {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #111;
+    transform-origin: left center;
+  }
+
+  .forma-gallery-controls {
+    position: absolute;
+    z-index: 5;
+    right: 1.25rem;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .forma-gallery-controls button {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(17,17,17,.18);
+    border-radius: 50%;
+    background: rgba(255,255,255,.82);
+    color: #111;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .forma-gallery-controls button:hover {
+    background: #111;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 699px) {
+    .forma-gallery-meta {
+      left: 0.9rem;
+      bottom: 0.9rem;
+    }
+
+    .forma-gallery-controls {
+      right: 0.9rem;
+      bottom: 0.7rem;
+    }
+
+    .forma-gallery-controls button {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+
   {%- if mobile_controls == 'free_scroll' -%}
     @media screen and (max-width: 999px) {
       #shopify-section-{{ section.id }} {
@@ -93,7 +190,9 @@
 %}
 
 <product-gallery
-  class="product-gallery"
+  class="product-gallery product-gallery--forma-auto"
+  data-forma-auto-slider="true"
+  data-forma-auto-slider-delay="4000"
   form="{{ product_form_id }}"
   filtered-indexes="{{ filtered_indexes | json }}"
   {% if enable_media_autoplay %}
@@ -113,6 +212,47 @@
   {%- endif -%}
 
   <div class="product-gallery__image-list">
+
+      {%- if product.media.size > 1 -%}
+      <div class="forma-gallery-meta" aria-hidden="true">
+        <span class="forma-gallery-counter">
+          01 / {{ product.media.size }}
+        </span>
+
+        <span class="forma-gallery-progress">
+          <span class="forma-gallery-progress__bar"></span>
+        </span>
+      </div>
+
+      <div class="forma-gallery-controls">
+        <button
+          type="button"
+          class="forma-gallery-prev"
+          aria-label="Previous image"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+
+        <button
+          type="button"
+          class="forma-gallery-pause"
+          aria-label="Pause image slideshow"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">Ⅱ</span>
+        </button>
+
+        <button
+          type="button"
+          class="forma-gallery-next"
+          aria-label="Next image"
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    {%- endif -%}
+
+
     {%- comment -%}
       ----------------------------------------------------------------------------------------------------------------------
       CAROUSEL
@@ -347,4 +487,178 @@
       </carousel-navigation>
     {%- endif -%}
   {%- endif -%}
+
+  <script>
+(() => {
+  const gallery = document.currentScript.closest('product-gallery');
+
+  if (!gallery || gallery.dataset.formaAutoInitialized === 'true') {
+    return;
+  }
+
+  gallery.dataset.formaAutoInitialized = 'true';
+
+  const carousel = gallery.querySelector('.product-gallery__carousel');
+  const previousButton = gallery.querySelector('.forma-gallery-prev');
+  const nextButton = gallery.querySelector('.forma-gallery-next');
+  const pauseButton = gallery.querySelector('.forma-gallery-pause');
+  const counter = gallery.querySelector('.forma-gallery-counter');
+  const progressBar = gallery.querySelector('.forma-gallery-progress__bar');
+
+  if (!carousel) return;
+
+  const delay = 4000;
+  let currentIndex = 0;
+  let timer = null;
+  let progressTimer = null;
+  let paused = false;
+
+  const getSlides = () => {
+    return [
+      ...gallery.querySelectorAll(
+        '.product-gallery__media:not([hidden])'
+      )
+    ];
+  };
+
+  const formatNumber = number => {
+    return String(number).padStart(2, '0');
+  };
+
+  const updateUI = () => {
+    const slides = getSlides();
+
+    if (!slides.length) return;
+
+    currentIndex = Math.min(
+      currentIndex,
+      slides.length - 1
+    );
+
+    if (counter) {
+      counter.textContent =
+        `${formatNumber(currentIndex + 1)} / ${formatNumber(slides.length)}`;
+    }
+  };
+
+  const stopAutoplay = () => {
+    clearTimeout(timer);
+    cancelAnimationFrame(progressTimer);
+
+    timer = null;
+    progressTimer = null;
+  };
+
+  const startProgress = () => {
+    if (!progressBar || paused) return;
+
+    const startTime = performance.now();
+
+    const animate = now => {
+      if (paused) return;
+
+      const elapsed = now - startTime;
+      const percentage =
+        Math.min(elapsed / delay, 1) * 100;
+
+      progressBar.style.width = `${percentage}%`;
+
+      if (percentage < 100) {
+        progressTimer =
+          requestAnimationFrame(animate);
+      }
+    };
+
+    progressBar.style.width = '0%';
+
+    progressTimer =
+      requestAnimationFrame(animate);
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+
+    if (paused) return;
+
+    startProgress();
+
+    timer = setTimeout(() => {
+      goTo(currentIndex + 1);
+    }, delay);
+  };
+
+  const goTo = index => {
+    const slides = getSlides();
+
+    if (slides.length < 2) return;
+
+    currentIndex =
+      (index + slides.length) % slides.length;
+
+    const slide = slides[currentIndex];
+
+    if (slide) {
+      carousel.scrollTo({
+        left: slide.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+
+    updateUI();
+    startAutoplay();
+  };
+
+  previousButton?.addEventListener('click', () => {
+    goTo(currentIndex - 1);
+  });
+
+  nextButton?.addEventListener('click', () => {
+    goTo(currentIndex + 1);
+  });
+
+  pauseButton?.addEventListener('click', () => {
+    paused = !paused;
+
+    pauseButton.setAttribute(
+      'aria-pressed',
+      String(paused)
+    );
+
+    pauseButton.setAttribute(
+      'aria-label',
+      paused
+        ? 'Play image slideshow'
+        : 'Pause image slideshow'
+    );
+
+    pauseButton.innerHTML =
+      `<span aria-hidden="true">${
+        paused ? '▶' : 'Ⅱ'
+      }</span>`;
+
+    if (paused) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
+
+  carousel.addEventListener('mouseenter', () => {
+    if (!paused) {
+      stopAutoplay();
+    }
+  });
+
+  carousel.addEventListener('mouseleave', () => {
+    if (!paused) {
+      startAutoplay();
+    }
+  });
+
+  updateUI();
+  startAutoplay();
+})();
+</script>
+
+
 </product-gallery>
