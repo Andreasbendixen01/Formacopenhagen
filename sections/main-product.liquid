@@ -70,43 +70,36 @@
      ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info {
-    position: absolute;
+  position: absolute;
 
-    top: 0;
-    right: 0;
-    bottom: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 
-    width: min(39vw, 590px);
+  width: min(39vw, 590px);
 
-    z-index: 30;
+  z-index: 30;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 2.5rem 2.5rem;
+  padding: 2.5rem 2.5rem;
 
-    /*
-     * Forma glass effect.
-     * Same visual language as the mega menu:
-     * translucent grey + blur + subtle border.
-     */
+  background: rgba(150, 150, 148, 0.38) !important;
 
-    background: rgba(210, 210, 208, 0.68);
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
 
-    border-left: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow:
+    -12px 0 40px rgba(0, 0, 0, 0.025);
 
-    box-shadow:
-      -12px 0 40px rgba(0, 0, 0, 0.035);
+  backdrop-filter:
+    blur(30px) saturate(115%) !important;
 
-    backdrop-filter:
-      blur(30px)
-      saturate(110%);
+  -webkit-backdrop-filter:
+    blur(30px) saturate(115%) !important;
 
-    -webkit-backdrop-filter:
-      blur(30px)
-      saturate(110%);
-
-    border-radius: 0;
+  border-radius: 0;
+}
   }
 
   /*
@@ -118,8 +111,6 @@
     position: relative;
     z-index: 2;
   }
-
-}
 
   @media screen and (min-width: 1000px) {
     #shopify-section-{{ section.id }} {
