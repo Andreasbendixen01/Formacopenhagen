@@ -49,35 +49,15 @@
     {%- endif -%}
   }
 
-  //* ============================================================
-   FORMA PRODUCT PAGE — FULL WIDTH GLASS PRODUCT INFO
+  /* ============================================================
+   FORMA — TRUE GLASS PRODUCT INFO
    ============================================================ */
 
 @media screen and (min-width: 1000px) {
 
-  /* ----------------------------------------------------------
-     PRODUCT AREA
-     Make the gallery span the complete product width.
-     The information panel then sits ON TOP of the images.
-     ---------------------------------------------------------- */
-
   #shopify-section-{{ section.id }} .product {
     position: relative !important;
-    display: block !important;
-    width: 100% !important;
   }
-
-  #shopify-section-{{ section.id }} .product-gallery {
-    position: relative !important;
-    display: block !important;
-    width: 100% !important;
-    max-width: none !important;
-    grid-column: 1 / -1 !important;
-  }
-
-  /* ----------------------------------------------------------
-     GLASS PANEL
-     ---------------------------------------------------------- */
 
   #shopify-section-{{ section.id }} .product-info {
     position: absolute !important;
@@ -90,44 +70,65 @@
 
     z-index: 50 !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-
     padding: 2.5rem 2.5rem !important;
 
     /*
-     * TRUE TRANSPARENT FORMA GLASS
-     * The image underneath must remain visible.
+     * IMPORTANT:
+     * Remove Prestige's solid color-scheme background.
      */
 
-    background: rgba(155, 155, 153, 0.30) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
 
-    border: 0 !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.20) !important;
+    /*
+     * Forma smoked glass layer.
+     */
+
+    isolation: isolate;
+    overflow: hidden;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.18) !important;
 
     box-shadow:
-      -15px 0 50px rgba(0, 0, 0, 0.025) !important;
+      -15px 0 45px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  /*
+   * Actual glass surface.
+   *
+   * This sits behind the product information but
+   * above the moving product images.
+   */
+
+  #shopify-section-{{ section.id }} .product-info::before {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: -1 !important;
+
+    background: rgba(105, 105, 103, 0.24) !important;
 
     backdrop-filter:
-      blur(26px)
+      blur(24px)
       saturate(115%) !important;
 
     -webkit-backdrop-filter:
-      blur(26px)
+      blur(24px)
       saturate(115%) !important;
 
-    border-radius: 0 !important;
-
-    overflow: hidden;
+    pointer-events: none !important;
   }
 
-  /* ----------------------------------------------------------
-     KEEP PRODUCT CONTENT SHARP
-     ---------------------------------------------------------- */
+  /*
+   * Keep all product information above the glass.
+   */
 
   #shopify-section-{{ section.id }} .product-info > * {
-    position: relative;
-    z-index: ;
+    position: relative !important;
+    z-index: 1 !important;
   }
 
 }
