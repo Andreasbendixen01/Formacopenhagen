@@ -4734,7 +4734,7 @@ span:last-child {
 
 /* ==========================================================
    FORMA — HOME NAVIGATION
-   Premium member landing
+   Canonical Your Forma navigation
    ========================================================== */
 
 .forma-home-navigation {
@@ -4765,6 +4765,7 @@ span:last-child {
   margin: 0;
 
   font-size: clamp(48px, 6.5vw, 92px);
+
   line-height: 0.9;
 
   font-weight: 400;
@@ -4797,7 +4798,7 @@ span:last-child {
    CARD
    ========================================================== */
 
-.forma-home-navigation__item {
+.forma-home-card {
   position: relative;
 
   min-height: clamp(250px, 25vw, 360px);
@@ -4835,8 +4836,9 @@ span:last-child {
    NUMBER
    ========================================================== */
 
-.forma-home-navigation__number {
+.forma-home-card__number {
   font-size: 9px;
+
   line-height: 1;
 
   letter-spacing: 0.16em;
@@ -4854,19 +4856,21 @@ span:last-child {
    CONTENT
    ========================================================== */
 
-.forma-home-navigation__content {
+.forma-home-card__content {
   max-width: 620px;
 
   display: flex;
+
   flex-direction: column;
 
   gap: 14px;
 }
 
-.forma-home-navigation__label {
+.forma-home-card__label {
   margin: 0;
 
-  font-size: clamp(34px, 4vw, 58px);
+  font-size:
+    clamp(34px, 4vw, 58px);
 
   line-height: 0.94;
 
@@ -4875,7 +4879,7 @@ span:last-child {
   letter-spacing: -0.055em;
 }
 
-.forma-home-navigation__description {
+.forma-home-card__description {
   max-width: 380px;
 
   margin: 0;
@@ -4897,18 +4901,20 @@ span:last-child {
    ARROW
    ========================================================== */
 
-.forma-home-navigation__arrow {
+.forma-home-card__arrow {
   position: absolute;
 
   top: clamp(26px, 3vw, 42px);
   right: clamp(26px, 3vw, 42px);
 
   font-size: 22px;
+
   line-height: 1;
 
   opacity: 0.38;
 
-  transform: translate3d(0, 0, 0);
+  transform:
+    translate3d(0, 0, 0);
 
   transition:
     opacity 320ms ease,
@@ -4920,28 +4926,29 @@ span:last-child {
    HOVER
    ========================================================== */
 
-.forma-home-navigation__item:hover {
+.forma-home-card:hover {
   background: #171717;
 
   color: #ffffff;
 
-  transform: translateY(-4px);
+  transform:
+    translateY(-4px);
 
   z-index: 2;
 }
 
-.forma-home-navigation__item:hover
-.forma-home-navigation__number {
+.forma-home-card:hover
+.forma-home-card__number {
   opacity: 0.58;
 }
 
-.forma-home-navigation__item:hover
-.forma-home-navigation__description {
+.forma-home-card:hover
+.forma-home-card__description {
   opacity: 0.58;
 }
 
-.forma-home-navigation__item:hover
-.forma-home-navigation__arrow {
+.forma-home-card:hover
+.forma-home-card__arrow {
   opacity: 1;
 
   transform:
@@ -4953,25 +4960,26 @@ span:last-child {
    ACTIVE
    ========================================================== */
 
-.forma-home-navigation__item.is-active {
+.forma-home-card.is-active {
   background: #171717;
+
   color: #ffffff;
 
   z-index: 1;
 }
 
-.forma-home-navigation__item.is-active
-.forma-home-navigation__number {
+.forma-home-card.is-active
+.forma-home-card__number {
   opacity: 0.58;
 }
 
-.forma-home-navigation__item.is-active
-.forma-home-navigation__description {
+.forma-home-card.is-active
+.forma-home-card__description {
   opacity: 0.58;
 }
 
-.forma-home-navigation__item.is-active
-.forma-home-navigation__arrow {
+.forma-home-card.is-active
+.forma-home-card__arrow {
   opacity: 1;
 }
 
@@ -4980,7 +4988,7 @@ span:last-child {
    ENTRANCE ANIMATION
    ========================================================== */
 
-.forma-home-navigation__item {
+.forma-home-card {
   opacity: 0;
 
   animation:
@@ -4990,27 +4998,27 @@ span:last-child {
     forwards;
 }
 
-.forma-home-navigation__item:nth-child(1) {
+.forma-home-card:nth-child(1) {
   animation-delay: 80ms;
 }
 
-.forma-home-navigation__item:nth-child(2) {
+.forma-home-card:nth-child(2) {
   animation-delay: 140ms;
 }
 
-.forma-home-navigation__item:nth-child(3) {
+.forma-home-card:nth-child(3) {
   animation-delay: 200ms;
 }
 
-.forma-home-navigation__item:nth-child(4) {
+.forma-home-card:nth-child(4) {
   animation-delay: 260ms;
 }
 
-.forma-home-navigation__item:nth-child(5) {
+.forma-home-card:nth-child(5) {
   animation-delay: 320ms;
 }
 
-.forma-home-navigation__item:nth-child(6) {
+.forma-home-card:nth-child(6) {
   animation-delay: 380ms;
 }
 
@@ -5052,14 +5060,15 @@ span:last-child {
     grid-template-columns: 1fr;
   }
 
-  .forma-home-navigation__item {
+  .forma-home-card {
     min-height: 230px;
 
     padding: 26px;
   }
 
-  .forma-home-navigation__arrow {
+  .forma-home-card__arrow {
     top: 26px;
+
     right: 26px;
   }
 
@@ -5072,13 +5081,14 @@ span:last-child {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .forma-home-navigation__item,
-  .forma-home-navigation__arrow {
+  .forma-home-card,
+  .forma-home-card__arrow {
     animation: none;
+
     transition: none;
   }
 
-  .forma-home-navigation__item {
+  .forma-home-card {
     opacity: 1;
   }
 
