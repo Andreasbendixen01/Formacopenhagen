@@ -392,7 +392,17 @@
 
 
 <script
-  src="{{ 'forma-engine.js' | asset_url }}"
+  src="{{ 'forma-core.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-signals.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-entities.js' | asset_url }}"
   defer
 ></script>
 
@@ -402,7 +412,27 @@
 ></script>
 
 <script
+  src="{{ 'forma-products.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-engine.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-recommendation-engine.js' | asset_url }}"
+  defer
+></script>
+
+<script
   src="{{ 'forma-recommendations.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-daily-edit-service.js' | asset_url }}"
   defer
 ></script>
 
@@ -417,17 +447,22 @@
 ></script>
 
 <script
-  src="{{ 'forma-new-arrivals.js' | asset_url }}"
+  src="{{ 'forma-new-arrivals-engine.js' | asset_url }}"
   defer
 ></script>
 
 <script
-  src="{{ 'forma-recently-viewed.js' | asset_url }}"
+  src="{{ 'forma-continue-exploring.js' | asset_url }}"
   defer
 ></script>
 
 <script
   src="{{ 'forma-followed-brands.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-recently-viewed.js' | asset_url }}"
   defer
 ></script>
 
