@@ -1658,21 +1658,21 @@
     border-right: 0;
   }
   
-.forma-dashboard__overview-value {
+/* ==========================================================
+   FORMA — PERSONAL STATUS / REFINED SCALE
+   ========================================================== */
 
-  font-size: clamp(30px, 3vw, 44px);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.045em;
+.forma-dashboard__overview-value {
+  font-size: clamp(28px, 2.6vw, 40px) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
 }
 
 .forma-dashboard__overview-label {
-  margin-top: 8px;
-  color: rgba(23, 23, 23, 0.42);
-  font-size: 9px;
-  line-height: 1;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  margin-top: 8px !important;
+  font-size: 8px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.15em !important;
 }
 
   .forma-dashboard-section {
