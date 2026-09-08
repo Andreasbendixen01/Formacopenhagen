@@ -21,13 +21,13 @@
     "[data-forma-discover-again-secondary]"
   );
 
-  if (!window.Forma?.ranking) {
-    console.error(
-      "[Forma Discover Again] Ranking Engine must load first."
-    );
+  if (!window.Forma?.recommendations) {
+  console.error(
+    "[Forma Discover Again] Recommendation Engine must load first."
+  );
 
-    return;
-  }
+  return;
+}
 
   /*
    * Sæt denne til true, mens vi tester designet.
