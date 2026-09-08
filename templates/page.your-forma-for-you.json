@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "forma-for-you",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

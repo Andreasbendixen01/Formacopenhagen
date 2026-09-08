@@ -1,0 +1,65 @@
+{{ 'forma-dashboard.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="forma-dashboard"
+  data-forma-dashboard
+  data-forma-member-app
+>
+
+  <main class="forma-dashboard__content">
+
+    <div class="forma-dashboard__container">
+
+      <section
+        class="forma-member-view"
+        data-forma-view="for-you"
+      >
+
+        <header class="forma-dashboard__hero">
+
+          <div class="forma-dashboard__hero-content">
+
+            <p class="forma-dashboard__eyebrow">
+              For You
+            </p>
+
+            <h1 class="forma-dashboard__hero-title">
+              Made for you.
+            </h1>
+
+            <p class="forma-dashboard__hero-description">
+              A personal edit shaped by what you follow,
+              save, explore and discover.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        {% render 'forma-dashboard-discover-again' %}
+
+        {% render 'forma-dashboard-daily-edit' %}
+
+        {% render 'forma-dashboard-since-last-visit' %}
+
+        {% render 'forma-dashboard-recommended' %}
+
+      </section>
+
+    </div>
+
+  </main>
+
+</section>
+
+
+<script
+  src="{{ 'forma-dashboard.js' | asset_url }}"
+  defer
+></script>
+
+<script
+  src="{{ 'forma-dashboard-navigation.js' | asset_url }}"
+  defer
+></script>
