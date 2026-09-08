@@ -53,8 +53,9 @@
 
     const id = section.dataset.formaSection;
 
-    section.dataset.formaState = "ready";
-    section.setAttribute("aria-busy", "false");
+  section.dataset.formaState = "ready";
+  section.setAttribute("aria-busy", "false");
+  section.removeAttribute("hidden");
 
     readySections.add(id);
 
