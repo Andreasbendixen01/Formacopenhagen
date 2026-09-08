@@ -5582,3 +5582,15 @@ span:last-child {
 
   justify-content: center !important;
 }
+
+.forma-dashboard__overview-value {
+  font-size: 28px !important;
+  line-height: 1 !important;
+}
+
+.forma-dashboard__overview-label {
+  margin-top: 6px !important;
+
+  font-size: 10px !important;
+  line-height: 1 !important;
+}
