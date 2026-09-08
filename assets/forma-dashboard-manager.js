@@ -43,19 +43,19 @@
 
   function setSectionReady(sectionOrId) {
     const section =
-      typeof sectionOrId === "string"
-        ? sections.find(
-            item => item.dataset.formaSection === sectionOrId
-          )
-        : sectionOrId;
+    typeof sectionOrId === "string"
+      ? sections.find(
+          item => item.dataset.formaSection === sectionOrId
+        )
+      : sectionOrId;
 
     if (!section) return;
 
-    const id = section.dataset.formaSection;
+      const id = section.dataset.formaSection;
 
-  section.dataset.formaState = "ready";
-  section.setAttribute("aria-busy", "false");
-  section.removeAttribute("hidden");
+      section.dataset.formaState = "ready";
+      section.setAttribute("aria-busy", "false");
+      section.removeAttribute("hidden");
 
     readySections.add(id);
 
