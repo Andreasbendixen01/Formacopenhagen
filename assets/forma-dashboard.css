@@ -5569,28 +5569,49 @@ span:last-child {
 }
 
 /* ==========================================================
-   FORMA — PERSONAL STATUS / FINAL HEIGHT
+   FORMA — PERSONAL STATUS / FINAL
    ========================================================== */
 
 .forma-dashboard__overview-item {
-  min-height: 90px !important;
+  min-height: 82px !important;
+  height: 82px !important;
 
-  height: 90px !important;
+  padding: 14px 24px !important;
 
-  padding:
-    14px 24px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  justify-content: center !important;
+  border-right:
+    1px solid rgba(23, 23, 23, 0.14);
 }
+
+.forma-dashboard__overview-item:last-child {
+  border-right: none;
+}
+
 
 .forma-dashboard__overview-value {
-  font-size: 28px !important;
-  line-height: 1 !important;
+  font-size: 32px !important;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.04em !important;
 }
+
 
 .forma-dashboard__overview-label {
   margin-top: 6px !important;
 
-  font-size: 10px !important;
-  line-height: 1 !important;
+  color: rgba(23, 23, 23, 0.42);
+
+  font-size: 8px !important;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
 }
