@@ -5572,6 +5572,11 @@ span:last-child {
    FORMA — PERSONAL STATUS / FINAL
    ========================================================== */
 
+.forma-dashboard__overview {
+  margin-top: -28px !important;
+}
+
+
 .forma-dashboard__overview-item {
   min-height: 82px !important;
   height: 82px !important;
