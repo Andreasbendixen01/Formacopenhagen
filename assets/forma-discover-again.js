@@ -334,52 +334,75 @@
   }
 
   async function render() {
-    let products =
-      window.Forma.ranking
-        .getRediscoverProducts(3);
 
-    /*
-     * Testtilstand:
-     * Hvis der endnu ikke findes produkter,
-     * der er mindst 14 dage gamle, bruger vi
-     * Continue Exploring-produkter midlertidigt.
-     */
-    if (
-      TEST_MODE &&
-      products.length === 0
-    ) {
-      products =
-        window.Forma.ranking
-          .getContinueExploring(3);
-    }
+  const viewedProducts =
+    window.Forma
+      ?.recentlyViewed
+      ?.getAll?.() || [];
 
-    if (!products.length) {
-      hideSection();
-      return;
-    }
-
-    const fetchedProducts =
-      await Promise.all(
-        products.map(fetchProduct)
-      );
-
-    renderFeatured(
-      fetchedProducts[0]
-    );
-
-    secondaryContainer.innerHTML =
-      fetchedProducts
-        .slice(1, 3)
-        .map(createSecondaryCard)
-        .join("");
-
-    showSection();
+  if (!viewedProducts.length) {
+    hideSection();
+    return;
   }
 
-  window.addEventListener(
-    "forma:ranking-updated",
-    render
+  let products =
+    viewedProducts
+      .slice(0, 3);
+
+  try {
+
+    const rankedProducts =
+      await window.Forma
+        .recommendations
+        .getProducts(
+          products,
+          {
+            excludeViewed: false,
+            excludeSaved: false,
+            limit: 3
+          }
+        );
+
+    if (rankedProducts.length) {
+      products = rankedProducts;
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "[Forma Discover Again] Could not rank recently viewed products. Using recent products instead.",
+      error
+    );
+
+  }
+
+  if (!products.length) {
+    hideSection();
+    return;
+  }
+
+  const fetchedProducts =
+    await Promise.all(
+      products.map(fetchProduct)
+    );
+
+  renderFeatured(
+    fetchedProducts[0]
   );
 
-  render();
+  secondaryContainer.innerHTML =
+    fetchedProducts
+      .slice(1, 3)
+      .map(createSecondaryCard)
+      .join("");
+
+  showSection();
+}
+
+window.addEventListener(
+  "forma:recently-viewed-updated",
+  render
+);
+
+render();
 })();
