@@ -3000,13 +3000,8 @@
 
   if (!root) return;
 
-
   const views = Array.from(
     root.querySelectorAll('[data-forma-view]')
-  );
-
-  const navigation = Array.from(
-    root.querySelectorAll('[data-forma-nav-item]')
   );
 
   const routes = [
@@ -3018,47 +3013,19 @@
     'activity'
   ];
 
-
   function getRoute() {
     const params = new URLSearchParams(
       window.location.search
     );
 
-    const route = params.get('forma');
+    const route =
+      params.get('view') ||
+      params.get('forma');
 
     return routes.includes(route)
       ? route
       : 'home';
   }
-
-
-  function setActiveNavigation(route) {
-
-    navigation.forEach((item) => {
-
-      const isActive =
-        item.dataset.formaNavItem === route;
-
-      item.classList.toggle(
-        'is-active',
-        isActive
-      );
-
-      if (isActive) {
-        item.setAttribute(
-          'aria-current',
-          'page'
-        );
-      } else {
-        item.removeAttribute(
-          'aria-current'
-        );
-      }
-
-    });
-
-  }
-
 
   function showView(route) {
 
@@ -3076,75 +3043,18 @@
 
     });
 
-    setActiveNavigation(route);
-
     root.dataset.formaCurrentView = route;
 
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-
   }
 
+  showView(getRoute());
 
-  function navigate(route) {
-
-    if (!routes.includes(route)) {
-      route = 'home';
-    }
-
-    const url = new URL(
-      window.location.href
-    );
-
-    if (route === 'home') {
-      url.searchParams.delete('forma');
-    } else {
-      url.searchParams.set(
-        'forma',
-        route
-      );
-    }
-
-    history.pushState(
-      {},
-      '',
-      url
-    );
-
-    showView(route);
-
-  }
-
-
-  root.addEventListener(
-    'click',
-    (event) => {
-
-      const link =
-        event.target.closest(
-          '[data-forma-route]'
-        );
-
-      if (!link) return;
-
-      event.preventDefault();
-
-      navigate(
-        link.dataset.formaRoute
-      );
-
-    }
-  );
-
-
-  window.addEventListener(
-    'popstate',
-    () => {
-      showView(getRoute());
-    }
-  );
+})();
+</script>
 
 
   showView(getRoute());
